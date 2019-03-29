@@ -1,0 +1,23 @@
+{
+    "success": true,
+    "products": [
+        {
+            "name": "Wicked Things",
+            "price": 2000,
+            "images": ["./images/wicked_things.jpg"],
+            "id": 1
+        },
+        {
+            "name": "Wicked shoes",
+            "price": 42150,
+            "images": ["../../dist/images/wicked_shoes.jpg", "../../dist/images/wicked_shoes2.jpg"],
+            "id": 2
+        },
+        {
+            "name": "Wicked brick",
+            "price": 525,
+            "images": ["../../dist/images/wicked_brick.jpg"],
+            "id": 3
+        }
+    ]
+}
