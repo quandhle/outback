@@ -1,5 +1,9 @@
 <?php
 
+require_once('functions.php');
+
+set_exception_handler('handleError');
+
 require_once('mysqlconnect.php');
 
 $query = "SELECT p.`id`, p.`name`, p.`price`,
@@ -10,11 +14,12 @@ $query = "SELECT p.`id`, p.`name`, p.`price`,
 	ORDER BY p.`id`
 ";
 
-
-
-
 /*procedural*/
 $result = mysqli_query($conn, $query);
+
+if(!$result){
+	throw new Exception('invalid query: '. mysqli_error($conn));
+}
 
 $data = [];
 
@@ -23,23 +28,13 @@ while($row = mysqli_fetch_assoc($result)){
 	$currentID = intval($currentID);
 	$image = $row['images'];
 	if( isset( $data[$currentID] ) ){
-		//$data[ $row['id'] ]['images'][] = $row['images'];
 		$data[$currentID]['images'][] = $image; //new push way
-		//array_push($data[$currentID]['images'], $image); //old push way
-		//$data[$currentID]['images'][ count($data[$currentID]['images'])] = $image //this is just mean
 	} else {
 		unset($row['images']);
 		$row['images'] = [];
-		//array_push($row['images'], $image);
 		$row['images'][] = $image;
-		//the way I would write it
-		//$data[$row['id']]['images'] = [$row['images']];
-
 		$row['price'] = intval($row['price']);
-		//$row['price'] = (int)$row['price']; using casting
-
-		$data[$currentID] = $row;
-
+		$data[$currentID] = $row;	
 	}
 }
 
