@@ -1,5 +1,9 @@
 <?php
 
+require_once('functions.php');
+
+set_exception_handler('handleError');
+
 require_once('mysqlconnect.php');
 
 $query = 'SELECT p.`id`, p.`name`, p.`price`,
@@ -7,34 +11,29 @@ $query = 'SELECT p.`id`, p.`name`, p.`price`,
     FROM `products` AS p
     JOIN `images` AS i
         ON p.`id` = i.`products_id`
-    ORDER BY p.`id` DESC'
-;
+    ORDER BY p.`id` DESC';
 
 // procedural
 $result = mysqli_query($conn, $query);
+
+if (!$result) {
+    throw new Exception('invalid query: '.mysqli_error($conn));
+};
 
 $data = [];
 
 while($row = mysqli_fetch_assoc($result)) {
     $currentID = $row['id'];
+    $currentID = intval($currentID);
+    $image = $row['images'];
 
     if ( isset( $data[$currentID] ) ) {
-        $data[$row['id']]['images'][] = $row['images'];
-
-        // $currentID = $row['id'];
-        // $image = $row['images'];
-        $data[$currentID]['images'][] = $image; // new push way
-        // array_push($data[$currentID]['images'], $image); // old push way
-        // $data[$currentID]['images'][count($date[$currentID]['images'])] = $image;
-        // null;
+        $data[$currentID]['images'][] = $image;
     } else {
-        $image = $row['images'];
         unset($row['images']);
+        $row['images'] = [];
         $row['images'][] = $image;
-
         $row['price'] = intval($row['price']);
-        $row['price'] = (int)$row['price'];
-        
         $data[$currentID] = $row;
     };
 }
@@ -44,8 +43,6 @@ $pureData = [];
 foreach($data as $value) {
     $pureData[] = $value;
 }
-
-exit();
 
 $output = [
     'success' => true,
