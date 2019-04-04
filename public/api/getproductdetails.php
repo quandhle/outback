@@ -35,14 +35,14 @@ if(mysqli_num_rows($result) === 0){
 $data = mysqli_fetch_assoc($result);
 
 $data['price'] = intval($data['price']);
-$data['miscDetails'] = json_decode( $data['miscDetails']);
+$data['miscDetails'] = json_decode( $data['miscDetails'], true);
 $data['images'] = explode( ',', $data['images']);
 
 $output = [
 	'success'=>true,
 	'productInfo' => $data
 ];
-
+var_dump($output);
 $json_output = json_encode($output );
 
 print($json_output);
