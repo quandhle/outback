@@ -1,6 +1,7 @@
 <?php
 
 require_once('functions.php');
+require_once('config.php');
 set_exception_handler('handleError');
 require_once('mysqlconnect.php');
 

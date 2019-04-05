@@ -1,0 +1,54 @@
+<?php
+
+require_once('functions.php');
+set_exception_handler('handleError');
+require_once('config.php');
+require_once('mysqlconnect.php');
+
+$product_id = 1;
+$product_quantity = 1;
+// $cart_id = 1;
+$user_id = 1;
+
+$query = "SELECT `price` FROM `products` WHERE `id` = $product_id";
+
+$result = mysqli_query($conn, $query);
+
+if (!$result) {
+    throw new Exception(mysqli_error($conn));
+};
+
+if (mysqli_num_rows($result) === 0) {
+    throw new Exception("No products match product ID $product_id.");
+};
+
+$product_data = mysqli_fetch_assoc($result);
+
+$product_price = (int)$product_data['price'];
+
+$product_total = $product_price * $product_quantity;
+
+if (empty($card_id)) {
+    $cart_create_query = "INSERT INTO `carts` SET
+        `item_count` = $product_quantity,
+        `total_price` = $product_total,
+        `created` = NOW(),
+        `users_id` = $user_id,
+        `changed` = NOW()";
+
+        print($cart_create_query);
+};
+
+// $cart_query = "SELECT `id` FROM `carts` WHERE `id` = $cart_id";
+
+// $cart_result = mysqli_query($conn, $query);
+
+// if (!$result) {
+//     throw new Exception(mysqli_error($conn));
+// };
+
+// if (mysqli_num_rows($result) === 0) {
+//     throw new Exception("No carts match cart ID $cart_id");
+// };
+
+?>
