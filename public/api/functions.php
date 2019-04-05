@@ -12,4 +12,13 @@ if (!function_exists('handleError')) {
     }
 }
 
+if (!handleError('handleCors')) {
+    function handleCors() {
+        header("Access-Control-Allow-Origin: *");
+        if ($_SERVER['REQUEST METHOD'] === 'OPTIONS') {
+            header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
+        }
+    }
+}
+
 ?>
