@@ -1,5 +1,7 @@
 <?php
 
+require_once('config.php');
+
 require_once('functions.php');
 
 set_exception_handler('handleError');
@@ -13,7 +15,6 @@ $query = 'SELECT p.`id`, p.`name`, p.`price`,
         ON p.`id` = i.`products_id`
     ORDER BY p.`id` DESC';
 
-// procedural
 $result = mysqli_query($conn, $query);
 
 if (!$result) {
@@ -36,7 +37,7 @@ while($row = mysqli_fetch_assoc($result)) {
         $row['price'] = intval($row['price']);
         $data[$currentID] = $row;
     };
-}
+};
 
 $pureData = [];
 

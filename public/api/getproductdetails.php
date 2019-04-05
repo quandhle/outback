@@ -4,8 +4,6 @@ require_once('functions.php');
 set_exception_handler('handleError');
 require_once('mysqlconnect.php');
 
-// getproductdetails.php?productID=4;
-
 if (empty($_GET['productID'])) {
     throw new Exception('productID is a required value.');
 };
