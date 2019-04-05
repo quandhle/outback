@@ -16,6 +16,7 @@ class ProductList extends Component {
     }
 
     getProducts(){
+        // change
         axios.get('/api/getproducts.php').then((resp) => {
 
             this.setState({
