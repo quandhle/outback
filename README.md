@@ -10,7 +10,11 @@
 > 1. Clone your forked copy of this repo
 >    - `git clone https://github.com/[Your Username]/219_wickedsales.git`
 > 1. Change directory into the newly cloned repo
+<<<<<<< HEAD
 >    - `cd 210_wickedsales`
+=======
+>    - `cd 219_wickedsales`
+>>>>>>> b247c0d31fee08cc28f6b5362864bd5ae71caf47
 > 1. Install dependencies 
 >    - `npm install`
 > 1. Use MAMP or similar program to start Apache and MySQL servers
@@ -19,7 +23,11 @@
 >    - Use phpMyAdmin (or similar) to create a database
 > 1. Start dev server
 >    - `npm start`
+<<<<<<< HEAD
 > 1. Open a browser and navigate to `localhost:3000`.
+=======
+> 1. Open a browser and navigate to `localhost:3000`
+>>>>>>> b247c0d31fee08cc28f6b5362864bd5ae71caf47
 
 ### Bundle For Deployment
 
