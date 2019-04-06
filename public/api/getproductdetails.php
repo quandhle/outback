@@ -35,21 +35,6 @@ if(mysqli_num_rows($result) === 0){
 $data = mysqli_fetch_assoc($result);
 
 $data['price'] = intval($data['price']);
-<<<<<<< HEAD
-$data['miscDetails'] = json_decode($data['miscDetails']);
-$data['images'] = explode(',', $data['images']);
-
-$output = [
-    'success' => true,
-    'productInfo' => $data
-];
-
-$json_output = json_encode($output);
-
-print($json_output);
-
-?>
-=======
 $data['miscDetails'] = json_decode( $data['miscDetails'], true);
 $data['images'] = explode( ',', $data['images']);
 
@@ -80,4 +65,3 @@ print($json_output);
 
 
 
->>>>>>> b247c0d31fee08cc28f6b5362864bd5ae71caf47
