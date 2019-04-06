@@ -1,8 +1,5 @@
 <?php
-<<<<<<< HEAD
 
-=======
->>>>>>> b247c0d31fee08cc28f6b5362864bd5ae71caf47
 require_once('config.php');
 
 require_once('functions.php');
@@ -19,7 +16,6 @@ $query = "SELECT p.`id`, p.`name`, p.`price`,
 	ORDER BY p.`id`
 ";
 
-/*procedural*/
 $result = mysqli_query($conn, $query);
 
 if(!$result){
@@ -33,7 +29,7 @@ while($row = mysqli_fetch_assoc($result)){
 	$currentID = intval($currentID);
 	$image = $row['images'];
 	if( isset( $data[$currentID] ) ){
-		$data[$currentID]['images'][] = $image; //new push way
+		$data[$currentID]['images'][] = $image;
 	} else {
 		unset($row['images']);
 		$row['images'] = [];
@@ -44,6 +40,7 @@ while($row = mysqli_fetch_assoc($result)){
 }
 
 $pureData = [];
+
 foreach($data as $value){
 	$pureData[] = $value;
 }
