@@ -28,7 +28,7 @@ $product_price = (int)$product_data['price'];
 
 $product_total = $product_price * $product_quantity;
 
-if (empty($card_id)) {
+if (empty($cart_id)) {
     $cart_create_query = "INSERT INTO `carts` SET
         `item_count` = $product_quantity,
         `total_price` = $product_total,
@@ -36,28 +36,28 @@ if (empty($card_id)) {
         `users_id` = $user_id,
         `changed` = NOW()";
 
-        $cart_result = mysqli_query($conn, $$cart_create_query);
+        $cart_result = mysqli_query($conn, $cart_create_query);
 
         if (!$cart_result) {
             throw new Exception(mysqli_error($conn));
         };
 
-        if (mysqli_affected_rows($conn)) {
+        if (mysqli_affected_rows($conn) === 0) {
             throw new Exception('Data was not added to cart table.');
         }
 
-        $cards_id = mysqli_insert_id($conn);
+        $cart_id = mysqli_insert_id($conn);
 };
 
 $cart_item_query = "INSERT INTO `cart_items` SET
-    `product_id` = $product_id,
+    `products_id` = $product_id,
     `quantity` = $product_quantity,
-    `cards_id` = $card_id";
+    `carts_id` = $cart_id";
 
-$cart_item_result = mysli_query($conn, $cart_item_query);
+$cart_item_result = mysqli_query($conn, $cart_item_query);
 
-if (!$result) {
-    throw new Exception(mysli_error($query));
+if (!$cart_item_result) {
+    throw new Exception(mysli_error($conn));
 };
 
 if (mysqli_affected_rows($conn) === 0) {
@@ -73,16 +73,16 @@ $output = [
 print(json_encode($output));
 
 
-$cart_query = "SELECT `id` FROM `carts` WHERE `id` = $cart_id";
+// $cart_query = "SELECT `id` FROM `carts` WHERE `id` = $cart_id";
 
-$cart_result = mysqli_query($conn, $query);
+// $cart_result = mysqli_query($conn, $query);
 
-if (!$result) {
-    throw new Exception(mysqli_error($conn));
-};
+// if (!$result) {
+//     throw new Exception(mysqli_error($conn));
+// };
 
-if (mysqli_num_rows($result) === 0) {
-    throw new Exception("No carts match cart ID $cart_id");
-};
+// if (mysqli_num_rows($result) === 0) {
+//     throw new Exception("No carts match cart ID $cart_id");
+// };
 
 ?>
