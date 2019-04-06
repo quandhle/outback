@@ -10,10 +10,5 @@ export default props => {
             <Route path="/products" exact component={ProductList}/>
             <Route path="/products/:product_id" component={ProductDetails}/>
         </div>
-<<<<<<< HEAD
     )
 }
-=======
-    );
-}
->>>>>>> b247c0d31fee08cc28f6b5362864bd5ae71caf47

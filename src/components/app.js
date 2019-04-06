@@ -2,19 +2,6 @@ import 'materialize-css/dist/css/materialize.min.css';
 import 'materialize-css/dist/js/materialize.min';
 import '../assets/css/app.scss';
 import React from 'react';
-<<<<<<< HEAD
-import {Route} from 'react-router-dom';
-import ProductRoutes from './products';
-import Home from './home';
-import Nav from './nav/index';
-
-const App = () => (
-    <div>
-        <Nav/>
-        <div className="container">
-            <Route exact path="/" component={Home}/>
-            <Route path="/products" component={ProductRoutes}/>
-=======
 import { Route } from 'react-router-dom';
 import ProductRoutes from './products';
 import Home from './home';
@@ -27,7 +14,6 @@ const App = () => (
         <div className="container">
             <Route exact path="/" component={Home} />
             <Route path="/products" component={ProductRoutes} />
->>>>>>> b247c0d31fee08cc28f6b5362864bd5ae71caf47
         </div>
     </div>
 )

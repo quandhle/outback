@@ -3,7 +3,6 @@
 require_once('functions.php');
 
 set_exception_handler('handleError');
-require_once('config.php');
 
 require_once('mysqlconnect.php');
 
@@ -12,6 +11,7 @@ if(empty($_GET['productId'])){
 }
 
 $id = (int)$_GET['productId'];
+
 
 $query = "SELECT p.`id`, p.`name`, p.`price`, p.`description`, p.`misc_details` AS `miscDetails`,
 		GROUP_CONCAT(i.`url`) AS `images`
@@ -24,44 +24,27 @@ $query = "SELECT p.`id`, p.`name`, p.`price`, p.`description`, p.`misc_details` 
 
 $result = mysqli_query($conn, $query);
 
-if (!$result) {
+if(!$result){
 	throw new Exception( mysqli_error($conn) );
-};
+}
 
-if (mysqli_num_rows($result) === 0){
+if(mysqli_num_rows($result) === 0){
 	throw new Exception( "no data available for product id $id");
-};
+}
 
 $data = mysqli_fetch_assoc($result);
 
 $data['price'] = intval($data['price']);
-$data['miscDetails'] = json_decode( $data['miscDetails'], true);
-$data['images'] = explode( ',', $data['images']);
+$data['miscDetails'] = json_decode($data['miscDetails']);
+$data['images'] = explode(',', $data['images']);
 
 $output = [
-	'success'=>true,
-	'productInfo' => $data
+    'success' => true,
+    'productInfo' => $data
 ];
-var_dump($output);
-$json_output = json_encode($output );
+
+$json_output = json_encode($output);
 
 print($json_output);
 
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

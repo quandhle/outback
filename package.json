@@ -1,19 +1,11 @@
 {
   "name": "wicked_sales",
   "version": "1.0.0",
-<<<<<<< HEAD
   "description": "General E-commerce website with ReactJS Client and PHP Backend",
   "main": "index.js",
   "proxy": {
     "/api/*": {
       "target": "http://localhost:8888"
-=======
-  "description": "Generic E-Commerce website with ReactJS Client and PHP Back-end",
-  "main": "index.js",
-  "proxy": {
-    "/api/*": {
-      "target": "http://localhost:8080"
->>>>>>> b247c0d31fee08cc28f6b5362864bd5ae71caf47
     }
   },
   "scripts": {
@@ -25,11 +17,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-<<<<<<< HEAD
     "url": "https://github.com/quandhle/219_wickedsales.git"
-=======
-    "url": "https://github.com/Learning-Fuze/219_wickedsales.git"
->>>>>>> b247c0d31fee08cc28f6b5362864bd5ae71caf47
   },
   "dependencies": {
     "axios": "^0.18.0",
