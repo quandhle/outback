@@ -1,34 +1,34 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import ProductItem from './product_item';
 
 class ProductList extends Component {
-    constructor(props) {
+    constructor(props){
         super(props);
 
         this.state = {
             products: []
-        }
+        };
     }
 
-    componentDidMount() {
+    componentDidMount(){
         this.getProducts();
     }
 
-    getProducts() {
-        axios.get('http://localhost:8888/api/getproducts.php').then((resp) => {
+    getProducts(){
+        // change
+        axios.get('/api/getproducts.php').then((resp) => {
+
             this.setState({
                 products: resp.data.products
             });
         });
     }
 
-    render() {
-        console.log(this.state);
-
+    render(){
         const productList = this.state.products.map((product) => {
-            return <ProductItem key={product.id} {...product}/>
-        })
+            return <ProductItem key={product.id} {...product}/>;
+        });
 
         return (
             <div className="product-list">
@@ -37,7 +37,7 @@ class ProductList extends Component {
                     {productList}
                 </ul>
             </div>
-        )
+        );
     }
 }
 

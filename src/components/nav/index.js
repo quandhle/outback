@@ -1,9 +1,9 @@
-import React, {Component, Fragment} from 'react';
-import {Link} from 'react-router-dom';
+import React, { Component, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import Sidenav from './sidenav';
 
 class Nav extends Component {
-    renderLinks() {
+    renderLinks(){
         return (
             <Fragment>
                 <li>
@@ -12,19 +12,16 @@ class Nav extends Component {
                 <li>
                     <Link to="/products">Products</Link>
                 </li>
-                <li>
-                    <Link to="/">Contact</Link>
-                </li>
             </Fragment>
         )
     }
-    
-    render() {
+
+    render(){
         const links = this.renderLinks();
 
         return (
             <Fragment>
-                <nav className="light-blue darken-4">
+                <nav className="purple darken-2">
                     <div className="nav-wrapper">
                         <Link className="brand-logo" to="/">Wicked Sales</Link>
                         <a href="#" data-target="sidenav" className="sidenav-trigger">
@@ -38,8 +35,8 @@ class Nav extends Component {
 
                 <Sidenav links={links}/>
             </Fragment>
-        )
+        );
     }
 }
 
-export default Nav
+export default Nav;

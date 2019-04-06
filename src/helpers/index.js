@@ -1,11 +1,11 @@
-export function formatMoney(pennies) {
+export function formatMoney(pennies){
     pennies = parseFloat(pennies);
 
-    if (isNaN(pennies)) {
+    if(isNaN(pennies)){
         return 'TBA';
     }
 
-    const dollars = (pennies/100).toFixed();
+    const dollars = (pennies / 100).toFixed(2);
 
-    return dollars;
+    return `$${dollars}`;
 }
