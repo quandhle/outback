@@ -79,6 +79,8 @@ $output = [
     "cartTotal" => $product_total
 ];
 
+print('output is');
+
 print(json_encode($output));
 
 // $cart_query = "SELECT `id` FROM `carts` WHERE `id` = $cart_id";
