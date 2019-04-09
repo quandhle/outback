@@ -45,6 +45,7 @@ if (empty($cart_id)) {
         throw new Exception(mysqli_error($conn));
     };
 
+<<<<<<< HEAD
     if (mysqli_affected_rows($conn) === 0) {
         throw new Exception('Data was not added to cart table.');
     };
@@ -82,6 +83,27 @@ if (empty($cart_id)) {
     while($row = mysqli_fetch_assoc($cart_result)) {
         print_r($row);
     };
+=======
+        if (mysqli_affected_rows($conn) === 0) {
+            throw new Exception('Data was not added to cart table.');
+        }
+
+        $cart_query = "SELECT `item_count`, `total_price` from `carts` WHERE `id` = $card_id";
+
+        $cart_result = mysqli_query($conn, $cart_query);
+
+        if (!$cart_result) {
+            throw new Exception('Unable to get cart data');
+        };
+
+        if (mysqli_num_rows($cart_result) === 0) {
+            throw new Exception('No cart data found.');
+        };
+
+        while($row = mysqli_fetch_assoc($cart_result)) {
+            print_r($row);
+        };
+>>>>>>> 870aeb8c6786d726cbef98ec801c74779b81a77b
 };
 
 $cart_item_query = "INSERT INTO `cart_items` SET
