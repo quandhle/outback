@@ -30,7 +30,7 @@ $product_data = mysqli_fetch_assoc($result);
 $product_price = (int)$product_data['price'];
 $product_total = $product_price * $product_quantity;
 
-if (empty($_SESSION['cart_id'])) {
+if (empty($card_id)) {
     $cart_create_query = "INSERT INTO `carts` SET
         `item_count` = $product_quantity,
         `total_price` = $product_total,
@@ -47,12 +47,6 @@ if (empty($_SESSION['cart_id'])) {
         if (mysqli_affected_rows($conn) === 0) {
             throw new Exception('Data was not added to cart table.');
         }
-
-        $cart_id = mysqli_insert_id($conn);
-
-        $_SESSION['cart_id'] = $cart_id;
-} else {
-    $cart_id = $_SESSION['cart_id'];
 };
 
 $cart_item_query = "INSERT INTO `cart_items` SET
@@ -82,17 +76,4 @@ $output = [
 print('output is');
 
 print(json_encode($output));
-
-// $cart_query = "SELECT `id` FROM `carts` WHERE `id` = $cart_id";
-
-// $cart_result = mysqli_query($conn, $query);
-
-// if (!$result) {
-//     throw new Exception(mysqli_error($conn));
-// };
-
-// if (mysqli_num_rows($result) === 0) {
-//     throw new Exception("No carts match cart ID $cart_id");
-// };
-
 ?>
