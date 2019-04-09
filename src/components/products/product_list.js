@@ -11,7 +11,6 @@ class ProductList extends Component {
         }
 
         this.goToDetails = this.goToDetails.bind(this);
-        };
     }
 
     componentDidMount(){
