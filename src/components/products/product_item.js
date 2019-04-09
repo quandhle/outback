@@ -10,3 +10,4 @@ export default ({name, price, id, images: [productImg = ''], goToDetails}) => {
         </li>
     )
 }
+

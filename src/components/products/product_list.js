@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import ProductItem from './product_item';
 
 class ProductList extends Component {
-    constructor(props) {
+    constructor(props){
         super(props);
 
         this.state = {
@@ -11,14 +11,16 @@ class ProductList extends Component {
         }
 
         this.goToDetails = this.goToDetails.bind(this);
+        };
     }
 
-    componentDidMount() {
+    componentDidMount(){
         this.getProducts();
     }
 
-    getProducts() {
-        axios.get('http://localhost:8888/api/getproducts.php').then((resp) => {
+    getProducts(){
+        axios.get('/api/getproducts.php').then((resp) => {
+
             this.setState({
                 products: resp.data.products
             });
@@ -33,7 +35,7 @@ class ProductList extends Component {
         const productList = this.state.products.map((product) => {
             return <ProductItem key={product.id} {...product} goToDetails={this.goToDetails}/>
         })
-
+        
         return (
             <div className="product-list">
                 <h1 className="center">Wicked Product List</h1>
@@ -41,7 +43,7 @@ class ProductList extends Component {
                     {productList}
                 </ul>
             </div>
-        )
+        );
     }
 }
 
