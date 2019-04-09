@@ -48,11 +48,21 @@ if (empty($_SESSION['cart_id'])) {
             throw new Exception('Data was not added to cart table.');
         }
 
-        $cart_id = mysqli_insert_id($conn);
+        $cart_query = "SELECT `item_count`, `total_price` from `carts` WHERE `id` = $card_id";
 
-        $_SESSION['cart_id'] = $cart_id;
-} else {
-    $cart_id = $_SESSION['cart_id'];
+        $cart_result = mysqli_query($conn, $cart_query);
+
+        if (!$cart_result) {
+            throw new Exception('Unable to get cart data');
+        };
+
+        if (mysqli_num_rows($cart_result) === 0) {
+            throw new Exception('No cart data found.');
+        };
+
+        while($row = mysqli_fetch_assoc($cart_result)) {
+            print_r($row);
+        };
 };
 
 $cart_item_query = "INSERT INTO `cart_items` SET
