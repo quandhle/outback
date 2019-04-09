@@ -8,6 +8,9 @@ class ProductList extends Component {
 
         this.state = {
             products: []
+        }
+
+        this.goToDetails = this.goToDetails.bind(this);
         };
     }
 
@@ -24,11 +27,15 @@ class ProductList extends Component {
         });
     }
 
-    render(){
-        const productList = this.state.products.map((product) => {
-            return <ProductItem key={product.id} {...product}/>;
-        });
+    goToDetails(id) {
+        this.props.history.push(`/products/${id}`);
+    }
 
+    render() {
+        const productList = this.state.products.map((product) => {
+            return <ProductItem key={product.id} {...product} goToDetails={this.goToDetails}/>
+        })
+        
         return (
             <div className="product-list">
                 <h1 className="center">Wicked Product List</h1>
