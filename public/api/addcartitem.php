@@ -5,7 +5,11 @@ set_exception_handler('handleError');
 require_once('config.php');
 require_once('mysqlconnect.php');
 
-$product_id = 1;
+if (empty($_GET['product_id'])) {
+    throw new Exception('Must send a product_id (int) with request.');
+}
+
+$product_id = intval($_GET['product_id']);
 $product_quantity = 1;
 // $cart_id = 1;
 $user_id = 1;
@@ -23,9 +27,7 @@ if (mysqli_num_rows($result) === 0) {
 };
 
 $product_data = mysqli_fetch_assoc($result);
-
 $product_price = (int)$product_data['price'];
-
 $product_total = $product_price * $product_quantity;
 
 if (empty($card_id)) {
@@ -45,14 +47,15 @@ if (empty($card_id)) {
         if (mysqli_affected_rows($conn) === 0) {
             throw new Exception('Data was not added to cart table.');
         }
-
-        $cart_id = mysqli_insert_id($conn);
 };
 
 $cart_item_query = "INSERT INTO `cart_items` SET
     `products_id` = $product_id,
     `quantity` = $product_quantity,
-    `carts_id` = $cart_id";
+    `carts_id` = $cart_id
+    ON DUPLICATE KEY UPDATE
+    `quantity` = `quantity` + $product_quantity
+";
 
 $cart_item_result = mysqli_query($conn, $cart_item_query);
 
@@ -70,6 +73,7 @@ $output = [
     "cartTotal" => $product_total
 ];
 
-print(json_encode($output));
+print('output is');
 
+print(json_encode($output));
 ?>
