@@ -2,27 +2,30 @@ import React, {Component} from 'react';
 
 class ProductCarousel extends Component {
     componentDidMount() {
+        console.log('Carousel div: ', this.carousel);
+
         M.Carousel.init(this.carousel);
 
-        const config = {
-            numVisible: 1, 
-            indicators: true
-        }
+        // const config = {
+        //     numVisible: 1, 
+        //     indicators: true
+        // }
 
-        M.Carousel(this.carousel);
+        // M.Carousel(this.carousel);
     }
 
     render() {
+        console.log('Props: ', this.props)
         const items = this.props.images.map((image) => {
             return (
                 <a href="#" key={image} className="carousel-item">
-                    <img src={`/dist/${image}`} alt="Product Image/"/>
+                    <img src={`../../../public/dist/${image}`} alt="Product Image/"/>
                 </a>
             )
         });
 
         return (
-            <div className="carousel s12 col-8 m4">
+            <div ref={(element) => {this.carousel = element}} className="carousel">
                 {items}
             </div>
         )

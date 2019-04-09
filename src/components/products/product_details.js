@@ -43,14 +43,8 @@ class ProductDetails extends Component {
         return (
             <div className="product-details">
                 <h1 className="center">{name}</h1>
-                <div className="row">
-                    <ProductCarousel images={images}/>
-                    <div className="col s12 m4">
-                        <div className="right-align product-price">{formatMoney(price)}</div>
-                        <p className="description">{description}</p>
-                        <MiscDetails details={miscDetails}/>
-                    </div>
-                </div>
+                <ProductCarousel images={images}/>
+                <p className="description">{description}</p>
             </div>
         )
     }
