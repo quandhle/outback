@@ -49,9 +49,9 @@ if (empty($_SESSION['cart_id'])) {
     };
 
     $cart_id = mysqli_insert_id($conn);
-    $_SESSION['card_id'] = $cart_id;
+    $_SESSION['cart_id'] = $cart_id;
 } else {
-    $cart_id = $_SESSION['carts_id'];
+    $cart_id = $_SESSION['cart_id'];
 
     $update_cart_query = "UPDATE `carts` SET 
         `item_count` = `item_count` + $product_quantity, 
