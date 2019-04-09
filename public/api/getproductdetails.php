@@ -11,7 +11,6 @@ if(empty($_GET['productId'])){
 
 $id = (int)$_GET['productId'];
 
-
 $query = "SELECT p.`id`, p.`name`, p.`price`, p.`description`, p.`misc_details` AS `miscDetails`,
 		GROUP_CONCAT(i.`url`) AS `images`
 	FROM `products` AS p
