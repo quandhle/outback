@@ -9,11 +9,11 @@ $output = [
     'success' => false
 ];
 
-$cart_id = $_SESSION['cart_id'];
-
-if (empty($_SESSION['cart_id'])) {
+if(empty($_SESSION['cart_id'])){
     throw new Exception('No cart id.');
-}
+};
+
+// $cart_id = $_SESSION['cart_id'];
 
 // $cart_query = "SELECT
 //     c.created, c.total_price, ci.quantity, p.id, p.name, p.price, (SELECT url FROM images WHERE products_id = p.id LIMIT 1 )
@@ -26,13 +26,16 @@ if (empty($_SESSION['cart_id'])) {
 //     WHERE c.id = 1
 // ";
 
+// print($cart_query);
+
 $cart_query =
     "SELECT
         p.`name`,
         p.`price`,
         ci.`quantity`,
         (SELECT `url` FROM `images` WHERE `images`.`products_id` = p.`id` LIMIT 1) AS url,
-        p.`id`
+        p.`id`,
+        c.`created`, c.`total_price`
     FROM `products` as p
     JOIN `cart_items` as ci
     ON ci.`products_id` = p.`id`
@@ -40,40 +43,33 @@ $cart_query =
     ON ci.`carts_id` = c.`id`
 ";
 
-// $cart_data = mysqli_query($conn, $cart_query);
+$cart_data = mysqli_query($conn, $cart_query);
 
-// if (!$cart_data) {
-//     throw new Exception(mysqli_error($conn));
-// };
+if (!$cart_data) {
+    throw new Exception(mysqli_error($conn));
+};
 
-// if (mysqli_num_rows($cart_data) === 0) {
-//     throw new Exception('Unable to retrieve cart data.');
-// }
+if (mysqli_num_rows($cart_data) === 0) {
+    throw new Exception('Unable to retrieve cart data.');
+}
 
-// $output['cartItem'] = [];
-// $output['cartMetaData'] = [];
+$output['cartItem'] = [];
+$output['cartMetaData'] = [];
 
-// while ($row = mysqli_fetch_assoc($cart_data)) {
-//     print_r($row);
+while ($row = mysqli_fetch_assoc($cart_data)) {
 
-//     $output['cartItem'][] = [
-//         'name' => $row['name'],
-//         'price' => $row['price'],
-//         'image' => $row['image'],
-//         'quantity' => $row['quantity'],
-//         'id' => $row['id']
-//     ];
+    $output['cartItem'][] = [
+        'name' => $row['name'],
+        'price' => $row['price'],
+        'image' => $row['url'],
+        'quantity' => $row['quantity'],
+        'id' => $row['id']
+    ];
 
-//     $output['cartMetaData']['created'] = $row['created'];
-//     $output['cartMetaData']['total'] = $row['total_price'];
-// }
+    $output['cartMetaData']['created'] = $row['created'];
+    $output['cartMetaData']['total'] = $row['total_price'];
+}
 
-// $output['success'] = true;
+$output['success'] = true;
 
-// print(json_encode(
-//     [
-//         'message' => 'Get cart data endpoint',
-//         'cartID' => $cart_id
-//     ]
-//     )
-// );
+print(json_encode($output));
