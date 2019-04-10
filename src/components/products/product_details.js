@@ -16,7 +16,7 @@ class ProductDetails extends Component {
     async getDetails() {
         const {params} = this.props.match;
 
-        const resp = await axios.get(`/api/getproductdetails.php?productID=${params.product_id}`)
+        const resp = await axios.get(`/api/getproductdetails.php?productId=${params.product_id}`)
 
         if (resp.data.success) {
             this.setState({
@@ -32,6 +32,8 @@ class ProductDetails extends Component {
     render() {
         const {details} = this.state;
 
+        console.log(details);
+
         if (details === null) {
             return <h1>Loading...</h1>
         } else if (!details) {
@@ -43,8 +45,29 @@ class ProductDetails extends Component {
         return (
             <div className="product-details">
                 <h1 className="center">{name}</h1>
-                <ProductCarousel images={images}/>
-                <p className="description">{description}</p>
+                <div className="row">
+                    <ProductCarousel images={images} />
+                    <div className="col s12 m8">
+                        <div className="right-align product-price">${formatMoney(price)}</div>
+                        <div className="right-align add-to-cart">
+                            <span className="qty-container">
+                                <button className="btn btn-small btn-floating purple lighten-1">
+                                    <i className="material-icons">remove</i>
+                                </button>
+                                <span className="product-qty">1</span>
+                                <button className="btn btn-small btn-floating purple lighten-1">
+                                    <i className="material-icons">add</i>
+                                </button>
+                            </span>
+                            
+                            <button className="btn purple darken-2">
+                                <i className="material-icons">add_shopping_cart</i>
+                            </button>
+                        </div>
+                        <p>{description}</p>
+                        <MiscDetails details={miscDetails}/>
+                    </div>
+                </div>
             </div>
         )
     }

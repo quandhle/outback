@@ -2,20 +2,15 @@ import React, {Component} from 'react';
 
 class ProductCarousel extends Component {
     componentDidMount() {
-        console.log('Carousel div: ', this.carousel);
+        const config = {
+            indicators: true,
+            fullWidth: true
+        }
 
-        M.Carousel.init(this.carousel);
-
-        // const config = {
-        //     numVisible: 1, 
-        //     indicators: true
-        // }
-
-        // M.Carousel(this.carousel);
+        M.Carousel.init(this.carousel, config);
     }
 
     render() {
-        console.log('Props: ', this.props)
         const items = this.props.images.map((image) => {
             return (
                 <a href="#" key={image} className="carousel-item">
@@ -25,7 +20,7 @@ class ProductCarousel extends Component {
         });
 
         return (
-            <div ref={(element) => {this.carousel = element}} className="carousel">
+            <div ref={(element) => {this.carousel = element}} className="carousel carousel-slider col s12 m4">
                 {items}
             </div>
         )

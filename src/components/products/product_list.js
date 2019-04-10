@@ -18,8 +18,7 @@ class ProductList extends Component {
     }
 
     getProducts(){
-        axios.get('/api/getproducts.php').then((resp) => {
-
+        axios.get('/api/getproducts.php').then((resp) => {            
             this.setState({
                 products: resp.data.products
             });

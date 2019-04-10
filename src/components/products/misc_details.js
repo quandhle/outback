@@ -1,17 +1,19 @@
 import React from 'react';
+import {toWords} from '../../helpers';
 
 export default props => {
     const {details} = props;
 
-    console.log('Misc Details Props: ', details);
-
-    console.log('Objects Keys: ', Object.keys(details))
-
     const additionalInfo = Object.keys(details).map((key) => {
+        let values = details[key];
+        
+        if (Array.isArray(values)) {
+            values = values.join(', ');
+        }
         return (
-            <tr>
-                <td></td>
-                <td></td>
+            <tr key={key}>
+                <td>{toWords(key)}</td>
+                <td>{values}</td>
             </tr>
         )
     })
