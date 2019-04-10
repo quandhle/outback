@@ -7,7 +7,7 @@ module.exports = merge(common, {
     entry: [
         'babel-polyfill',
         'webpack-dev-server/client?http://localhost:' + PORT,
-        '/dist/index.js'
+        './index.js'
     ],
     devtool: 'inline-source-map',
     mode: 'development',
