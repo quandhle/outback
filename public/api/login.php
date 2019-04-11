@@ -70,6 +70,7 @@ if (mysqli_affected_rows($conn) !== 1) {
     throw new Exxception('Cannot log in: connection not saved.');
 };
 
+// saves user data
 $_SESSION['user_data'] = [
     'id' => $data['id'],
     'username' => $data['name'],
