@@ -9,16 +9,22 @@ $output = [
     'success' => false
 ];
 
-if (empty($_POST['email'])) {
+$json_input = file_get_contents("php://input");
+
+$input = json_decode($json_input, true);
+
+if (empty($input['email'])) {
     throw new Exception('Please enter email.');
 };
 
-if (empty($_POST['password'])) {
+if (empty($input['password'])) {
     throw new Exception('Please enter password.');
 };
 
-$email = $_POST['email'];
-$password = $_POST['password'];
+$email = $input['email'];
+$password = $input['password'];
+
+$email = addslashes($email);
 
 $hashedPassword = sha1($password);
 
@@ -72,6 +78,7 @@ $_SESSION['user_data'] = [
 
 $output['success'] = true;
 $output['username'] = $data['name'];
+$output['token'] = $token;
 
 $json_output = json_encode($output);
 
