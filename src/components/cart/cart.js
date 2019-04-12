@@ -15,20 +15,16 @@ class Cart extends Component {
     }
   
     async getCartData() {
-        const resp = await axios.get('/api/getcartitems.php');
+        const { data = {} } = await axios.get('/api/getcartitems.php');
 
-        console.log(resp)
-        
-        if (resp.data.success) {
+        if(data.success){
             this.setState({
-                items: resp.data.cartItem,
-                meta: resp.data.cartMetaData
+                items: data.cartItem,
+                meta: data.cartMetaData
             });
         } else {
-            console.error('Cart data failed to load.')
+            console.error('Cart data failed to load');
         }
-
-        console.log(this.state);
     }
 
     render() {
@@ -37,13 +33,15 @@ class Cart extends Component {
         let totalItems = 0;
 
         const cartItems = items.map(({name, price, image, quantity, id}) => {
-            totalItems += parseInt(quantity);
+            totalItems += quantity;
 
             const itemTotalPrice = formatMoney(quantity*price);
 
             return (
                 <tr key={id}>
-                    <td><img src={`/dist/${image}`} alt={`${name} product image`}/></td>
+                    <td>
+                        <img src={`/dist/${image}`} alt={`${name} product image`}/>
+                    </td>
                     <td>{name}</td>
                     <td>${formatMoney(price)}</td>
                     <td>{quantity}</td>

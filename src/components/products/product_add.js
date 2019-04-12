@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom';
 import axios from 'axios';
+import Modal from '../modal';
 
 class ProductAdd extends Component {
     constructor(props){
@@ -16,12 +17,15 @@ class ProductAdd extends Component {
     }
 
     addToCart(){
-        const {productId} = this.props;
+        const {productId, updateCart} = this.props;
         const {quantity} = this.state;
 
         axios.get(`/api/addcartitem.php?product_id=${productId}&quantity=${quantity}`).then((resp) => {            
             this.props.history.push('/cart');
+
+            updateCart(resp.data.cartCount);
         });
+
     }
 
     decrementQty(){
@@ -54,6 +58,7 @@ class ProductAdd extends Component {
                 <button onClick={this.addToCart} className="btn blue darken-2">
                     <i className="material-icons">add_shopping_cart</i>
                 </button>
+                <Modal isOpen={true}/>
             </div>
         );
     }
