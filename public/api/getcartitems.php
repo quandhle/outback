@@ -53,11 +53,11 @@ if (mysqli_num_rows($cart_data) === 0) {
     throw new Exception('Unable to retrieve cart data.');
 }
 
-$output['cartItem'] = [];
+$output['cartItems'] = [];
 $output['cartMetaData'] = [];
 
 while ($row = mysqli_fetch_assoc($cart_data)) {
-    $output['cartItem'][] = [
+    $output['cartItems'][] = [
         'name' => $row['name'],
         'price' => (int)$row['price'],
         'image' => $row['image'],
@@ -66,7 +66,8 @@ while ($row = mysqli_fetch_assoc($cart_data)) {
     ];
 
     $output['cartMetaData']['created'] = $row['created'];
-    $output['cartMetaData']['total'] = $row['total_price'];
+    $output['cartMetaData']['total'] = (int)$row['total_price'];
+    $output['cartMetaData']['cart_id'] = $_SESSION['cart_id'];
 }
 
 $output['success'] = true;
