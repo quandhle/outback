@@ -13,6 +13,10 @@ $json_input = file_get_contents("php://input");
 
 $input = json_decode($json_input, true);
 
+$user = $input['email'];
+$password = $input['password'];
+
+
 if (empty($input['email'])) {
     throw new Exception('Please enter email.');
 };
@@ -28,14 +32,13 @@ $email = addslashes($email);
 
 $hashedPassword = sha1($password);
 
-unset($_POST['password']);
+unset($input['password']);
 
 $query = "SELECT
         `id`, `name`
     FROM `users`
     WHERE `email` = '$email' AND `password` = '$hashedPassword'
 ";
-
 
 $result = mysqli_query($conn, $query);
 
@@ -60,7 +63,7 @@ $connect_query = "INSERT INTO
         `ip_address` = '{$_SERVER['REMOTE_ADDR']}'
 ";
 
-$connect_result = mysqli_query($conn, $query);
+$connect_result = mysqli_query($conn, $connect_query);
 
 if (!$connect_result) {
     throw new Exception(mysqli_error($conn));
@@ -70,7 +73,6 @@ if (mysqli_affected_rows($conn) !== 1) {
     throw new Exxception('Cannot log in: connection not saved.');
 };
 
-// saves user data
 $_SESSION['user_data'] = [
     'id' => $data['id'],
     'username' => $data['name'],
