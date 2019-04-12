@@ -1,65 +1,62 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
-import {formatMoney} from '../../helpers';
+import { formatMoney } from '../../helpers';
 import './cart.scss';
 
 class Cart extends Component {
     state = {
         items: [],
         meta: {}
-    };
+    }
 
-    componentDidMount() {
+    componentDidMount(){
         this.getCartData();
     }
-  
-    async getCartData() {
-        const resp = await axios.get('/api/getcartitems.php');
 
-        console.log(resp)
+    async getCartData(){
         
-        if (resp.data.success) {
+        const { data = {} } = await axios.get('/api/getcartitems.php');
+
+        if(data.success){
             this.setState({
-                items: resp.data.cartItem,
-                meta: resp.data.cartMetaData
+                items: data.cartItems,
+                meta: data.cartMetaData
             });
         } else {
-            console.error('Cart data failed to load.')
+            console.error('Cart data failed to load');
         }
-
-        console.log(this.state);
     }
 
-    render() {
-        const {items, meta} = this.state;
-
+    render(){
+        const { items, meta } = this.state;
         let totalItems = 0;
 
         const cartItems = items.map(({name, price, image, quantity, id}) => {
-            totalItems += parseInt(quantity);
-
-            const itemTotalPrice = formatMoney(quantity*price);
+            totalItems += quantity;
+            const itemTotalPrice = formatMoney(quantity * price);
 
             return (
                 <tr key={id}>
-                    <td><img src={`/dist/${image}`} alt={`${name} product image`}/></td>
+                    <td>
+                        <img src={`/dist/${image}`} alt={`${name} product image`}/>
+                    </td>
                     <td>{name}</td>
-                    <td>${formatMoney(price)}</td>
+                    <td>{formatMoney(price)}</td>
                     <td>{quantity}</td>
-                    <td>${itemTotalPrice}</td>
+                    <td>{itemTotalPrice}</td>
                 </tr>
             )
-        })
+        });
+
 
         return (
-            <div className="cart container">
+            <div className="cart">
                 <h1 className="center">Shopping Cart</h1>
 
                 <Link to="/products">Continue Shopping</Link>
 
-                <h2 className="right-align">Total Items In Cart: {totalItems}</h2>
-
+                <div className="right-align total-items">Total Items in Cart: {totalItems}</div>
                 <table>
                     <thead>
                         <tr>
@@ -74,13 +71,13 @@ class Cart extends Component {
                         {cartItems}
                         <tr>
                             <td colSpan="5" className="total-price">
-                                Total: ${formatMoney(meta.total)}
+                                Total: {formatMoney(meta.total)}
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-        )
+        );
     }
 }
 
