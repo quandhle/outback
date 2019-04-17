@@ -75,7 +75,11 @@ if (empty($_SESSION['cart_id'])) {
         throw new Exception('Cart data was not updated');
     };
 
-    $cart_query = "SELECT `item_count`, `total_price` FROM `carts` WHERE `id` = $cart_id";
+    $cart_query = "SELECT
+            `item_count`, `total_price`
+        FROM `carts`
+        WHERE `id` = $cart_id
+    ";
 
     $cart_result = mysqli_query($conn, $cart_query);
 
