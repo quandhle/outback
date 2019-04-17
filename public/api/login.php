@@ -41,13 +41,12 @@ $query = "SELECT
 ";
 
 //1) send the safe query to the DB
-$statement = mysqli_prepare($conn, $query);
 
 //2) send the dangerous data to the DB
-mysqli_stmt_bind_param($statement, 'ss', $email, $hashedPassword);
+$statement = mysqli_prepare($conn, $query);
 
 //3) tell the DB to mix the query and the data
-mysqli_stmt_execute( $statement );
+mysqli_stmt_bind_param($statement, 'ss', $email, $hashedPassword);
 
 // 4 get the result pointer for the prepared query statement's data
 $result = mysqli_stmt_execute($statement);
