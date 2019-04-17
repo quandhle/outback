@@ -2,11 +2,14 @@ import React from 'react';
 import {reduxForm, Field} from 'redux-form';
 import Input from '../../general/input';
 
-const SignInForm = props => {
-    const {handleSubmit, signIn} = props;
+const SignUpForm = props => {
+    const {handleSubmit, signUp} = props;
 
     return (
-        <form onSubmit={handleSubmit(signIn)} className="container">
+        <form onSubmit={handleSubmit(signUp)} className="container">
+            <div className="row">
+                <Field name="name" component={Input} type="text" id="name" label="name" col="s12"/>
+            </div>
             <div className="row">
                 <Field name="email" component={Input} type="text" id="email" label="email" col="s12"/>
             </div>
@@ -14,15 +17,18 @@ const SignInForm = props => {
                 <Field name="password" component={Input} type="password" id="password" label="password" col="s12"/>
             </div>
             <div className="row">
+                <Field name="confirmPassword" component={Input} type="password" id="confirmPassword" label="confirm password" col="s12"/>
+            </div>
+            <div className="row">
                 <div className="col s12 right-align">
-                        <button className="btn blue dark-2" onSubmit={handleSubmit(signIn)}>Submit</button>
+                    <button onSubmit={handleSubmit(signUp)} className="btn blue dark-2">Sign Up</button>
                 </div>
             </div>
         </form>
     )
 }
 
-function validate(email, password) {
+function validate (email, password) {
     const errors = {};
 
     if (!email) {
@@ -30,13 +36,13 @@ function validate(email, password) {
     }
 
     if (!password) {
-        errors.password = 'Please enter password';
+        errors.password = 'Please enter password.'
     }
 
     return errors;
 }
 
 export default reduxForm({
-    form: 'sign-in-form',
+    form: 'sign-up-form',
     validate: validate
-})(SignInForm);
+})(SignUpForm);
