@@ -10,8 +10,8 @@ const example = {
 
 function userReducer(state = DEFAULT_STATE, action) {
     switch (action.type) {
-        case 'LOG_USER_IN':
-            return {...state, auth: true, username: action.username};
+        case 'sign-in':
+            return {...state, auth: true, username: action.username}
         default:
             return state;
     }

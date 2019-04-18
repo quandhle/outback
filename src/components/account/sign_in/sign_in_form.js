@@ -22,7 +22,7 @@ const SignInForm = props => {
     )
 }
 
-function validate(email, password) {
+function validate({email, password}) {
     const errors = {};
 
     if (!email) {
