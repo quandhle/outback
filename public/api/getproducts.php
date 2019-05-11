@@ -18,6 +18,7 @@ $data = [];
 
 while ($row = mysqli_fetch_assoc($result)) {
 	$data[] = [
+		'id' => $row['id'],
 		'company' => $row['company'],
 		'name' => $row['name'],
 		'price' => $row['price'],
@@ -28,6 +29,6 @@ while ($row = mysqli_fetch_assoc($result)) {
 }
 
 $output['success'] = true;
-$output['data'] = $data;
+$output['products'] = $data;
 
 print(json_encode($output));

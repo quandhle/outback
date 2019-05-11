@@ -1,8 +1,13 @@
 nav {
     padding: 0 12px;
+    height: 10vh;
 
     .sidenav-cart {
         display: none;
+    }
+
+    .nav-wrapper {
+        margin-bottom: 0;
     }
 }
 
@@ -42,5 +47,4 @@ nav {
             color: white;
         }
     }
-    
 }

@@ -22,6 +22,8 @@ class ProductList extends Component {
             this.setState({
                 products: resp.data.products
             });
+
+            console.log(this.state);
         });
     }
 
@@ -36,7 +38,7 @@ class ProductList extends Component {
         
         return (
             <div className="product-list">
-                <h1 className="center">Wicked Product List</h1>
+                <h1 className="center">Product List</h1>
                 <ul className="collection">
                     {productList}
                 </ul>
