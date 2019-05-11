@@ -28,7 +28,7 @@ class Nav extends Component {
             <Fragment>
                 <nav className="blue darken-2">
                     <div className="nav-wrapper">
-                        <Link className="brand-logo" to="/">Wicked Sales</Link>
+                        <Link className="brand-logo" to="/">Outback</Link>
                         <a href="#" data-target="sidenav" className="sidenav-trigger">
                             <i className="material-icons">menu</i>
                         </a>

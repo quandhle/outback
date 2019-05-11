@@ -1,5 +1,5 @@
 {
-  "name": "wicked_sales",
+  "name": "outback_store",
   "version": "1.0.0",
   "description": "General E-commerce website with ReactJS Client and PHP Backend",
   "main": "index.js",
@@ -17,7 +17,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/quandhle/219_wickedsales.git"
+    "url": "https://github.com/quandhle/outback.git"
   },
   "dependencies": {
     "axios": "^0.18.0",

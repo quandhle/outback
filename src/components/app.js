@@ -3,9 +3,8 @@ import 'materialize-css/dist/js/materialize.min';
 import '../assets/css/app.scss';
 import React, {Component} from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Home from './home';
+import Home from './home/';
 import Nav from './nav';
-import Test from './test';
 import Cart from './cart';
 import NotFound from './404';
 import ProductRoutes from './products';
@@ -41,7 +40,7 @@ class App extends Component {
         return (
             <div>
                 <Nav cartItems={this.state.cartItems}/>
-                <Switch className="container">
+                <Switch>
                     <Route exact path="/" component={Home}/>
                     <Route path="/products" render={(routingProps) => {
                         return <ProductRoutes {...routingProps} updateCart={this.updateCart}/>
@@ -55,4 +54,4 @@ class App extends Component {
     }
 }
 
-export default App
+export default App;
