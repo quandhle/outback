@@ -1,58 +1,33 @@
 <?php
 
-require_once('functions.php');
-set_exception_handler('handleError');
 require_once('config.php');
-require_once('mysqlconnect.php');
 
-$query = "SELECT p.`id`, p.`name`, p.`price`,
-		i.`url` AS `images`
-	FROM `products` AS p
-	JOIN `images` AS i
-		ON p.`id` = i.`products_id`
-	ORDER BY p.`id`
-";
+$query = "SELECT * FROM `product`";
 
 $result = mysqli_query($conn, $query);
 
-if(!$result){
-	throw new Exception('invalid query: '. mysqli_error($conn));
+if (!$result) {
+	throw new Exception(mysqli_error($conn));
 }
+
+if (mysqli_num_rows($result) === 0) {
+	throw new Exception('Unable to get products');
+};
 
 $data = [];
 
-while($row = mysqli_fetch_assoc($result)){
-	$currentID = $row['id'];
-	$currentID = intval($currentID);
-	$image = $row['images'];
-	if( isset( $data[$currentID] ) ){
-		$data[$currentID]['images'][] = $image;
-	} else {
-		unset($row['images']);
-		$row['images'] = [];
-		$row['images'][] = $image;
-		$row['price'] = intval($row['price']);
-		$data[$currentID] = $row;	
-	}
+while ($row = mysqli_fetch_assoc($result)) {
+	$data[] = [
+		'company' => $row['company'],
+		'name' => $row['name'],
+		'price' => $row['price'],
+		'cateogry' => $row['category'],
+		'description' => $row['description'],
+		'misc_details' => $row['misc_details']
+	];
 }
 
-$pureData = [];
+$output['success'] = true;
+$output['data'] = $data;
 
-foreach($data as $value){
-	$pureData[] = $value;
-}
-
-$output = [
-	'success'=>true,
-	'products'=> $pureData
-];
-
-$json_output = json_encode( $output );
-
-print( $json_output );
-
-?>
-
-
-
-
+print(json_encode($output));
