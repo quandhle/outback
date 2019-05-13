@@ -5,11 +5,23 @@ nav {
     .sidenav-cart {
         display: none;
     }
+
+    .nav-wrapper {
+        line-height: 10vh;
+        
+        ul {
+            height: 100%;
+
+            li:last-child {
+                height: 10vh;
+                line-height: 1;
+                background-color: hotpink;
+            }
+        }
+    }
 }
 
 .cart-link {
-    position: relative;
-
     i.cart-icon {
         font-size: 32px;
     }

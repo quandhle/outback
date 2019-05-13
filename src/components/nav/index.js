@@ -1,11 +1,11 @@
-import React, { Component, Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import React, {Component, Fragment} from 'react';
+import {Link} from 'react-router-dom';
 import Sidenav from './sidenav';
 import CartLink from './cart_link';
 import './nav.scss';
 
 class Nav extends Component {
-    renderLinks(){
+    renderLinks () {
         return (
             <Fragment>
                 <li>
@@ -21,7 +21,7 @@ class Nav extends Component {
         )
     }
 
-    render(){
+    render () {
         const links = this.renderLinks();
 
         return (
