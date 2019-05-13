@@ -22,8 +22,6 @@ class ProductList extends Component {
             this.setState({
                 products: resp.data.products
             });
-
-            console.log(this.state);
         });
     }
 

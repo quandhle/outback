@@ -2,7 +2,14 @@
 
 require_once('config.php');
 
-$query = "SELECT * FROM `product`";
+$query = "SELECT
+		p.`id`, p.`company`, p.`name`, p.`price`, p.`category`, p.`description`, p.`misc_details`,
+		ANY_VALUE(i.`url`) as `url`
+	FROM `product` AS p
+	JOIN `images` AS i
+	ON i.`product_id` = p.`id`
+	GROUP BY p.`id`
+";
 
 $result = mysqli_query($conn, $query);
 
@@ -24,7 +31,8 @@ while ($row = mysqli_fetch_assoc($result)) {
 		'price' => $row['price'],
 		'cateogry' => $row['category'],
 		'description' => $row['description'],
-		'misc_details' => $row['misc_details']
+		'misc_details' => $row['misc_details'],
+		'url' => $row['url']
 	];
 }
 

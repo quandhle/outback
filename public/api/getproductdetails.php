@@ -8,16 +8,15 @@ if (empty($_GET['productId'])) {
 
 $id = (int)$_GET['productId'];
 
-$query = "SELECT * FROM `product` WHERE `id` = $id";
-
-// $query = "SELECT p.`id`, p.`name`, p.`price`, p.`description`, p.`misc_details` AS `miscDetails`,
-// 		GROUP_CONCAT(i.`url`) AS `images`
-// 	FROM `products` AS p
-// 	JOIN `images` AS i
-// 		ON p.`id` = i.`products_id`
-// 	WHERE p.`id` = $id
-// 	GROUP BY p.`id`
-// ";
+// 
+$query = "SELECT p.`id`, p.`name`, p.`price`, p.`description`, p.`misc_details` AS `miscDetails`,
+		GROUP_CONCAT(i.`url`) AS `images`
+	FROM `product` AS p
+	JOIN `images` AS i
+		ON p.`id` = i.`product_id`
+	WHERE p.`id` = $id
+	GROUP BY p.`id`
+";
 
 $result = mysqli_query($conn, $query);
 
@@ -31,9 +30,9 @@ if(mysqli_num_rows($result) === 0){
 
 $data = mysqli_fetch_assoc($result);
 
-// $data['price'] = intval($data['price']);
+$data['price'] = intval($data['price']);
 // $data['miscDetails'] = json_decode($data['miscDetails']);
-// $data['images'] = explode(',', $data['images']);
+$data['images'] = explode(',', $data['images']);
 
 $output = [
     'success' => true,
