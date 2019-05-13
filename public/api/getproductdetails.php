@@ -31,7 +31,6 @@ if(mysqli_num_rows($result) === 0){
 $data = mysqli_fetch_assoc($result);
 
 $data['price'] = intval($data['price']);
-// $data['miscDetails'] = json_decode($data['miscDetails']);
 $data['images'] = explode(',', $data['images']);
 
 $output = [

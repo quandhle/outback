@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import ProductCarousel from './product_carousel';
-// import MiscDetails from './misc_details';
 import {formatMoney} from '../../helpers';
 import ProductAdd from './product_add';
 
@@ -42,7 +41,9 @@ class ProductDetails extends Component {
             return <h1 className="center">No Product Found</h1>
         }
 
-        const {description = 'No description available.', company, images, name, price} = details;
+        const {description = 'No description available.', company, images, name, price, miscDetails} = details;
+
+        console.log(miscDetails)
 
         return (
             <div className="product-details">
@@ -54,7 +55,7 @@ class ProductDetails extends Component {
                         <div className="right-align product-price">${formatMoney(price)}</div>
                         <ProductAdd productId={params.product_id} updateCart={updateCart}/>
                         <p>{description}</p>
-                        {/* <MiscDetails details={misc_details}/> */}
+                        <p>{miscDetails}</p>
                     </div>
                 </div>
             </div>
