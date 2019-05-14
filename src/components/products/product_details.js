@@ -3,6 +3,7 @@ import axios from 'axios';
 import ProductCarousel from './product_carousel';
 import {formatMoney} from '../../helpers';
 import ProductAdd from './product_add';
+import MiscDetails from './misc_details';
 
 class ProductDetails extends Component {
     state = {
@@ -43,8 +44,6 @@ class ProductDetails extends Component {
 
         const {description = 'No description available.', company, images, name, price, miscDetails} = details;
 
-        console.log(miscDetails)
-
         return (
             <div className="product-details">
                 <h1 className="center">{name}</h1>
@@ -55,7 +54,7 @@ class ProductDetails extends Component {
                         <div className="right-align product-price">${formatMoney(price)}</div>
                         <ProductAdd productId={params.product_id} updateCart={updateCart}/>
                         <p>{description}</p>
-                        <p>{miscDetails}</p>
+                        <MiscDetails details={miscDetails}/>
                     </div>
                 </div>
             </div>
