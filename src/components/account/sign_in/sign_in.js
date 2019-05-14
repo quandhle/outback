@@ -3,7 +3,6 @@ import SignInForm from './sign_in_form';
 
 class SignIn extends Component {
     handleSignIn(values) {
-        console.log('Form Values: ', values);
     }
     
     render() {
