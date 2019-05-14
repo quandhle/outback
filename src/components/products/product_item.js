@@ -8,7 +8,7 @@ const ProductItem = ({company, category, url, name, price, id, goToDetails}) => 
         //     <span className="title">{name}</span>
         //     <p>${formatMoney(price)}</p>
         // </li>
-        <div className="product-card col s12 m4" onClick={() => { goToDetails(id)}}>
+        <div className="product-card" onClick={() => { goToDetails(id)}}>
             <div className="card">
                 <div className="card-image">
                     <img src={url}/>

@@ -1,6 +1,7 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import axios from 'axios';
 import ProductItem from './product_item';
+import Sort from './sorting';
 
 class ProductList extends Component {
     constructor (props) {
@@ -35,9 +36,12 @@ class ProductList extends Component {
         })
         
         return (
-            <div className="product-list row">
-                {productList}
-            </div>
+            <Fragment>
+                <Sort/>
+                <div className="product-list">
+                    {productList}
+                </div>
+            </Fragment>
         );
     }
 }
