@@ -35,11 +35,8 @@ class ProductList extends Component {
         })
         
         return (
-            <div className="product-list">
-                <h1 className="center">Product List</h1>
-                <ul className="collection">
-                    {productList}
-                </ul>
+            <div className="product-list row">
+                {productList}
             </div>
         );
     }

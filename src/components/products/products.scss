@@ -1,12 +1,4 @@
 .products {
-    .product-item {
-        cursor: pointer;
-
-        &:hover {
-            background-color: #efd5ff;
-        }
-    }
-
     .product-details {
         .product-price {
             font-size: 3.5em;
@@ -40,6 +32,35 @@
             button {
                 position: relative;
                 top: 2px;
+            }
+        }
+    }
+
+    .product-list {
+        // background-color: hotpink;
+        .product-card {
+            .card {
+                margin: 15px 0 0 0;
+
+                .card-image {
+                    height: 25vh;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    
+                    img {
+                        max-height: 20vh;
+                        width: auto;
+                    }
+                }
+
+                .card-content {
+                    padding: 10px 20px;
+
+                    .card-title {
+                        margin: 0;
+                    }
+                }
             }
         }
     }

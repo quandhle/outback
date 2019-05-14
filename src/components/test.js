@@ -17,8 +17,6 @@ class Test extends Component {
     async checkAuth() {
         const resp = await axios.get('/api/test/check_auth.php');
 
-        console.log('Check Auth Resp: ', resp.data);
-
         this.setState({
             message: resp.data.auth ? 'You are signed in!': 'Please sign in.'
         });

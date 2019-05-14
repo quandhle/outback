@@ -1,7 +1,7 @@
 import 'materialize-css/dist/css/materialize.min.css';
 import 'materialize-css/dist/js/materialize.min';
 import '../assets/css/app.scss';
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Home from './home/';
 import Nav from './nav';
@@ -22,23 +22,21 @@ class App extends Component {
         this.updateCart = this.updateCart.bind(this);
     }
 
-    async getCartItemsCount() {
+    async getCartItemsCount () {
         const resp = await axios.get('/api/getcartitemcount.php');
-
-        console.log(resp);
 
         this.updateCart(resp.data.itemCount);
     };
 
-    updateCart(count) {
+    updateCart (count) {
         this.setState({
             cartItems: count
         })
     }
 
-    render() {
+    render () {
         return (
-            <div>
+            <Fragment>
                 <Nav cartItems={this.state.cartItems}/>
                 <Switch>
                     <Route exact path="/" component={Home}/>
@@ -49,7 +47,7 @@ class App extends Component {
                     <Route path="/account" component={AccountRoutes}/>
                     <Route component={NotFound}/>
                 </Switch>
-            </div>
+            </Fragment>
         )
     }
 }
