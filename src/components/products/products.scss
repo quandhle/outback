@@ -45,6 +45,18 @@
     .collapsible {
         width: 100%;
         padding: 0 10px;
+
+        li {
+            .collapsible-body {
+                padding: 15px 28px;
+
+                ul {
+                    li {
+                        text-transform: capitalize;
+                    }
+                }
+            }
+        }
     }
 
     .product-list {
