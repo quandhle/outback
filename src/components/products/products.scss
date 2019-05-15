@@ -1,4 +1,47 @@
 .products {
+    .product-details {
+        .product-price {
+            font-size: 3.5em;
+            font-weight: bold;
+        }
+
+        .carousel {
+            .indicators {
+                .indicator-item {
+                    background-color: lightgray;
+                }
+
+                .active {
+                    background-color: black;
+                }
+            }
+        }
+
+        .add-to-cart {
+            font-size: 2em;
+
+            .qty-container {
+                margin: 0 30px;
+
+                button {
+                    margin: 0 12px;
+                }
+
+                .product-qty {
+                    padding: 5px 15px;
+                    position: relative;
+                    top: 5px;
+                    background-color: #efefef;
+                }
+            }
+
+            button {
+                position: relative;
+                top: 2px;
+            }
+        }
+    }
+
     .collapsible {
         width: 100%;
         padding: 0 10px;
@@ -39,6 +82,14 @@
 
 @media (min-width: 481px) and (max-width: 1024px) {
     .products {
+        .product-details {
+            .product-carousel {
+                .carousel {
+                    height: 100%;
+                }
+            }
+        }
+
         .product-list {
             width: 100%;
             display: flex;
@@ -58,43 +109,6 @@
         margin: auto;
         width: 100vw;
     
-        .product-details {
-            .product-price {
-                font-size: 3.5em;
-                font-weight: bold;
-            }
-    
-            .carousel {
-                .indicators {
-                    background-color: #eee;
-                }
-            }
-    
-            .add-to-cart {
-                font-size: 2em;
-    
-                .qty-container {
-                    margin: 0 30px;
-    
-                    button {
-                        margin: 0 12px;
-                    }
-    
-                    .product-qty {
-                        padding: 5px 15px;
-                        position: relative;
-                        top: 5px;
-                        background-color: #efefef;
-                    }
-                }
-    
-                button {
-                    position: relative;
-                    top: 2px;
-                }
-            }
-        }
-    
         .collapsible {
             display: inline-block;
             width: 25%;
@@ -110,6 +124,28 @@
                 display: inline-block;
                 width: 30%;
                 margin: 0 0 0 10px;
+            }
+        }
+
+        .product-details {
+            width: 100%;
+
+            .carousel {
+                width: 40%;
+                display: inline-block;
+
+                a {
+                    img {
+                        height: 100%;
+                        object-fit: contain;
+                    }
+                }
+            }
+
+            .product-info {
+                padding-left: 20px;
+                width: 60%;
+                display: inline-block;
             }
         }
     }

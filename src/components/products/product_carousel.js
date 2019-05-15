@@ -4,7 +4,7 @@ class ProductCarousel extends Component {
     componentDidMount () {
         const config = {
             indicators: true,
-            fullWidth: true
+            fullWidth: true,
         }
 
         M.Carousel.init(this.carousel, config);
