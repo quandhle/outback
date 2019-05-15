@@ -8,6 +8,10 @@ nav {
 
     .nav-wrapper {
         line-height: 10vh;
+
+        .brand-logo {
+            text-transform: uppercase;
+        }
         
         ul {
             height: 100%;
@@ -53,6 +57,34 @@ nav {
             width: auto;
             background-color: red;
             color: white;
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+    nav {
+        .nav-wrapper {
+
+            .sidenav-trigger {
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            ul {
+                display: none;
+            }
+        }
+    }
+}
+
+@media (min-width: 1025px) {
+    nav {
+        .nav-wrapper {
+            .brand-logo {
+                margin-left: 20px;
+            }
         }
     }
 }

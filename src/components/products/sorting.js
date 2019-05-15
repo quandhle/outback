@@ -5,10 +5,9 @@ class Sort extends Component {
     constructor (props) {
         super(props);
 
-        const config = {
-            accordion: true,
-            inDuration: 1000,
-            outDuration: 1000
+        this.config = {
+            inDuration: 400,
+            outDuration: 400
         }
 
         this.state = {
@@ -16,12 +15,10 @@ class Sort extends Component {
             activity: [],
             brand: []
         }
-
-        M.Collapsible.init(this.Collapsible, config);
     }
 
-    getSort () {
-        axios.get('/api/getsort.php').then((resp) => {
+    getFilters () {
+        axios.get('/api/getfilters.php').then((resp) => {
             this.setState({
                 category: resp.data.data.category,
                 activity: resp.data.data.activity,
@@ -30,13 +27,34 @@ class Sort extends Component {
         })
     }
 
+    sortItems (event, type) {
+        console.log(event.target.innerHTML);
+        console.log('type is', type);
+        // if (key.indexOf('\'') !== -1) {
+        //     key = key.slice(0, key.indexOf('\'')) + '\\' + key.slice(key.indexOf('\''), -1); 
+        // }
+
+        // console.log(key);
+
+        // axios.get('/api/sortItems.php').then((resp => {
+        //     console.log('sort the items');
+        // }))
+    }
+
     componentDidMount () {
-        this.getSort();
+        M.Collapsible.init(this.Collapsible, this.config);
+
+        this.getFilters();
     }
 
     render () {
         const category = this.state.category.map((key) => {
-            return <li key={key}>{key}</li>
+            return (
+                <li key={key} onClick={
+                    this.sortItems
+                }>{key}
+                </li>
+            )
         })
 
         const activity = this.state.activity.map((key) => {
@@ -44,11 +62,11 @@ class Sort extends Component {
         })
 
         const brand = this.state.brand.map((key) => {
-            return <li key={key}>{key}</li>
+            return <li key={key} onClick={this.sortItems}>{key}</li>
         })
 
         return (
-            <ul className="collapsible">
+            <ul className="collapsible" ref={(element) => {this.Collapsible = element}} data-collapsibe="expandable">
                 <li>
                     <div className="collapsible-header"><i className="material-icons">filter_drama</i>Category</div>
                     <div className="collapsible-body"><ul>{category}</ul></div>

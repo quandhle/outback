@@ -32,7 +32,7 @@ class Nav extends Component {
                         <a href="#" data-target="sidenav" className="sidenav-trigger">
                             <i className="material-icons">menu</i>
                         </a>
-                        <ul className="right hide-on-med-and-down">
+                        <ul className="right med-trigger">
                             {links}
                         </ul>
                     </div>
