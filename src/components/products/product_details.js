@@ -44,18 +44,17 @@ class ProductDetails extends Component {
 
         const {description = 'No description available.', company, images, name, price, miscDetails} = details;
 
+        console.log(details);
+
         return (
             <div className="product-details">
-                <h1 className="center">{name}</h1>
-                <div className="row">
-                    <ProductCarousel images={images}/>
-                    <div className="col s12 m8">
-                        <p>{company}</p>
-                        <div className="right-align product-price">${formatMoney(price)}</div>
-                        <ProductAdd productId={params.product_id} updateCart={updateCart}/>
-                        <p>{description}</p>
-                        <MiscDetails details={miscDetails}/>
-                    </div>
+                <h1 className="right-align">{company} {name}</h1>
+                <ProductCarousel images={images}/>
+                <div className="product-info">
+                    <div className="right-align product-price">${formatMoney(price)}</div>
+                    <ProductAdd productId={params.product_id} updateCart={updateCart}/>
+                    <p>{description}</p>
+                    <MiscDetails details={miscDetails}/>
                 </div>
             </div>
         );
