@@ -17,7 +17,7 @@ if (!$sortValue) {
     throw new Exception('Please provide sort value.');
 };
 
-$query = "SELECT * FROM `product` WHERE `$type` = `$sortValue`";
+$query = "SELECT * FROM `product` WHERE `$type` = '$sortValue'";
 
 $result = mysqli_query($conn, $query);
 

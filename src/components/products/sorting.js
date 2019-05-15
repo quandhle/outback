@@ -13,8 +13,12 @@ class Sort extends Component {
         this.state = {
             category: [],
             activity: [],
-            brand: []
+            brand: [],
+            type: null
         }
+
+        this.setType = this.setType.bind(this);
+        this.sortItems = this.sortItems.bind(this);
     }
 
     getFilters () {
@@ -27,18 +31,25 @@ class Sort extends Component {
         })
     }
 
-    sortItems (event, type) {
-        console.log(event.target.innerHTML);
-        console.log('type is', type);
-        // if (key.indexOf('\'') !== -1) {
-        //     key = key.slice(0, key.indexOf('\'')) + '\\' + key.slice(key.indexOf('\''), -1); 
-        // }
+    async sortItems (event) {
+        let key = event.target.innerHTML;
 
-        // console.log(key);
+        if (key.indexOf('\'') !== -1) {
+            key = key.slice(0, key.indexOf('\'')) + '\\' + key.slice(key.indexOf('\''), key.length); 
+        }
 
-        // axios.get('/api/sortItems.php').then((resp => {
-        //     console.log('sort the items');
-        // }))
+        const resp = await axios.get('/api/getsort.php', {
+            params: {
+                type: this.state.type,
+                sortValue: key
+            }
+        });
+    }
+ 
+    setType (type) {
+        this.setState({
+            type: type
+        });
     }
 
     componentDidMount () {
@@ -49,12 +60,9 @@ class Sort extends Component {
 
     render () {
         const category = this.state.category.map((key) => {
-            return (
-                <li key={key} onClick={
-                    this.sortItems
-                }>{key}
-                </li>
-            )
+            return <li key={key} onClick={(event) => 
+                this.sortItems(event, 'cateogry')
+            }>{key}</li>
         })
 
         const activity = this.state.activity.map((key) => {
@@ -68,15 +76,15 @@ class Sort extends Component {
         return (
             <ul className="collapsible" ref={(element) => {this.Collapsible = element}} data-collapsibe="expandable">
                 <li>
-                    <div className="collapsible-header"><i className="material-icons">filter_drama</i>Category</div>
+                    <div className="collapsible-header" onClick={() => {this.setType('category')}}><i className="material-icons">filter_drama</i>Category</div>
                     <div className="collapsible-body"><ul>{category}</ul></div>
                 </li>
                 <li>
-                    <div className="collapsible-header"><i className="material-icons">place</i>Activity</div>
+                    <div className="collapsible-header" onClick={() => {this.setType('activity')}}><i className="material-icons">place</i>Activity</div>
                     <div className="collapsible-body"><ul>{activity}</ul></div>
                 </li>
                 <li>
-                    <div className="collapsible-header"><i className="material-icons">whatshot</i>Brand</div>
+                    <div className="collapsible-header" onClick={() => {this.setType('company')}}><i className="material-icons">whatshot</i>Brand</div>
                     <div className="collapsible-body"><ul>{brand}</ul></div>
                 </li>
             </ul>
