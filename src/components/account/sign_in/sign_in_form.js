@@ -6,7 +6,7 @@ const SignInForm = props => {
     const {handleSubmit, signIn} = props;
 
     return (
-        <form onSubmit={handleSubmit(signIn)} className="container">
+        <form onSubmit={handleSubmit(signIn)} className="sign-in-form">
             <div className="row">
                 <Field name="email" component={Input} type="text" id="email" label="email" col="s12"/>
             </div>
