@@ -1,49 +1,72 @@
 <?php
 
-require_once('functions.php');
-set_exception_handler('handleError');
 require_once('config.php');
-require_once('mysqlconnect.php');
 
-$output = [
-    'success' => false
-];
-
-if (!empty($_SESSION['user_data'])) { // not empty
+if (!empty($_SESSION['user_data']['token'])) {
     $token = $_SESSION['user_data']['token'];
 } else {
-    $json_output = file_get_contents("php://input"); // parse input
+    $json_input = file_get_contents("php://input");
     $input = json_decode($json_input, true);
 
-    if (empty($input['token'])) {
-        throw new Exception('Token is required.');
+    if (empty($_GET['token']) && empty($input['token'])) {
+        $output = [
+            'success' => true,
+            'login' => false
+        ];
+
+        print(json_encode($output));
+
+        exit();
     };
 
-    $token = addslashes($input['token']);
-}
+    if (!empty($_GET['token'])) {
+        $token = $_GET['token'];
+    };
 
-$login_check_query = "SELECT * FROM  `user_connections` WHERE `token` = '$token'";
+    if (!empty($input['token'])) {
+        $token = $input['token'];
+    };
+};
 
-$login_result = mysqli_query($conn, $login_check_query);
+$checkLoginQuery = "SELECT * FROM `user_connection` WHERE `token` = ?";
 
-if (!$login_result) {
+$statement = mysqli_prepare($conn, $checkLoginQuery);
+mysqli_stmt_bind_param($statement, 's', $token);
+mysqli_stmt_execute($statement);
+
+$result = mysqli_stmt_get_result($statement);
+
+if (!$result) {
     throw new Exception(mysqli_error($conn));
 };
 
-if (mysqli_num_rows($login_result) !== 1) {
-    throw new Exception('Not logged in.');
+if (mysqli_num_rows($result) === 0) {
+    $output = [
+        'success' => true,
+        'login' => false
+    ];
+
+    print(json_encode($output));
+
+    exit();
 };
 
-$data = mysqli_fetch_assoc($login_result);
-$output['success'] = true;
+$data = mysqli_fetch_assoc($result);
+$user_id = $data['user_id'];
+$token = $data['token'];
 
-if (!empty($_SESSION['user_data'])) {
-    $_SESSION['user_data'] = [
-        'id' => $data['users_id'],
-        'token' => $token
-    ];
-}
+$_SESSION['user_data'] = [
+    'user_id' => $user_id,
+    'token' => $token
+];
 
-$json_output = json_encode($output);
+require_once('checkuserstatus');
 
-print($json_output);
+$output = [
+    'success' => true,
+    'user_id' => $user_id,
+    'login' => true,
+    'token' => $token
+];
+
+print(json_encode($output));

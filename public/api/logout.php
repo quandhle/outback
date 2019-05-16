@@ -1,21 +1,13 @@
 <?php
 
-require_once('functions.php');
-set_exception_handler('handleError');
 require_once('config.php');
-require_once('mysqlconnect.php');
-
-// $output = [
-//     'success': true,
-//     'data':
-// ]
-
-// fb16f63cfb90d4873405362ba1ee5926242d10b5
 
 if (empty($_SESSION['user_data']['token'])) {
     $output['success'] = true;
-    $output['message'] = "You weren't logged in.";
+    $output['login'] = false;
+    
     print(json_encode($output));
+
     exit();
 }
 
@@ -33,7 +25,14 @@ if (!$result) {
 };
 
 if (mysqli_affected_rows($conn) !== 1) {
-    throw new Exception('Invalid username and password.');
+    $output = [
+        'success' => true,
+        'login' => false
+    ];
+
+    print(json_encode($output));
+
+    exit();
 };
 
 unset($_SESSION['user_data']);
