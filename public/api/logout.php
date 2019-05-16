@@ -14,7 +14,7 @@ if (empty($_SESSION['user_data']['token'])) {
 $token = $_SESSION['user_data']['token'];
 
 $query = "DELETE FROM
-        `user_connections`
+        `user_connection`
     WHERE `token` = '$token'
 ";
 

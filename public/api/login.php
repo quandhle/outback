@@ -44,7 +44,14 @@ $user_id = $data['id'];
 $token = $email . $user_id . microtime();
 $token = sha1($token);
 
-$connect_query = "INSERT INTO `user_connection` SET `token` = '$token', `user_id` = {$data['id']}, `created` = NOW(), `ip_address` = '{$_SERVER['REMOTE_ADDR']}'";
+$connect_query = "INSERT INTO
+        `user_connection`
+    SET
+        `token` = '$token',
+        `user_id` = {$data['id']},
+        `created` = NOW()
+        -- `ip_address` = '{$_SERVER['REMOTE_ADDR']}'
+";
 
 $connect_result = mysqli_query($conn, $connect_query);
 
@@ -52,7 +59,7 @@ if (!$connect_result) {
     throw new Exception(mysqli_error($conn));
 };
 
-if (nysqli_affected_rows($conn) !== 1) {
+if (mysqli_affected_rows($conn) !== 1) {
     throw new Exception('Cannot log in: connection not saved.');
 };
 
