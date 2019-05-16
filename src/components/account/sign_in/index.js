@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import SignInForm from './sign_in_form';
-import './sign_in_scss';
+import './sign_in.scss';
 
 class SignIn extends Component {
     handleSignIn(values) {
