@@ -13,6 +13,33 @@ if (empty($_SESSION['user_data']['token'])) {
 
 $token = $_SESSION['user_data']['token'];
 
+if ($_SESSION['user_data']['is_guest'] === true) {
+    $query = "DELETE FROM
+            `user`
+        WHERE
+            `token` = '$token'
+    ";
+
+    $result = mysqli_query($conn, $query);
+
+    if (!$result) {
+        throw new Exception(mysqli_error($conn));
+    };
+
+    if (mysqli_affected_rows($conn) !== 1) {
+        $output = [
+            'success' => true,
+            'login' => false
+        ];
+
+        unset($_SESSION['user_data']);
+
+        print(json_encode($output));
+
+        exit();
+    };
+}
+
 $query = "DELETE FROM
         `user_connection`
     WHERE `token` = '$token'

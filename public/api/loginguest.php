@@ -2,7 +2,16 @@
 
 require_once('config.php');
 
-$guestIDQuery = "INSERT INTO `user` SET `is_guest` = 1";
+$user_id = mysqli_insert_id($conn);
+$token = session_id() . $user_id . microtime();
+$token= sha1($token);
+
+$guestIDQuery = "INSERT INTO
+        `user`
+    SET
+        `is_guest` = 1,
+        `token` = '$token'
+";
 
 $guestIDResult = mysqli_query($conn, $guestIDQuery);
 
@@ -13,10 +22,6 @@ if (!$guestIDResult) {
 if (mysqli_affected_rows($conn) !== 1) {
     throw new Exception('Unable to add guest.');
 };
-
-$user_id = mysqli_insert_id($conn);
-$token = session_id() . $user_id . microtime();
-$token= sha1($token);
 
 $connectQuery = "INSERT INTO
         `user_connection`
