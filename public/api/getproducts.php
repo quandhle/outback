@@ -2,9 +2,6 @@
 
 require_once('config.php');
 
-print('hello');
-exit();
-
 $query = "SELECT
 		p.`id`, p.`company`, p.`name`, p.`price`, p.`category`, p.`description`, p.`misc_details`,
 		ANY_VALUE(i.`url`) as `url`
