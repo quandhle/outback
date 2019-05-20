@@ -79,9 +79,9 @@ class Nav extends Component {
 
 function mapStateToProps (state) {
     return {
-        cart_id: null,
-        signed_in: false,
-        guest: null
+        cart_id: state.user.cart_id,
+        signed_in: state.user.signed_in,
+        is_guest: state.user.is_guest
     }
 }
 
