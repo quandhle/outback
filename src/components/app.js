@@ -42,7 +42,7 @@ class App extends Component {
                     <Route exact path="/" component={Home}/>
                     <Route path="/products" render={(routingProps) => {
                         return <ProductRoutes {...routingProps} updateCart={this.updateCart}/>
-                    }} />
+                    }}/>
                     <Route path="/cart" component={Cart}/>
                     <Route path="/account" component={AccountRoutes}/>
                     <Route component={NotFound}/>

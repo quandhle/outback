@@ -15,6 +15,12 @@ class Nav extends Component {
                     <Link to="/products">Products</Link>
                 </li>
                 <li>
+                    <Link to="/account/sign-in">Sign In</Link>
+                </li>
+                <li>
+                    <Link to="/account/sign-out">Sign Out</Link>
+                </li>
+                <li>
                     <CartLink items={this.props.cartItems}/>
                 </li>
             </Fragment>
