@@ -6,6 +6,7 @@ export function signIn (user) {
     localStorage.setItem('name', user.name);
     localStorage.setItem('token', user.token);
     localStorage.setItem('user_id', user.user_id);
+    localStorage.setItem('cart_id', user.cart_id);
     localStorage.setItem('is_guest', false);
 
     return {
@@ -18,6 +19,7 @@ export function signOut (user) {
     localStorage.removeItem('name');
     localStorage.removeItem('token');
     localStorage.removeItem('user_id');
+    localStorage.removeItem('cart_id');
     localStorage.setItem('is_guest', true);
 
     return {

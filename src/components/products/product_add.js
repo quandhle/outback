@@ -23,17 +23,18 @@ class ProductAdd extends Component {
     }
 
     addToCart () {
-        const { productId, updateCart } = this.props;
-        const { qty } = this.state;
+        const {productId, updateCart} = this.props;
+        const {qty} = this.state;
 
         axios.get(`/api/addcartitem.php?product_id=${productId}&quantity=${qty}`).then(resp => {
+            console.log('axios called');
 
-            const { cartCount, cartTotal } = resp.data; 
+            const {cartCount, cartTotal} = resp.data; 
 
             updateCart(cartCount);
 
             this.setState({
-                modalOpen: true,
+                modalOpen: false,
                 cartQty: cartCount,
                 totalPrice: cartTotal
             });
@@ -41,7 +42,7 @@ class ProductAdd extends Component {
     }
 
     decrementQty () {
-        if(this.state.qty > 1){
+        if (this.state.qty > 1) {
             this.setState({
                 qty: this.state.qty - 1
             });

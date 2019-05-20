@@ -28,8 +28,6 @@ class ProductDetails extends Component {
                 details: false
             })
         };
-
-        console.log(resp.data.productInfo);
     }
 
     render () {
@@ -43,8 +41,6 @@ class ProductDetails extends Component {
         }
 
         const {description = 'No description available.', company, images, name, price, miscDetails} = details;
-
-        console.log(details);
 
         return (
             <div className="product-details">
