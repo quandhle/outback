@@ -1,5 +1,5 @@
-import store from './store/index';
-import {SignIn} from './actions';
+import store from './store';
+import {signIn} from './actions';
 
 window.store = store;
-window.SignIn = SignIn;
+window.signIn = signIn;

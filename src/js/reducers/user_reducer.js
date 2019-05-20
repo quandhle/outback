@@ -1,20 +1,41 @@
+import {SignIn} from '../constants/action-types';
+import {SignOut} from '../constants/action-types';
+
 const DEFAULT_STATE = {
-    auth: false,
-    username: ''
+    signed_in: false,
+    cart_id: null
 };
 
-const example = {
-    type: 'LOG_USER_IN',
-    username: 'quandhle'
-}
+const userReducer = function (state = DEFAULT_STATE, action) {
+    // if (action.type === SignIn.type) {
+    //     return Object.assign({}, state, {
+    //         user: state.user.concat(action.payload)
+    //     })
+    // };
+    const {type, cart_id} = action;
 
-function userReducer(state = DEFAULT_STATE, action) {
     switch (action.type) {
-        case 'LOG_USER_IN':
-            return {...state, auth: true, username: action.username};
+        case "SignIn":
+            return {
+                signed_in: true,
+                cart_id
+            };
+        case "SignOut":
+            return {...DEFAULT_STATE}
         default:
             return state;
     }
+
+    return state;
 }
 
-export default userReducer
+// function userReducer(state = DEFAULT_STATE, action) {
+//     switch (action.type) {
+//         case 'LOG_USER_IN':
+//             return {...state, auth: true, username: action.username};
+//         default:
+//             return state;
+//     }
+// }
+
+export default userReducer;

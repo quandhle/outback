@@ -2,29 +2,56 @@ import React, {Component, Fragment} from 'react';
 import {Link} from 'react-router-dom';
 import Sidenav from './sidenav';
 import CartLink from './cart_link';
+import {connect} from 'react-redux';
 import './nav.scss';
 
 class Nav extends Component {
+    constructor (props) {
+        super(props);
+    }
+
     renderLinks () {
-        return (
-            <Fragment>
-                <li>
+        const {signed_in} = this.props;
+        // var signedIn = true;
+        // if (localstorage.getItem('signed_in') === true) {
+        if (signed_in === true) {
+            return (
+                <Fragment>
+                    <li>
                     <Link to="/">Home</Link>
-                </li>
-                <li>
-                    <Link to="/products">Products</Link>
-                </li>
-                <li>
-                    <Link to="/account/sign-in">Sign In</Link>
-                </li>
-                <li>
-                    <Link to="/account/sign-out">Sign Out</Link>
-                </li>
-                <li>
-                    <CartLink items={this.props.cartItems}/>
-                </li>
-            </Fragment>
-        )
+                    </li>
+                    <li>
+                        <Link to="/products">Products</Link>
+                    </li>
+                    <li>
+                        <Link to="/account/sign-out">Sign Out</Link>
+                    </li>
+                    <li>
+                        <CartLink items={this.props.cartItems}/>
+                    </li>
+                </Fragment>
+            )
+        } else {
+            return (
+                <Fragment>
+                    <li>
+                    <Link to="/">Home</Link>
+                    </li>
+                    <li>
+                        <Link to="/products">Products</Link>
+                    </li>
+                    <li>
+                        <Link to="/account/sign-in">Sign In</Link>
+                    </li>
+                    <li>
+                        <Link to="/account/sign-out">Sign Up</Link>
+                    </li>
+                    <li>
+                        <CartLink items={this.props.cartItems}/>
+                    </li>
+                </Fragment>
+            )
+        }
     }
 
     render () {
@@ -50,4 +77,12 @@ class Nav extends Component {
     }
 }
 
-export default Nav;
+function mapStateToProps (state) {
+    return {
+        cart_id: null,
+        signed_in: false,
+        guest: null
+    }
+}
+
+export default connect(mapStateToProps)(Nav);
