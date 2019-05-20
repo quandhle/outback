@@ -1,1 +1,7 @@
-export const SignIn = "Sign In";
+export const SignIn = {
+    type: "SignIn",
+};
+
+export const SignOut = {
+    type: "SignOut"
+}

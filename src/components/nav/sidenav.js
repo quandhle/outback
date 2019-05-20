@@ -1,18 +1,34 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 
 class Sidenav extends Component {
+    constructor (props) {
+        super(props);
+    }
+
     componentDidMount(){
         M.Sidenav.init(this.sidenav);
     }
 
-    render(){
+    render () {
+        const {user} = this.props;
+
         return (
-            <ul ref={(e) => { this.sidenav = e }} id="sidenav" className="sidenav">
-                {this.props.links}
-            </ul>
+            <Fragment>
+                <ul ref={(e) => { this.sidenav = e }} id="sidenav" className="sidenav">
+                    Hello, {user}!
+                    {this.props.links}
+                </ul>
+            </Fragment>
         );
     }
 }
 
-export default Sidenav;
+function mapStateToProps (state) {
+    return {
+        user: 'Guest'
+    }
+}
+
+export default connect(mapStateToProps)(Sidenav);
