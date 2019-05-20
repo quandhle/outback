@@ -4,6 +4,7 @@ import './sign_in.scss';
 
 class SignIn extends Component {
     handleSignIn(values) {
+        console.log('sign in index js called')
     }
     
     render() {

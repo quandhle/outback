@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-export default props => {
+const CartLink = props => {
     return (
         <Link to="/cart" className="cart-link">
             <i className="material-icons cart-icon">shopping_cart</i><span className="side-nav-cart">View Cart</span>
@@ -9,3 +9,5 @@ export default props => {
         </Link>
     )
 }
+
+export default CartLink;

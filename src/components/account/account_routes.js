@@ -6,6 +6,7 @@ import SignUp from './sign-up';
 
 const AccountRoutes = props => {
     const {match} = props;
+
     return (
         <Switch className="container">
             <Route path={`${match.path}/sign-in`} component={SignIn}/>
