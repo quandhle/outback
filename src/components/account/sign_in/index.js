@@ -1,13 +1,33 @@
 import React, {Component} from 'react';
 import SignInForm from './sign_in_form';
+import {connect} from 'react-redux';
+import {signIn} from '../../../js/actions';
 import './sign_in.scss';
+import axios from 'axios';
 
 class SignIn extends Component {
-    handleSignIn(values) {
-        console.log('sign in index js called')
+    constructor(props) {
+        super(props);
+
+        this.handleSignIn = this.handleSignIn.bind(this);
+    }
+
+    async handleSignIn(values) {
+        const {email, password} = values;        
+        const {signIn, history} = this.props;
+
+        const resp = await axios.post('/api/login.php', {...values});
+
+        if (resp.data.success) {
+            signIn(resp.data);
+
+            history.push('/');
+        } else {
+            console.log('failed login')
+        }
     }
     
-    render() {
+    render () {
         return (
             <div className="center">
                 <h1 className="center container">Sign In</h1>
@@ -17,4 +37,4 @@ class SignIn extends Component {
     }
 }
 
-export default SignIn;
+export default connect(null, {signIn})(SignIn);
