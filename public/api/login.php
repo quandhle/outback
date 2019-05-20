@@ -23,7 +23,7 @@ if (empty($password)) {
 $hashedPassword = sha1($password);
 unset($password);
 
-$query = "SELECT `id`, `last_name`, `first_name` FROM `user` WHERE `email` = ? AND `password` = ?";
+$query = "SELECT `id`, `last_name`, `first_name`, `cart_id` FROM `user` WHERE `email` = ? AND `password` = ?";
 
 $statement = mysqli_prepare($conn, $query);
 mysqli_stmt_bind_param($statement, 'ss', $email, $hashedPassword);
@@ -50,7 +50,6 @@ $connect_query = "INSERT INTO
         `token` = '$token',
         `user_id` = {$data['id']},
         `created` = NOW()
-        -- `ip_address` = '{$_SERVER['REMOTE_ADDR']}'
 ";
 
 $connect_result = mysqli_query($conn, $connect_query);
@@ -74,6 +73,7 @@ $output = [
     'login' => true,
     'is_guest' => false,
     'user_id' => $data['id'],
+    'cart_id' => $data['cart_id'],
     'name' => $data['first_name'] . ' ' . $data['last_name'],
     'token' => $token
 ];
