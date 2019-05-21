@@ -12,8 +12,7 @@ class Nav extends Component {
 
     renderLinks () {
         const {signed_in} = this.props;
-        // var signedIn = true;
-        // if (localstorage.getItem('signed_in') === true) {
+        
         if (signed_in === true) {
             return (
                 <Fragment>
@@ -44,7 +43,7 @@ class Nav extends Component {
                         <Link to="/account/sign-in">Sign In</Link>
                     </li>
                     <li>
-                        <Link to="/account/sign-out">Sign Up</Link>
+                        <Link to="/account/sign-up">Sign Up</Link>
                     </li>
                     <li>
                         <CartLink items={this.props.cartItems}/>

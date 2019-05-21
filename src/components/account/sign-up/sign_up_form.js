@@ -8,7 +8,10 @@ const SignUpForm = props => {
     return (
         <form onSubmit={handleSubmit(signUp)} className="container">
             <div className="row">
-                <Field name="name" component={Input} type="text" id="name" label="name" col="s12"/>
+                <Field name="last_name" component={Input} type="text" id="last_name" label="last name" col="s12"/>
+            </div>
+            <div className="row">
+                <Field name="first_name" component={Input} type="text" id="first_name" label="first name" col="s12"/>
             </div>
             <div className="row">
                 <Field name="email" component={Input} type="text" id="email" label="email" col="s12"/>

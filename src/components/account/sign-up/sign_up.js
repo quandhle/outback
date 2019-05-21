@@ -1,13 +1,39 @@
 import React, {Component} from 'react';
 import SignUpForm from './sign_up_form';
+import axios from 'axios';
+import {connect} from 'react-redux';
+import {signIn} from '../../../js/actions';
 
 class SignUp extends Component {
-    handleSignUp(values) {
-        const {name, email, password, confirmPassword} = values;
+    constructor (props) {
+        super(props);
+
+        this.state = {
+            message: ''
+        };
+
+        this.handleSignUp = this.handleSignUp.bind(this);
+    }
+
+    async handleSignUp(values) {
+        const {last_name, first_name, email, password, confirmPassword} = values;
+
         if (password !== confirmPassword) {
             console.log('Error: passwords do not match.');
+        }
+
+        const resp = await axios.post('/api/signup.php', {...values});
+
+        if (resp.data.success) { 
+            console.log('resp is: ', resp);
+
+            signIn(resp.data);
+
+            this.props.history.push('/');
         } else {
-            console.log(values);
+            this.setState({
+                message: resp.data.error
+            })
         }
     }
 
@@ -21,4 +47,4 @@ class SignUp extends Component {
     }
 }
 
-export default SignUp;
+export default connect(null, {signIn})(SignUp);
