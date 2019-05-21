@@ -10,11 +10,11 @@ class Cart extends Component {
         meta: {}
     }
 
-    componentDidMount(){
+    componentDidMount () {
         this.getCartData();
     }
 
-    async getCartData(){
+    async getCartData () {
         
         const { data = {} } = await axios.get('/api/getcartitems.php');
 
@@ -28,7 +28,7 @@ class Cart extends Component {
         }
     }
 
-    render(){
+    render () {
         const { items, meta } = this.state;
         let totalItems = 0;
 

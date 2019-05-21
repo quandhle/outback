@@ -24,10 +24,10 @@ class SignUp extends Component {
 
         const resp = await axios.post('/api/signup.php', {...values});
 
-        if (resp.data.success) { 
-            console.log('resp is: ', resp);
+        if (resp.data.success) {
+            this.props.signIn(resp.data.data);
 
-            signIn(resp.data);
+            signIn(resp.data.data);
 
             this.props.history.push('/');
         } else {

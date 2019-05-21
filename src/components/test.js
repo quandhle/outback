@@ -9,8 +9,6 @@ class Test extends Component {
     signIn = async () => {
         const resp = await axios.get('api/test/sign_in.php');
 
-        console.log('Sign-in Resp: ', resp);
-
         this.checkAuth();
     }
 

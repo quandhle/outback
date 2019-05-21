@@ -17,7 +17,7 @@ if (empty($_SESSION['cart_id'])) {
 
     $count_query = "SELECT
             `item_count`
-        FROM `carts`
+        FROM `cart`
         WHERE `id` = $cartId";
 
     $count_result = mysqli_query($conn, $count_query);
