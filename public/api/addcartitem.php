@@ -62,11 +62,11 @@ if (empty($_SESSION['cart_id'])) {
 	$_SESSION['cart_id'] = $cart_id;
 } else {
     $cart_id = $_SESSION['cart_id'];
-
+    
     $update_cart_query = "UPDATE `cart`
         SET
             `item_count` = `item_count` + $quantity,
-            `total_price` = `total_price` + $total,
+            `total_price` = `total_price` + $total
         WHERE `id` = $cart_id
     ";
 
@@ -120,7 +120,8 @@ $total = $row['total_price'];
 $output = [
     'success' => true,
     'cartCount' => $cart_quantity,
-    'cartTotal' => $total
+    'cartTotal' => $total,
+    'card_id' => $_SESSION['cart_id']
 ];
 
 print(json_encode($output));
