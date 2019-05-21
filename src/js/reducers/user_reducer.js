@@ -5,9 +5,7 @@ import axios from 'axios';
 const DEFAULT_STATE = {
     signed_in: false,
     cart_id: null,
-    is_guest: true,
-    last_name: null,
-    first_name: null
+    is_guest: true
 };
 
 const userReducer = function (state = DEFAULT_STATE, action) {    
@@ -16,9 +14,7 @@ const userReducer = function (state = DEFAULT_STATE, action) {
             return {
                 signed_in: true,
                 is_guest: false,
-                cart_id: null,
-                last_name: null,
-                first_name: null
+                cart_id: null
             };
         case "SignOut":
             return {...DEFAULT_STATE};
