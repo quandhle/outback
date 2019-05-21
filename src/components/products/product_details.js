@@ -48,7 +48,7 @@ class ProductDetails extends Component {
                 <ProductCarousel images={images}/>
                 <div className="product-info">
                     <div className="right-align product-price">${formatMoney(price)}</div>
-                    <ProductAdd productId={params.product_id} updateCart={updateCart}/>
+                    <ProductAdd productID={params.product_id} updateCart={updateCart}/>
                     <p>{description}</p>
                     <MiscDetails details={miscDetails}/>
                 </div>

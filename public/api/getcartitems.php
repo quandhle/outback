@@ -22,7 +22,7 @@ $cart_query = "SELECT
     p.`id`, p.`name`, p.`price`,
     (SELECT url FROM `images` WHERE `products_id` = p.`id` LIMIT 1 ) AS `image`
     FROM `cart` AS `c` 
-    JOIN `cart_items` AS `ci` ON ci.`carts_id` = c.`id`
+    JOIN `cart_item` AS `ci` ON ci.`carts_id` = c.`id`
     JOIN `products` AS `p` ON ci.`products_id` = p.`id`
     WHERE c.`id` = $cart_id AND c.`users_id` = $user_id
 ";
