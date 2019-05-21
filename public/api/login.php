@@ -1,6 +1,8 @@
 <?php
 
+ob_start(null, 0, PHP_OUTPUT_HANDLER_CLEANABLE ^ PHP_OUTPUT_HANDLER_REMOVABLE);
 require_once('config.php');
+ob_end_clean();
 
 $output = [
     'success' => false
@@ -68,14 +70,17 @@ $_SESSION['user_data'] = [
     'is_guest' => false
 ];
 
-$output = [
-    'success' => true,
+$data = [
     'login' => true,
     'is_guest' => false,
     'user_id' => $data['id'],
     'cart_id' => $data['cart_id'],
-    'name' => $data['first_name'] . ' ' . $data['last_name'],
-    'token' => $token
+    'first_name' => $data['first_name'],
+    'last_name' => $data['last_name'],
+    'token' => $data['token']
 ];
+
+$output['success'] = true;
+$output['data'] = $data;
 
 print(json_encode($output));
