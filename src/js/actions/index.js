@@ -24,7 +24,7 @@ export function signOut (user) {
     localStorage.removeItem('token');
     localStorage.removeItem('user_id');
     localStorage.removeItem('cart_id');
-    localStoage.setItem('signed_in', false);
+    localStorage.setItem('signed_in', false);
     localStorage.setItem('is_guest', true);
 
     return {
