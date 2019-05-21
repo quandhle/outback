@@ -32,8 +32,11 @@ $price = (int)$product_data['price'];
 
 $total = $price * $quantity;
 
+if (empty($_SESSION['user_id'])) {
+    $_SESSION['user_id'] = 0;
+}
+
 $user_id = $_SESSION['user_id'];
-$user_id = 1;
 
 if (empty($_SESSION['cart_id'])) {
     $cart_create_query = "INSERT INTO `cart`
@@ -52,7 +55,7 @@ if (empty($_SESSION['cart_id'])) {
     }
     
 	if (mysqli_affected_rows($conn) === 0) {
-		throw new Exception('data was not added to cart table');
+		throw new Exception('Unable to add product.');
     }
     
 	$cart_id = mysqli_insert_id($conn);
@@ -76,26 +79,6 @@ if (empty($_SESSION['cart_id'])) {
 	if (mysqli_affected_rows($conn) === 0) {
 		throw new Exception('Cart data was not updated');
     };
-    
-    $cart_query = "SELECT `item_count`, `total_price` FROM `cart` WHERE `id` = $cart_id";
-
-    print('after update cart query'); exit();
-
-
-    $cart_result = mysqli_query($conn, $cart_query);
-
-    if (!$cart_result) {
-		throw new Exception('Unable to get updated cart data');
-	};
-
-	if (mysqli_num_rows($cart_result) === 0) {
-		throw new Exception('No cart data found');
-    };
-    
-    $row = mysqli_fetch_assoc($cart_result);
-
-    $cart_quantity = $row['item_count'];
-    $total = $row['total_price'];
 }
 
 $cart_item_query = "INSERT INTO `cart_item`
@@ -116,6 +99,23 @@ if (!$cart_item_result) {
 if (mysqli_affected_rows($conn) === 0) {
 	throw new Exception('failed to insert into cart items');
 };
+
+$cart_query = "SELECT `item_count`, `total_price` FROM `cart` WHERE `id` = $cart_id";
+
+$cart_result = mysqli_query($conn, $cart_query);
+
+if (!$cart_result) {
+    throw new Exception('Unable to get updated cart data');
+};
+
+if (mysqli_num_rows($cart_result) === 0) {
+    throw new Exception('No cart data found');
+};
+
+$row = mysqli_fetch_assoc($cart_result);
+
+$cart_quantity = $row['item_count'];
+$total = $row['total_price'];
 
 $output = [
     'success' => true,
