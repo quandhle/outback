@@ -12,18 +12,16 @@ class SignIn extends Component {
         this.handleSignIn = this.handleSignIn.bind(this);
     }
 
-    async handleSignIn(values) {
+    async handleSignIn (values) {
         const {email, password} = values;        
         const {signIn, history} = this.props;
 
         const resp = await axios.post('/api/login.php', {...values});
 
         if (resp.data.success) {
-            signIn(resp.data);
-
+            signIn({...values})
+            
             history.push('/');
-        } else {
-            console.log('failed login')
         }
     }
     

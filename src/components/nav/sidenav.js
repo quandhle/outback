@@ -17,7 +17,7 @@ class Sidenav extends Component {
         return (
             <Fragment>
                 <ul ref={(e) => { this.sidenav = e }} id="sidenav" className="sidenav">
-                    Hello, {user}!
+                    {/* Hello, {user}! */}
                     {this.props.links}
                 </ul>
             </Fragment>
@@ -27,7 +27,7 @@ class Sidenav extends Component {
 
 function mapStateToProps (state) {
     return {
-        user: 'Guest'
+        user: state.user.first_name
     }
 }
 
