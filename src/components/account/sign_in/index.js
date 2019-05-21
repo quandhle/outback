@@ -19,8 +19,8 @@ class SignIn extends Component {
         const resp = await axios.post('/api/login.php', {...values});
 
         if (resp.data.success) {
-            signIn({...values})
-            
+            signIn({...values});
+
             history.push('/');
         }
     }
