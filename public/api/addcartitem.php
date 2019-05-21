@@ -2,8 +2,9 @@
 
 require_once('config.php');
 
-$quantity = $_GET['quantity'];
-$product_id = $_GET['product_id'];
+$quantity = intval($_GET['quantity']);
+$product_id = intval($_GET['product_id']);
+
 
 if(empty($_GET['quantity'])){
 	throw new Exception('Please send quantity of product.');
@@ -78,6 +79,9 @@ if (empty($_SESSION['cart_id'])) {
     
     $cart_query = "SELECT `item_count`, `total_price` FROM `cart` WHERE `id` = $cart_id";
 
+    print('after update cart query'); exit();
+
+
     $cart_result = mysqli_query($conn, $cart_query);
 
     if (!$cart_result) {
@@ -94,13 +98,13 @@ if (empty($_SESSION['cart_id'])) {
     $total = $row['total_price'];
 }
 
-$cart_item_query = "INSERT INTO `cart_items`
+$cart_item_query = "INSERT INTO `cart_item`
     SET
         `product_id` = $product_id,
         `quantity` = $quantity,
-        `cart_id` = $cart_id,
-    ON DUPLICATE KEY UPDATE
-        `quantity` = 1 + $quantity
+        `cart_id` = $cart_id
+    ON DUPLICATE KEY UPDATE 
+        `quantity` = `quantity` + $quantity
 ";
 
 $cart_item_result = mysqli_query($conn, $cart_item_query);

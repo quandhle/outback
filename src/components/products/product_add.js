@@ -23,10 +23,15 @@ class ProductAdd extends Component {
     }
 
     addToCart () {
-        const {productId, updateCart} = this.props;
+        const {productID, updateCart} = this.props;
         const {qty} = this.state;
 
-        axios.get(`/api/addcartitem.php?product_id=${productId}&quantity=${qty}`).then(resp => {
+        console.log('quantity is', qty);
+        console.log('productid is: ', productID);
+
+        axios.get(`/api/addcartitem.php?product_id=${productID}&quantity=${qty}`).then(resp => {
+
+            console.log(resp.data);
 
             const {cartCount, cartTotal} = resp.data; 
 
