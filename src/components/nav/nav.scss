@@ -104,14 +104,8 @@ nav {
             }
             
             ul {
-                margin-right: 15px;
-
                 li:last-child {
                     width: 100px;
-
-                    a {
-                        padding: 0;
-                    }
                 }
 
                 li {
@@ -125,7 +119,7 @@ nav {
                         .view-cart {
                             margin: 0;
                             position: absolute;
-                            width: 65px;
+                            width: 75px;
                             left: 15px;
                             top: 15px;
                         }

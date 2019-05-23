@@ -9,7 +9,7 @@ import Cart from './cart';
 import NotFound from './404';
 import ProductRoutes from './products';
 import axios from 'axios';
-import AccountRoutes from './account/account_routes';
+import AccountRoutes from './account';
 
 class App extends Component {
     constructor(props) {

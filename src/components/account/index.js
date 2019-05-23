@@ -1,8 +1,8 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
-import NotFound from '../404';
+import NotFound from '../404/404';
 import SignIn from './sign_in';
-import SignUp from './sign-up';
+import SignUp from './sign-up/sign_up';
 import SignOut from './sign-out';
 
 const AccountRoutes = props => {
