@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
-import { formatMoney } from '../../helpers';
+import {formatMoney} from '../../helpers';
 import './cart.scss';
 
 class Cart extends Component {
