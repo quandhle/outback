@@ -7,11 +7,12 @@ class CartItem extends Component {
     constructor (props) {
         super(props);
 
-        const {id, quantity} = props.value;
+        const {id, quantity, price} = props.value;
 
         this.state = {
             id: id,
-            quantity: quantity
+            quantity: quantity,
+            price: price
         }
 
         this.handleDelete = this.handleDelete.bind(this);
@@ -19,10 +20,14 @@ class CartItem extends Component {
 
     async handleDelete () {        
         const resp = await axios.put('/api/deletecartitems.php', {
-            product_id: this.state.id
+            product_id: this.state.id,
+            quantity: this.state.quantity,
+            total_price: this.state.price
         });
 
         console.log('resp is: ', resp);
+
+        console.log('data is: ', resp.data);
     }
 
     render () {

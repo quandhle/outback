@@ -32,8 +32,6 @@ class ProductAdd extends Component {
 
             const {cartCount, cartTotal} = resp.data; 
 
-            updateCart(cartCount);
-
             this.setState({
                 modalOpen: false,
                 cartQty: cartCount,
