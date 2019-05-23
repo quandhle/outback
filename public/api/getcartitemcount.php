@@ -14,11 +14,14 @@ if (empty($_SESSION['cart_id'])) {
     $output['itemCount'] = 0;
 } else {
     $cartId = $_SESSION['cart_id'];
+    $user_id = $_SESSION['user_id'];
 
     $count_query = "SELECT
             `item_count`
         FROM `cart`
-        WHERE `id` = $cartId";
+        WHERE `id` = $cartId
+        AND `user_id` = $user_id
+    ";
 
     $count_result = mysqli_query($conn, $count_query);
 
@@ -33,7 +36,7 @@ if (empty($_SESSION['cart_id'])) {
     $row = mysqli_fetch_assoc($count_result);
     
     $output['success'] = true;
-    $output['item count'] = (int)$row['item_count'];
+    $output['item_count'] = (int)$row['item_count'];
 };
 
 print(json_encode($output));

@@ -19,19 +19,17 @@ class App extends Component {
             cartItems: 0
         }
 
-        this.updateCart = this.updateCart.bind(this);
     }
 
     async getCartItemsCount () {
         const resp = await axios.get('/api/getcartitemcount.php');
 
-        this.updateCart(resp.data.itemCount);
-    };
-
-    updateCart (count) {
         this.setState({
-            cartItems: count
+            cartItems: resp.data.item_count
         })
+    };
+    componentDidMount () {
+        this.getCartItemsCount();
     }
 
     render () {

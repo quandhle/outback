@@ -33,8 +33,8 @@ class ProductList extends Component {
     }
 
     render () {
-        const productList = this.state.products.map((product) => {
-            return <ProductItem key={product.id} {...product} goToDetails={this.goToDetails}/>
+        const productList = this.state.products.map((products) => {
+            return <ProductItem key={products.id} {...products} goToDetails={this.goToDetails}/>
         })
         
         return (

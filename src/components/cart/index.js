@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import {formatMoney} from '../../helpers';
+import CartItem from './cart-item';
 import './cart.scss';
 
 class Cart extends Component {
@@ -27,30 +28,36 @@ class Cart extends Component {
                 data: resp.data.cartData
             });
 
-            console.log(this.state);
         } else {
             console.error('Cart data failed to load');
         }
+    }
+
+    decrementQty () {
+        if (this.state.qty > 1) {
+            // this.setState({
+            //     items:
+            // });
+        }
+    }
+
+    incrementQty () {
+        this.setState({
+            qty: this.state.qty + 1
+        });
     }
 
     render () {
         const {items, data} = this.state;
         let totalItems = 0;
 
-        const cartItems = items.map(({name, price, image, quantity, id}) => {
-            totalItems += quantity;
-            const itemTotalPrice = formatMoney(quantity * price);        
+        const cartItems = items.map((value = {name, price, image, quantity, id}, index) => {
+            totalItems += value.quantity;
+
+            const itemTotalPrice = formatMoney(value.quantity * value.price);    
 
             return (
-                <tr key={id}>
-                    <td>
-                        <img src={image} alt={`${name} product image`}/>
-                    </td>
-                    <td>{name}</td>
-                    <td>${formatMoney(price)}</td>
-                    <td>{quantity}</td>
-                    <td>${itemTotalPrice}</td>
-                </tr>
+                <CartItem key={value.id} value={{totalItems, itemTotalPrice, ...value}}/>
             )
         });
 
@@ -70,6 +77,7 @@ class Cart extends Component {
                             <th>Price</th>
                             <th>Quantity</th>
                             <th>Item Total</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
