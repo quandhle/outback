@@ -25,9 +25,7 @@ class CartItem extends Component {
             total_price: this.state.price
         });
 
-        console.log('resp is: ', resp);
-
-        console.log('data is: ', resp.data);
+        console.log('resp is: ', resp.data);
     }
 
     render () {

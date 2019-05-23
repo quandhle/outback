@@ -5,6 +5,11 @@ require_once('config.php');
 $quantity = intval($_GET['quantity']);
 $product_id = intval($_GET['product_id']);
 
+$output = [
+    'cart_id' => $_SESSION['cart_id'],
+    'user_id' => $_SESSION['user_id']
+];
+
 if (empty($_GET['quantity'])) {
 	throw new Exception('Please send quantity of product.');
 }

@@ -27,15 +27,15 @@ $update_cart_query = "UPDATE `cart`
     SET
         `item_count` = `item_count` - $quantity,
         `total_price` = `total_price` - $total_price
-    WHERE `user_id` = $user_id,
+    WHERE `user_id` = $user_id
     AND `id` = $cart_id
 ";
 
-$result = mysqli_query($conn, $update_cart_query);
+$update_cart_result = mysqli_query($conn, $update_cart_query);
 
-if (mysqli_affected_rows($conn) !== 1) {
-    throw new Exception('Unable to update cart.');
-};
+if (mysqli_affected_rows($conn) === 0) {
+    throw new Exception ('Unable to find and delete cart item.');
+}
 
 $output = [
     'success' => true,
