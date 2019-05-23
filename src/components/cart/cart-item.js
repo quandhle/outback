@@ -18,7 +18,9 @@ class CartItem extends Component {
     }
 
     async handleDelete () {        
-        const resp = await axios.post('/api/deletecartitems.php');
+        const resp = await axios.put('/api/deletecartitems.php', {
+            product_id: this.state.id
+        });
 
         console.log('resp is: ', resp);
     }
