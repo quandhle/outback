@@ -8,8 +8,6 @@ import './nav.scss';
 class Nav extends Component {
     constructor (props) {
         super(props);
-
-        // console.log('props from nav is: ',this.props);
     }
 
     renderLinks () {

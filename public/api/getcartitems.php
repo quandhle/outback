@@ -16,19 +16,15 @@ if(empty($_SESSION['cart_id'])){
 $cart_id = $_SESSION['cart_id'];
 $user_id = $_SESSION['user_id'];
 
-$cart_query = "SELECT
-        p.`name`,
-        p.`price`,
+$cart_query = "SELECT 
+        c.`created`, c.`total_price`,
         ci.`quantity`,
-        (SELECT `url` FROM `images` WHERE `images`.`product_id` = p.`id` LIMIT 1) AS url,
-        p.`id`,
-        c.`created`, c.`total_price`
-    FROM `product` as p
-    JOIN `cart_item` as ci
-    ON ci.`product_id` = p.`id`
-    JOIN `cart` as c
-    ON ci.`cart_id` = c.`id`
-    AND c.`user_id` = $user_id
+        p.`id`, p.`name`, p.`price`,
+        (SELECT `url` FROM `images` WHERE `images`.`product_id` = p.`id` LIMIT 1 ) AS url
+    FROM `cart` AS `c` 
+    JOIN `cart_item` AS `ci` ON ci.`cart_id` = c.`id`
+    JOIN `product` AS `p` ON ci.`product_id` = p.`id`
+    WHERE c.`id` = $cart_id AND c.`user_id` = $user_id
 ";
 
 $cart_data = mysqli_query($conn, $cart_query);
