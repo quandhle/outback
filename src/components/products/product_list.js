@@ -19,15 +19,13 @@ class ProductList extends Component {
     }
 
     async getProducts () {
-        const resp = await axios.get('/api/getproducts.php')
+        const resp = await axios.get('/api/getproducts.php');
 
-        console.log(resp);
-        
-        // then((resp) => {
-        //     this.setState({
-        //         products: resp.data.products
-        //     });
-        // });
+        if (resp.data.success) {
+            this.setState({
+                products: resp.data.products
+            })
+        }
     }
 
     goToDetails (id) {
@@ -35,10 +33,9 @@ class ProductList extends Component {
     }
 
     render () {
-        // const productList = this.state.products.map((product) => {
-        //     return <ProductItem key={product.id} {...product} goToDetails={this.goToDetails}/>
-        // })
-        const productList = 'hello';
+        const productList = this.state.products.map((product) => {
+            return <ProductItem key={product.id} {...product} goToDetails={this.goToDetails}/>
+        })
         
         return (
             <Fragment>
