@@ -121,7 +121,7 @@ $output = [
     'success' => true,
     'cartCount' => $cart_quantity,
     'cartTotal' => $total,
-    'card_id' => $_SESSION['cart_id']
+    'id' => $_SESSION['cart_id']
 ];
 
 print(json_encode($output));
