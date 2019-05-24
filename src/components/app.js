@@ -9,6 +9,8 @@ import Cart from './cart';
 import NotFound from './404';
 import ProductRoutes from './products';
 import axios from 'axios';
+import {cartCount} from '../js/actions';
+import {connect} from 'react-redux';
 import AccountRoutes from './account';
 
 class App extends Component {
@@ -19,21 +21,20 @@ class App extends Component {
             cartItems: 0
         }
 
+        this.getCartItemsCount = this.getCartItemsCount.bind(this);
     }
 
     async getCartItemsCount () {
-        const resp = await axios.get('/api/getcartitemcount.php');
+        const {cartCount} = this.props;
 
-        this.setState({
-            cartItems: resp.data.item_count
-        })
+        cartCount();
     };
 
     componentDidMount () {
         this.getCartItemsCount();
     }
 
-    render () {
+    render () {        
         return (
             <Fragment>
                 <Nav cartItems={this.state.cartItems}/>
@@ -51,4 +52,10 @@ class App extends Component {
     }
 }
 
-export default App;
+function mapStateToProps (state) {
+    return {
+        cart: state.cart.cartCount
+    }
+}
+
+export default connect(mapStateToProps, {cartCount})(App);

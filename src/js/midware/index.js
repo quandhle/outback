@@ -3,7 +3,7 @@ const Midware = (store) => (next) => (action) => {
         return next(action);
     }
 
-    return action(action.dispatch);
+    return action(store.dispatch);
 }
 
 export default Midware;

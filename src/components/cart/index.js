@@ -46,19 +46,19 @@ class Cart extends Component {
         }
     }
 
-    decrementQty () {
-        if (this.state.qty > 1) {
-            // this.setState({
-            //     items:
-            // });
-        }
-    }
+    // decrementQty () {
+    //     if (this.state.qty > 1) {
+    //         this.setState({
+    //             items:
+    //         });
+    //     }
+    // }
 
-    incrementQty () {
-        this.setState({
-            qty: this.state.qty + 1
-        });
-    }
+    // incrementQty () {
+    //     this.setState({
+    //         qty: this.state.qty + 1
+    //     });
+    // }
 
     render () {
         const {items, data} = this.state;

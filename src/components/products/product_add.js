@@ -4,7 +4,8 @@ import axios from 'axios';
 import Modal from '../modal';
 import {connect} from 'react-redux';
 import {cartCount} from '../../js/actions';
-import { formatMoney } from '../../helpers';
+import {formatMoney} from '../../helpers';
+import {addToCart} from '../../js/actions';
 
 class ProductAdd extends Component {
     constructor (props) {
@@ -25,8 +26,11 @@ class ProductAdd extends Component {
     }
 
     addToCart () {
+        const {addToCart} = this.props;
         const {productID, updateCart} = this.props;
         const {qty} = this.state;
+
+        // addToCart({productID, updateCart, qty});
 
         axios.get(`/api/addcartitem.php?product_id=${productID}&quantity=${qty}`).then(resp => {
             const {cartCount, cartTotal} = resp.data; 
@@ -106,11 +110,9 @@ class ProductAdd extends Component {
 }
 
 function mapStateToProps (state) {
-    console.log('state is: ', state);
-
     return {
-        cartCount: state.cartQty
+        cartCount: state.cart.cartCount
     }
 }
 
-export default connect(mapStateToProps, {cartCount})(withRouter(ProductAdd));
+export default connect(mapStateToProps, {addToCart})(withRouter(ProductAdd));

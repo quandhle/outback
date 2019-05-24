@@ -1,6 +1,7 @@
 import {SignIn} from '../constants/action-types';
 import {SignOut} from '../constants/action-types';
 import {CartCount} from '../constants/action-types';
+import axios from 'axios';
 
 export function signIn (user) {
     localStorage.setItem('login', true);
@@ -34,9 +35,30 @@ export function signOut (user) {
     };
 }
 
-export function cartCount (cartCount) {
-    return {
-        type: CartCount.type,
-        cartCount
+export function cartCount () {
+    return function (dispatch) {
+        let resp = axios.get('/api/getcartitemcount.php').then((resp) => {
+            dispatch({
+                type: CartCount.type,
+                cartCount: resp.data.item_count
+            });
+        })
+    }
+}
+
+export function addToCart (info) {
+    console.log(info);
+    return function (dispatch, info) {
+        console.log('info inside dispatch: ', info);
+
+        // axios.get(`/api/addcartitem.php?product_id=${productID}&quantity=${qty}`).then(resp => {
+        //     const {cartCount, cartTotal} = resp.data; 
+
+        //     this.setState({
+        //         modalOpen: false,
+        //         cartQty: cartCount,
+        //         totalPrice: cartTotal
+        //     });
+        // });
     }
 }
