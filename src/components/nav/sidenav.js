@@ -25,10 +25,4 @@ class Sidenav extends Component {
     }
 }
 
-function mapStateToProps (state) {
-    return {
-        user: state.user.first_name
-    }
-}
-
-export default connect(mapStateToProps)(Sidenav);
+export default Sidenav;

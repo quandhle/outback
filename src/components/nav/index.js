@@ -11,8 +11,8 @@ class Nav extends Component {
     }
 
     renderLinks () {
-        const {signed_in} = this.props;
-        
+        const {signed_in, cartItems} = this.props;
+                
         if (signed_in === true) {
             return (
                 <Fragment>
@@ -26,7 +26,7 @@ class Nav extends Component {
                         <Link to="/account/sign-out">Sign Out</Link>
                     </li>
                     <li>
-                        <CartLink items={this.props.cartItems}/>
+                        <CartLink items={cartItems}/>
                     </li>
                 </Fragment>
             )
@@ -46,7 +46,7 @@ class Nav extends Component {
                         <Link to="/account/sign-up">Sign Up</Link>
                     </li>
                     <li>
-                        <CartLink items={this.props.cartItems}/>
+                        <CartLink items={cartItems}/>
                     </li>
                 </Fragment>
             )

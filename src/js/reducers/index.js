@@ -1,22 +1,7 @@
 import {combineReducers} from 'redux';
 import {reducer as formReducer} from 'redux-form';
 import userReducer from './user_reducer';
-import CartCount from '../constants/action-types';
-
-const DEFAULT_STATE = {
-    cartCount: 0
-}
-
-const cartReducer = function (state = DEFAULT_STATE, action) {
-    switch (action.type) {
-        case "CartCount":
-            return {
-                cartCount
-            };
-        default:
-            return state;
-    }
-}
+import cartReducer from './cart_reducer';
 
 const rootReducer = combineReducers({
     form: formReducer,
