@@ -1,5 +1,6 @@
 import {SignIn} from '../constants/action-types';
 import {SignOut} from '../constants/action-types';
+import {CartCount} from '../constants/action-types';
 
 export function signIn (user) {
     localStorage.setItem('login', true);
@@ -31,4 +32,11 @@ export function signOut (user) {
     return {
         type: SignOut.type
     };
+}
+
+export function cartCount (cartCount) {
+    return {
+        type: CartCount.type,
+        cartCount
+    }
 }

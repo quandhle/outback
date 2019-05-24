@@ -28,6 +28,7 @@ class App extends Component {
             cartItems: resp.data.item_count
         })
     };
+
     componentDidMount () {
         this.getCartItemsCount();
     }

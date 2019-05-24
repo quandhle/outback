@@ -40,7 +40,6 @@ nav {
 
 .sidenav {
     .cart-link {
-
         .cart-items {
             position: absolute;
             right: 0;        
@@ -51,20 +50,15 @@ nav {
             color: white;
         }
 
-        .side-nav-cart {
-            margin: 0;
-            width: 100%;
+        i {
+            color: black;
+            font-style: none !important;
+        }
 
-            i {
-                color: black;
-                font-style: none !important;
-            }
-
-            span {
-                height: 48px;
-                padding-top: 17px;
-                margin-right: 20px;
-            }
+        span {
+            height: 48px;
+            padding-top: 17px;
+            margin-right: 20px;
         }
     }
 }
@@ -122,12 +116,6 @@ nav {
                             width: 75px;
                             left: 17px;
                             top: 15px;
-                        }
-
-                        .side-nav-cart {
-                            font-size: 1em;
-                            height: 24px;
-                            line-height: 1;
                         }
 
                         .cart-items {

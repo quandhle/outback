@@ -81,6 +81,7 @@ function mapStateToProps (state) {
         cart_id: state.user.cart_id,
         signed_in: state.user.signed_in,
         is_guest: state.user.is_guest,
+        cartItems: state.cart.cartCount
     }
 }
 

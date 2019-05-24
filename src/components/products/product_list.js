@@ -8,7 +8,8 @@ class ProductList extends Component {
         super(props);
 
         this.state = {
-            products: []
+            products: [],
+            session: {}
         }
 
         this.goToDetails = this.goToDetails.bind(this);
@@ -16,6 +17,12 @@ class ProductList extends Component {
 
     componentDidMount () {
         this.getProducts();
+
+        this.getSessionData();
+    }
+
+    async getSessionData () {
+        const resp = await axios.get('/api/sessiontest.php');
     }
 
     async getProducts () {
