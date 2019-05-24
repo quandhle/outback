@@ -83,7 +83,7 @@ class Cart extends Component {
                     <tbody>
                         {cartItems}
                         <tr>
-                            <td colSpan="5" className="total-price">
+                            <td colSpan="6" className="total-price">
                                 Total: ${formatMoney(data.total)}
                             </td>
                         </tr>

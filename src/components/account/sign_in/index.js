@@ -27,7 +27,7 @@ class SignIn extends Component {
     
     render () {
         return (
-            <div className="center">
+            <div className="center container">
                 <h1 className="center container">Sign In</h1>
                 <SignInForm signIn={this.handleSignIn}/>
             </div>
