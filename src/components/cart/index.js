@@ -13,6 +13,8 @@ class Cart extends Component {
             items: [],
             data: {}
         }
+
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     componentDidMount () {
@@ -27,9 +29,20 @@ class Cart extends Component {
                 items: resp.data.cartItems,
                 data: resp.data.cartData
             });
-
         } else {
             console.error('Cart data failed to load');
+        }
+    }
+
+    async handleDelete (props) {
+        const resp = await axios.put('/api/deletecartitems.php', {
+            product_id: props.id,
+            quantity: props.quantity,
+            total_price: props.price
+        });
+
+        if (resp.data.success) {
+            this.getCartData();
         }
     }
 
@@ -54,13 +67,15 @@ class Cart extends Component {
         const cartItems = items.map((value = {name, price, image, quantity, id}, index) => {
             totalItems += value.quantity;
 
-            const itemTotalPrice = formatMoney(value.quantity * value.price);    
+            const itemTotalPrice = formatMoney(value.quantity * value.price);
 
             return (
-                <CartItem key={value.id} value={{totalItems, itemTotalPrice, ...value}}/>
+                <tr key={value.id}>
+                    <CartItem key={value.id} value={{totalItems, itemTotalPrice, ...value}}/>
+                    <td><i className="material-icons" onClick={() => {this.handleDelete({totalItems, itemTotalPrice, ...value})}}>delete</i></td>
+                </tr>
             )
         });
-
 
         return (
             <div className="cart container">

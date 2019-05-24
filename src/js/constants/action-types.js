@@ -5,3 +5,7 @@ export const SignIn = {
 export const SignOut = {
     type: "SignOut"
 }
+
+export const CartCount = {
+    type: "CartCount"
+}

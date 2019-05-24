@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import axios from 'axios';
 import Modal from '../modal';
+import {connect} from 'react-redux';
+import {cartCount} from '../../js/actions';
 import { formatMoney } from '../../helpers';
 
 class ProductAdd extends Component {
@@ -103,4 +105,12 @@ class ProductAdd extends Component {
     }
 }
 
-export default withRouter(ProductAdd);
+function mapStateToProps (state) {
+    console.log('state is: ', state);
+
+    return {
+        cartCount: state.cartQty
+    }
+}
+
+export default connect(mapStateToProps, {cartCount})(withRouter(ProductAdd));

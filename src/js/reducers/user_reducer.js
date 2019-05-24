@@ -1,6 +1,5 @@
 import SignIn from '../constants/action-types';
 import SignOut from '../constants/action-types';
-import axios from 'axios';
 
 const DEFAULT_STATE = {
     signed_in: false,
@@ -8,7 +7,7 @@ const DEFAULT_STATE = {
     is_guest: true
 };
 
-const userReducer = function (state = DEFAULT_STATE, action) {    
+const userReducer = function (state = DEFAULT_STATE, action) {
     switch (action.type) {
         case "SignIn":
             return {
