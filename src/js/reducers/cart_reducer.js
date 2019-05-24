@@ -1,11 +1,13 @@
-import cartCount from '../constants/action-types';
-
 const DEFAULT_STATE = {
     cartCount: 0
 }
 
 const cartReducer = function (state = DEFAULT_STATE, action) {
     switch (action.type) {
+        // case "AddToCart":
+        //     return {
+        //         cartCount:
+        //     }
         case "CartCount":
             return {
                 cartCount: action.cartCount
