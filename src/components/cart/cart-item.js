@@ -15,6 +15,8 @@ class CartItem extends Component {
         }
 
         this.handleDelete = this.handleDelete.bind(this);
+        this.decrementQty = this.decrementQty.bind(this);
+        this.incrementQty = this.incrementQty.bind(this);
     }
 
     async handleDelete () {        
@@ -25,8 +27,32 @@ class CartItem extends Component {
         });
     }
 
+    async decrementQty () {
+        if (this.state.quantity > 1) {
+            this.setState({
+                quantity: this.state.quantity - 1
+            });
+
+            const resp = await axios.put('/api/deletecartitems.php', {
+                product_id: this.state.id,
+                quantity: this.state.quantity,
+                total_price: this.state.price
+            });
+        }
+    }
+
+    incrementQty () {
+        this.setState({
+            quantity: this.state.quantity + 1
+        });
+
+        axios.get(`/api/addcartitem.php?product_id=${this.state.id}&quantity=1`).then(resp => {
+            const {cartCount, cartTotal} = resp.data; 
+        });
+    }
+
     render () {
-        const {image, name, price, quantity, itemTotalPrice, id} = this.props.value
+        const {image, name, price, quantity, itemTotalPrice, id} = this.props.value;
 
         return (
             <Fragment>
@@ -37,7 +63,7 @@ class CartItem extends Component {
                 <td>${formatMoney(price)}</td>
                 <td>
                     <button onClick={this.decrementQty}>-</button>
-                    {quantity}
+                    {this.state.quantity}
                     <button onClick={this.incrementQty}>+</button>
                 </td>
                 <td>${itemTotalPrice}</td>

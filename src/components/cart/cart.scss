@@ -28,3 +28,26 @@
         font-size: 2em;
     }
 }
+
+@media (min-width: 481px) {
+    table {
+        tbody {
+            tr {
+                td:nth-child(4) {
+                    button {
+                        background-color: transparent;
+                        border-radius: 5px;
+                    }
+
+                    button:nth-child(1) {
+                        margin-right: 10px;
+                    }
+
+                    :last-child {
+                        margin-left: 10px;
+                    }
+                }
+            }
+        }
+    }
+}

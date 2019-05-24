@@ -41,9 +41,11 @@ class Cart extends Component {
             total_price: props.price
         });
 
-        if (resp.data.success) {
-            this.getCartData();
-        }
+        this.getCartData();
+
+        // if (resp.data.success) {
+        //     this.getCartData();
+        // }
     }
 
     // decrementQty () {
