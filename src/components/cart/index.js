@@ -15,13 +15,14 @@ class Cart extends Component {
         }
 
         this.handleDelete = this.handleDelete.bind(this);
+        this.getCartData = this.getCartData.bind(this);
     }
 
     componentDidMount () {
         this.getCartData();
     }
 
-    async getCartData () {
+    async getCartData (props) {
         const resp = await axios.get('/api/getcartitems.php');
 
         if (resp.data.success) {
@@ -42,27 +43,9 @@ class Cart extends Component {
         });
 
         this.getCartData();
-
-        // if (resp.data.success) {
-        //     this.getCartData();
-        // }
     }
 
-    // decrementQty () {
-    //     if (this.state.qty > 1) {
-    //         this.setState({
-    //             items:
-    //         });
-    //     }
-    // }
-
-    // incrementQty () {
-    //     this.setState({
-    //         qty: this.state.qty + 1
-    //     });
-    // }
-
-    render () {
+    render () {        
         const {items, data} = this.state;
         let totalItems = 0;
 
@@ -73,7 +56,7 @@ class Cart extends Component {
 
             return (
                 <tr key={value.id}>
-                    <CartItem key={value.id} value={{totalItems, itemTotalPrice, ...value}}/>
+                    <CartItem key={value.id} value={{totalItems, itemTotalPrice, ...value}} getCartData={this.getCartData}/>
                     <td><i className="material-icons" onClick={() => {this.handleDelete({totalItems, itemTotalPrice, ...value})}}>delete</i></td>
                 </tr>
             )

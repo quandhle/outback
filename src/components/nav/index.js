@@ -12,7 +12,7 @@ class Nav extends Component {
 
     renderLinks () {
         const {signed_in, cartItems} = this.props;
-                
+        
         if (signed_in === true) {
             return (
                 <Fragment>
@@ -86,3 +86,5 @@ function mapStateToProps (state) {
 }
 
 export default connect(mapStateToProps)(Nav);
+
+// component.index.js > ProductDetails > Product Add
