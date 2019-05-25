@@ -36,11 +36,13 @@ class ProductAdd extends Component {
             const {cartCount, cartTotal} = resp.data; 
 
             this.setState({
-                modalOpen: true,
+                modalOpen: false,
                 cartQty: cartCount,
                 totalPrice: cartTotal
             });
         });
+
+        this.props.updateCart();
     }
 
     decrementQty () {
@@ -68,7 +70,7 @@ class ProductAdd extends Component {
         this.props.history.push('/cart');
     }
 
-    render () {
+    render () {     
         const { modalOpen, totalPrice, cartQty, qty } = this.state;
 
         return (

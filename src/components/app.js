@@ -29,19 +29,29 @@ class App extends Component {
         const {cartCount} = this.props;
 
         cartCount();
+
+        this.updateCart();
     };
 
-    updateCart (items) {
-        this.setState({
-            items: []
-        })
+    async updateCart () {
+        const resp = await axios.get('/api/getcartitems.php');
+
+        if (resp.data.success) {
+            this.setState({
+                items: resp.data.cartItems,
+            });
+        } else {
+            console.error('Cart data failed to load');
+        }
     }
 
     componentDidMount () {
         this.getCartItemsCount();
     }
 
-    render () {        
+    render () {   
+        const {items} = this.state;
+
         return (
             <Fragment>
                 <Nav cartItems={this.state.cartItems}/>
@@ -50,7 +60,7 @@ class App extends Component {
                     <Route path="/products" render={(routingProps) => {
                         return <ProductRoutes {...routingProps} updateCart={this.updateCart}/>
                     }}/>
-                    <Route path="/cart" component={() => <Cart updateCart={this.updateCart}/>}/>
+                    <Route path="/cart" component={(items) => <Cart items={this.state.items} updateCart={this.updateCart}/>}/>
                     <Route path="/account" component={AccountRoutes}/>
                     <Route component={NotFound}/>
                 </Switch>
