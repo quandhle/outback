@@ -5,7 +5,6 @@ import ProductDetails from './product_details';
 import './products.scss';
 
 export default props => {
-
     return (
         <div className="products container">
             <Route path="/products" exact component={ProductList}/>

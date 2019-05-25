@@ -8,9 +8,9 @@ import './cart.scss';
 class Cart extends Component {
     constructor (props) {
         super(props);
-
+        
         this.state = {
-            items: [],
+            items: this.props.items,
             data: {}
         }
 
@@ -45,7 +45,9 @@ class Cart extends Component {
         this.getCartData();
     }
 
-    render () {        
+    render () {
+        console.log('items are: ', this.state.items);
+
         const {items, data} = this.state;
         let totalItems = 0;
 
