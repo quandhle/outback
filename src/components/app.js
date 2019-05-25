@@ -18,10 +18,11 @@ class App extends Component {
         super(props);
 
         this.state = {
-            cartItems: 0
+            items: []
         }
 
         this.getCartItemsCount = this.getCartItemsCount.bind(this);
+        this.updateCart = this.updateCart.bind(this);
     }
 
     async getCartItemsCount () {
@@ -29,6 +30,12 @@ class App extends Component {
 
         cartCount();
     };
+
+    updateCart (items) {
+        this.setState({
+            items: []
+        })
+    }
 
     componentDidMount () {
         this.getCartItemsCount();
@@ -43,7 +50,7 @@ class App extends Component {
                     <Route path="/products" render={(routingProps) => {
                         return <ProductRoutes {...routingProps} updateCart={this.updateCart}/>
                     }}/>
-                    <Route path="/cart" component={Cart}/>
+                    <Route path="/cart" component={() => <Cart updateCart={this.updateCart}/>}/>
                     <Route path="/account" component={AccountRoutes}/>
                     <Route component={NotFound}/>
                 </Switch>

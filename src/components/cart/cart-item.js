@@ -38,6 +38,10 @@ class CartItem extends Component {
                 quantity: this.state.quantity,
                 total_price: this.state.price
             });
+
+            const {id, quantity, price} = this.state;
+
+            this.props.getCartData({id, quantity, price });
         }
     }
 
