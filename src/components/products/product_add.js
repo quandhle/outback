@@ -26,11 +26,11 @@ class ProductAdd extends Component {
     }
 
     addToCart () {
-        // const {addToCart} = this.props;
+        const {cartCount} = this.props;
         const {productID, updateCart} = this.props;
         const {qty} = this.state;
 
-        // this.props.addToCart({productID, updateCart, qty});
+        cartCount();
 
         axios.get(`/api/addcartitem.php?product_id=${productID}&quantity=${qty}`).then(resp => {
             const {cartCount, cartTotal} = resp.data; 
@@ -117,4 +117,4 @@ function mapStateToProps (state) {
     }
 }
 
-export default connect(mapStateToProps, {addToCart})(withRouter(ProductAdd));
+export default connect(mapStateToProps, {cartCount})(withRouter(ProductAdd));

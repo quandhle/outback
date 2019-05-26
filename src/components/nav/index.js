@@ -11,7 +11,7 @@ class Nav extends Component {
     }
 
     renderLinks () {
-        const {signed_in, cartItems} = this.props;
+        const {signed_in, cartCount} = this.props;
         
         if (signed_in === true) {
             return (
@@ -26,7 +26,7 @@ class Nav extends Component {
                         <Link to="/account/sign-out">Sign Out</Link>
                     </li>
                     <li>
-                        <CartLink items={cartItems}/>
+                        <CartLink items={cartCount}/>
                     </li>
                 </Fragment>
             )
@@ -46,7 +46,7 @@ class Nav extends Component {
                         <Link to="/account/sign-up">Sign Up</Link>
                     </li>
                     <li>
-                        <CartLink items={cartItems}/>
+                        <CartLink items={cartCount}/>
                     </li>
                 </Fragment>
             )
@@ -81,10 +81,8 @@ function mapStateToProps (state) {
         cart_id: state.user.cart_id,
         signed_in: state.user.signed_in,
         is_guest: state.user.is_guest,
-        cartItems: state.cart.cartCount
+        cartCount: state.cart.cartCount
     }
 }
 
 export default connect(mapStateToProps)(Nav);
-
-// component.index.js > ProductDetails > Product Add
