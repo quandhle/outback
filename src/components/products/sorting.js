@@ -34,9 +34,10 @@ class Sort extends Component {
     sortItems (event, str) {
         let key = event.target.innerHTML;
         
-        if (key.indexOf('\'') !== -1) {
-            key = key.slice(0, key.indexOf('\'')) + '\\' + key.slice(key.indexOf('\''), key.length); 
-        }
+        // if (key.indexOf('\'') !== -1) {
+        //     key = key.slice(0, key.indexOf('\'') + '\'' + key.slice(key.indexOf('\'') + 1, key.length));
+        //     console.log('key is: ', key)
+        // };
 
         this.props.filterItems({key, str})
     }

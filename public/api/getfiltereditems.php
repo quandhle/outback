@@ -11,7 +11,19 @@ $output = [
     'key' => $key
 ];
 
-$query = "SELECT * FROM `product` WHERE `${key}` = '${type}'";
+if ($type === 'brand') {
+	$type = 'company';
+};
+
+$query = "SELECT
+		p.`id`, p.`company`, p.`name`, p.`price`, p.`category`, p.`description`, p.`misc_details`,
+		ANY_VALUE(i.`url`) as `url`
+	FROM `product` AS p
+	JOIN `images` AS i
+	ON i.`product_id` = p.`id`
+	WHERE `${type}` = '${key}'
+	GROUP BY p.`id`
+";
 
 $result = mysqli_query($conn, $query);
 
