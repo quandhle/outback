@@ -38,7 +38,7 @@ class ProductList extends Component {
 
         const {key, str} = filter;
         
-        axios.get(`/api/getfiltereditems.php?type=${key}&key=${str}`).then((resp) => {
+        axios.get(`/api/getfiltereditems.php?type=${str}&key=${key}`).then((resp) => {
             console.log(resp);
 
             this.setState({
