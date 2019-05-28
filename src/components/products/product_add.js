@@ -40,11 +40,11 @@ class ProductAdd extends Component {
                 cartQty: cartCount,
                 totalPrice: cartTotal
             });
+
+            console.log(resp);
         });
 
         updateCart();
-
-        console.log(resp);
     }
 
     decrementQty () {
@@ -97,7 +97,7 @@ class ProductAdd extends Component {
                     secondaryAction={this.goToCart}
                     secondaryActionText="View Cart"
                 >
-                    <h1 className="center">{qty} 1tem{qty > 1 && 's' && 'B'} added to cart</h1>
+                    <h1 className="center">{qty} item{qty > 1 && 's' && 'B'} added to cart</h1>
 
                     <div className="row">
                         <div className="col s6 cart-total-items">Total Items:</div>
