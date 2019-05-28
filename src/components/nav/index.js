@@ -58,7 +58,7 @@ class Nav extends Component {
 
         return (
             <Fragment>
-                <nav className="blue darken-2">
+                <nav className="black">
                     <div className="nav-wrapper">
                         <Link className="brand-logo" to="/">Outback</Link>
                         <a href="#" data-target="sidenav" className="sidenav-trigger">
