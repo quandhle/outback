@@ -21,7 +21,7 @@ $query = "SELECT
 	FROM `product` AS p
 	JOIN `images` AS i
 	ON i.`product_id` = p.`id`
-	WHERE `${type}` = '${key}'
+	WHERE `${type}` =  '${key}'
 	GROUP BY p.`id`
 ";
 

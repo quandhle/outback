@@ -34,13 +34,9 @@ class ProductList extends Component {
     }
 
     getFilteredItems (filter) {
-        console.log('filter is:', filter);
-
         const {key, str} = filter;
         
         axios.get(`/api/getfiltereditems.php?type=${str}&key=${key}`).then((resp) => {
-            console.log(resp);
-
             this.setState({
                 products: resp.data.products
             })
