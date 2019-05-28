@@ -19,7 +19,7 @@ class HomeCarousel extends Component {
             indicators: true,
             fullWidth: true,
             duration: 200,
-            noWrap: true
+            noWrap: false
         }
 
         M.Carousel.init(this.carousel, config);
