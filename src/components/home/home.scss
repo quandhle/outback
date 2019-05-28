@@ -1,13 +1,9 @@
 .home {
     height: 90vh;
     width: 100vw;
-    // background:
-    //     linear-gradient(rgba(255, 255, 255, .2), rgba(255, 255, 255, .2)),
-    //     url('http://res.cloudinary.com/simpleview/image/upload/v1540379205/clients/norway/5e2ac9d9_7135_41a5_9937_e22fdb29324e_fcc973e1-f71a-44a3-9fd2-2e5202d625df.jpg')
-    //     no-repeat center;
-    // background-size: cover;
     
     .carousel {
+        cursor: auto;
         height: 100%;
 
         a {
@@ -28,5 +24,18 @@
                 background-color: lightgray;
             }
         }
+    }
+
+    .view-products {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        top: 85%;
+        color: black;
+        background-color: white;
+    }
+
+    .view-products:hover {
+        cursor: pointer;
     }
 }

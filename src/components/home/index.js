@@ -7,6 +7,7 @@ class Home extends Component {
         return (
             <div className="home">
                 <HomeCarousel/>
+                <a href="/products" className="view-products waves-effect waves-light btn">View Products</a>
             </div>
         )
     }

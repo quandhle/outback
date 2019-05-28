@@ -17,12 +17,6 @@ class ProductList extends Component {
 
     componentDidMount () {
         this.getProducts();
-
-        this.getSessionData();
-    }
-
-    async getSessionData () {
-        const resp = await axios.get('/api/sessiontest.php');
     }
 
     async getProducts () {
@@ -39,6 +33,10 @@ class ProductList extends Component {
         this.props.history.push(`/products/${id}`);
     }
 
+    getFilteredItems () {
+
+    }
+
     render () {
         const productList = this.state.products.map((products) => {
             return <ProductItem key={products.id} {...products} goToDetails={this.goToDetails}/>
@@ -46,7 +44,7 @@ class ProductList extends Component {
         
         return (
             <Fragment>
-                <Sort/>
+                <Sort filterItems={this.getFilteredItems}/>
                 <div className="product-list">
                     {productList}
                 </div>
