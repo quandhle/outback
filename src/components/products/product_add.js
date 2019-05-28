@@ -36,13 +36,15 @@ class ProductAdd extends Component {
             const {cartCount, cartTotal} = resp.data; 
 
             this.setState({
-                modalOpen: false,
+                modalOpen: true,
                 cartQty: cartCount,
                 totalPrice: cartTotal
             });
         });
 
-        this.props.updateCart();
+        updateCart();
+
+        console.log(resp);
     }
 
     decrementQty () {
@@ -95,14 +97,14 @@ class ProductAdd extends Component {
                     secondaryAction={this.goToCart}
                     secondaryActionText="View Cart"
                 >
-                    <h1 className="center">{qty} Item{qty > 1 && 's' && 'B'} Added to Cart</h1>
+                    <h1 className="center">{qty} 1tem{qty > 1 && 's' && 'B'} added to cart</h1>
 
                     <div className="row">
-                        <div className="col s6">Cart Total Items:</div>
-                        <div className="col s6 left-align">{cartQty}</div>
+                        <div className="col s6 cart-total-items">Total Items:</div>
+                        <div className="col s6 left-align cart-quantity">{cartQty}</div>
                     </div>
                     <div className="row">
-                        <div className="col s6">Cart Total Price:</div>
+                        <div className="col s6">Cart Total:</div>
                         <div className="col s6 left-align">{formatMoney(totalPrice)}</div>
                     </div>
                 </Modal>
