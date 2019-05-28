@@ -30,7 +30,7 @@ class App extends Component {
 
         cartCount();
 
-        this.updateCart();
+        // this.updateCart();
     };
 
     async updateCart () {

@@ -1,17 +1,32 @@
 import React, {Component} from 'react'; 
 
-class ProductCarousel extends Component {
+class HomeCarousel extends Component {
+    constructor (props) {
+        super(props);
+
+        this.state = {
+            images: [
+                './dist/images/thailand.jpg',
+                './dist/images/norway.jpg',
+                './dist/images/vietnam.jpg',
+                './dist/images/vietnam2.jpg'
+            ]
+        }
+    }
+
     componentDidMount () {
         const config = {
             indicators: true,
             fullWidth: true,
+            duration: 200,
+            noWrap: true
         }
 
         M.Carousel.init(this.carousel, config);
     }
 
     render () {
-        const items = this.props.images.map((image, index) => {
+        const items = this.state.images.map((image, index) => {
             return (
                 <a href="#" key={index} className="carousel-item">
                     <img src={image} alt="Product Image"/>
@@ -27,4 +42,4 @@ class ProductCarousel extends Component {
     }
 }
 
-export default ProductCarousel;
+export default HomeCarousel;
