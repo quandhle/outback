@@ -30,7 +30,7 @@ class App extends Component {
 
         cartCount();
 
-        // this.updateCart();
+        this.updateCart();
     };
 
     async updateCart () {
@@ -43,10 +43,13 @@ class App extends Component {
         } else {
             console.error('Cart data failed to load');
         }
+
+        // console.log('updateCart inside app.js', resp);
     }
 
     componentDidMount () {
         this.getCartItemsCount();
+        this.updateCart();
     }
 
     render () {   

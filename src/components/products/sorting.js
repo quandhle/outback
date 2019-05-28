@@ -31,19 +31,14 @@ class Sort extends Component {
         })
     }
 
-    async sortItems (event) {
+    sortItems (event, str) {
         let key = event.target.innerHTML;
-
+        
         if (key.indexOf('\'') !== -1) {
             key = key.slice(0, key.indexOf('\'')) + '\\' + key.slice(key.indexOf('\''), key.length); 
         }
 
-        const resp = await axios.get('/api/getsort.php', {
-            params: {
-                type: this.state.type,
-                sortValue: key
-            }
-        });
+        this.props.filterItems({key, str})
     }
  
     setType (type) {
@@ -61,16 +56,20 @@ class Sort extends Component {
     render () {
         const category = this.state.category.map((key) => {
             return <li key={key} onClick={(event) => 
-                this.sortItems(event, 'cateogry')
+                this.sortItems(event, 'category')
             }>{key}</li>
         })
 
         const activity = this.state.activity.map((key) => {
-            return <li key={key}>{key}</li>
+            return <li key={key} onClick={(event) => 
+                this.sortItems(event, 'activity')
+            }>{key}</li>
         })
 
         const brand = this.state.brand.map((key) => {
-            return <li key={key} onClick={this.sortItems}>{key}</li>
+            return <li key={key} onClick={(event) => 
+                this.sortItems(event, 'brand')
+            }>{key}</li>
         })
 
         return (

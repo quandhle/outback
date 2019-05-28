@@ -9,10 +9,10 @@ class ProductList extends Component {
 
         this.state = {
             products: [],
-            session: {}
         }
 
         this.goToDetails = this.goToDetails.bind(this);
+        this.getFilteredItems = this.getFilteredItems.bind(this);
     }
 
     componentDidMount () {
@@ -33,8 +33,18 @@ class ProductList extends Component {
         this.props.history.push(`/products/${id}`);
     }
 
-    getFilteredItems () {
+    getFilteredItems (filter) {
+        console.log('filter is:', filter);
 
+        const {key, str} = filter;
+        
+        axios.get(`/api/getfiltereditems.php?type=${key}&key=${str}`).then((resp) => {
+            console.log(resp);
+
+            this.setState({
+                products: resp.data.products
+            })
+        })
     }
 
     render () {
