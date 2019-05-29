@@ -45,6 +45,7 @@
     .collapsible {
         width: 100%;
         padding: 0 10px;
+        margin: 15px 0 0 0;
 
         li {
             .collapsible-body {
@@ -53,6 +54,10 @@
                 ul {
                     li {
                         text-transform: capitalize;
+                    }
+
+                    li:hover {
+                        cursor: pointer;
                     }
                 }
             }
@@ -94,6 +99,21 @@
             }
         }
     }
+
+    .filters {
+        width: 25%;
+        margin-top: 15px;
+
+        button {
+            color: #616161;
+
+            i {
+                font-size: 1.5rem;
+                vertical-align: bottom;
+                margin-left: 10px;
+            }
+        }
+    }
 }
 
 @media (min-width: 481px) and (max-width: 1024px) {
@@ -124,22 +144,50 @@
     .products {
         margin: auto;
         width: 100vw;
-    
-        .collapsible {
+        position: relative;
+
+        .filters {
             display: inline-block;
             width: 25%;
-            vertical-align: top;
+
+            button {
+                padding: 0 15px 0 15px;
+                color: #616161;
+
+                i {
+                    font-size: 1.5rem;
+                    vertical-align: bottom;
+                    margin-left: 10px;
+                }
+            }
+        }
+    
+        .collapsible {
+            display: block;
+            height: 100%;
+            width: 25%;
             margin: 15px 0 0 0;
         }
     
         .product-list {
-            display: inline-block;
+            display: flex;
+            flex-wrap: wrap;
+            left: 25%;
+            justify-content: space-around;
             width: 75%;
+            top: 0;
+            position: absolute;
             
             .product-card {
                 display: inline-block;
                 width: 30%;
-                margin: 0 0 0 10px;
+                margin: 0;
+            }
+
+            .product-card:nth-child(-n+3) {
+                .card {
+                    margin-top: 0;
+                }
             }
         }
 

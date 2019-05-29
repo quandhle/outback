@@ -13,6 +13,7 @@ class ProductList extends Component {
 
         this.goToDetails = this.goToDetails.bind(this);
         this.getFilteredItems = this.getFilteredItems.bind(this);
+        this.getProducts = this.getProducts.bind(this);
     }
 
     componentDidMount () {
@@ -50,7 +51,7 @@ class ProductList extends Component {
         
         return (
             <Fragment>
-                <Sort filterItems={this.getFilteredItems}/>
+                <Sort filterItems={this.getFilteredItems} getProducts={this.getProducts}/>
                 <div className="product-list">
                     {productList}
                 </div>

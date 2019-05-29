@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import axios from 'axios';
 
 class Sort extends Component {
@@ -14,11 +14,13 @@ class Sort extends Component {
             category: [],
             activity: [],
             brand: [],
-            type: null
+            type: null,
+            filter: []
         }
 
         this.setType = this.setType.bind(this);
         this.sortItems = this.sortItems.bind(this);
+        this.clearFilters = this.clearFilters.bind(this);
     }
 
     getFilters () {
@@ -33,18 +35,32 @@ class Sort extends Component {
 
     sortItems (event, str) {
         let key = event.target.innerHTML;
+
+        this.setState({
+            filter: [key]
+        })
         
         if (key.indexOf('\'') !== -1) {
             key = key.slice(0, key.indexOf('\'')) + '\\\'' + key.slice(key.indexOf('\'') + 1, key.length);
         };
 
-        this.props.filterItems({key, str})
+        this.props.filterItems({key, str});
     }
  
     setType (type) {
         this.setState({
             type: type
         });
+    }
+
+    clearFilters () {
+        // debugger;
+
+        this.setState({
+            filter: []
+        });
+
+        this.props.getProducts();
     }
 
     componentDidMount () {
@@ -58,35 +74,48 @@ class Sort extends Component {
             return <li key={key} onClick={(event) => 
                 this.sortItems(event, 'category')
             }>{key}</li>
-        })
+        });
 
         const activity = this.state.activity.map((key) => {
             return <li key={key} onClick={(event) => 
                 this.sortItems(event, 'activity')
             }>{key}</li>
-        })
+        });
 
         const brand = this.state.brand.map((key) => {
             return <li key={key} onClick={(event) => 
                 this.sortItems(event, 'brand')
             }>{key}</li>
+        });
+
+        const filter = this.state.filter.map((filter) => {
+            return (
+                <button key="filter" className="btn grey lighten-4" onClick={this.clearFilters}>
+                    {filter} <i className="material-icons">close</i>
+                </button>
+            )
         })
 
         return (
-            <ul className="collapsible" ref={(element) => {this.Collapsible = element}} data-collapsibe="expandable">
-                <li>
-                    <div className="collapsible-header" onClick={() => {this.setType('category')}}><i className="material-icons">filter_drama</i>Category</div>
-                    <div className="collapsible-body"><ul>{category}</ul></div>
-                </li>
-                <li>
-                    <div className="collapsible-header" onClick={() => {this.setType('activity')}}><i className="material-icons">place</i>Activity</div>
-                    <div className="collapsible-body"><ul>{activity}</ul></div>
-                </li>
-                <li>
-                    <div className="collapsible-header" onClick={() => {this.setType('company')}}><i className="material-icons">whatshot</i>Brand</div>
-                    <div className="collapsible-body"><ul>{brand}</ul></div>
-                </li>
-            </ul>
+            <Fragment>
+                <ul className="collapsible" ref={(element) => {this.Collapsible = element}} data-collapsibe="expandable">
+                    <li>
+                        <div className="collapsible-header" onClick={() => {this.setType('category')}}><i className="material-icons">filter_drama</i>Category</div>
+                        <div className="collapsible-body"><ul>{category}</ul></div>
+                    </li>
+                    <li>
+                        <div className="collapsible-header" onClick={() => {this.setType('activity')}}><i className="material-icons">place</i>Activity</div>
+                        <div className="collapsible-body"><ul>{activity}</ul></div>
+                    </li>
+                    <li>
+                        <div className="collapsible-header" onClick={() => {this.setType('company')}}><i className="material-icons">whatshot</i>Brand</div>
+                        <div className="collapsible-body"><ul>{brand}</ul></div>
+                    </li>
+                </ul>
+                <div className="filters">
+                    {filter}
+                </div>
+            </Fragment>
         )
     }
 }
