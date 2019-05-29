@@ -11,6 +11,7 @@ import ProductRoutes from './products';
 import axios from 'axios';
 import {cartCount} from '../js/actions';
 import {connect} from 'react-redux';
+import Footer from './footer';
 import AccountRoutes from './account';
 
 class App extends Component {
@@ -43,8 +44,6 @@ class App extends Component {
         } else {
             console.error('Cart data failed to load');
         }
-
-        // console.log('updateCart inside app.js', resp);
     }
 
     componentDidMount () {
@@ -67,6 +66,7 @@ class App extends Component {
                     <Route path="/account" component={AccountRoutes}/>
                     <Route component={NotFound}/>
                 </Switch>
+                {/* <Footer/> */}
             </Fragment>
         )
     }
