@@ -27,18 +27,20 @@ class CartItem extends Component {
         });
     }
 
-    async decrementQty () {
+    decrementQty () {        
         if (this.state.quantity > 1) {
-            this.setState({
-                quantity: this.state.quantity - 1
-            });
-
-            const resp = await axios.put('/api/deletecartitems.php', {
+            axios.put('/api/updatecartitem.php', {
                 product_id: this.state.id,
                 quantity: this.state.quantity,
-                total_price: this.state.price
-            });
+                price: this.state.price
+            }).then((resp) => {
+                console.log(resp.data);
 
+                this.setState({
+                    quantity: this.state.quantity - 1
+                })
+            });
+            
             const {id, quantity, price} = this.state;
 
             this.props.getCartData({id, quantity, price });
