@@ -170,13 +170,21 @@
         }
     
         .product-list {
-            display: inline-block;
+            left: 25%;
             width: 75%;
+            top: 0;
+            position: absolute;
             
             .product-card {
                 display: inline-block;
-                width: 30%;
-                margin: 0 0 0 10px;
+                width: 33.33%;
+                padding: 0 0 0 15px;
+            }
+
+            .product-card:nth-child(-n+3) {
+                .card {
+                    margin-top: 0;
+                }
             }
         }
 
