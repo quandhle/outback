@@ -101,7 +101,6 @@
     }
 
     .filters {
-        width: 25%;
         margin-top: 15px;
 
         button {
@@ -127,7 +126,6 @@
         }
 
         .product-list {
-            width: 100%;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
@@ -164,16 +162,15 @@
     
         .collapsible {
             display: block;
-            height: 100%;
             width: 25%;
             margin: 15px 0 0 0;
         }
     
         .product-list {
-            left: 25%;
-            width: 75%;
-            top: 0;
             position: absolute;
+            left: 25%;
+            top: 0;
+            width: 75%;
             
             .product-card {
                 display: inline-block;
@@ -216,3 +213,11 @@
         }
     }
 }
+
+// @media (min-width: 1200px) {
+//     .products {
+//         .product-list {
+//             transform: translate(33.33%, -6.8%);
+//         }
+//     }
+// }
