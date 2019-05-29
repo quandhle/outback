@@ -22,17 +22,17 @@ class Cart extends Component {
         this.getCartData();
     }
 
-    async getCartData (props) {
-        const resp = await axios.get('/api/getcartitems.php');
-
-        if (resp.data.success) {
-            this.setState({
-                items: resp.data.cartItems,
-                data: resp.data.cartData
-            });
-        } else {
-            console.error('Cart data failed to load');
-        }
+    getCartData () {
+        axios.get('/api/getcartitems.php').then((resp) => {
+            if (resp.data.success) {
+                this.setState({
+                    items: resp.data.cartItems,
+                    data: resp.data.cartData
+                });
+            } else {
+                console.error('Cart data failed to load');
+            }
+        })
     }
 
     async handleDelete (props) {
