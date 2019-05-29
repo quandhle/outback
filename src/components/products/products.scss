@@ -170,24 +170,13 @@
         }
     
         .product-list {
-            display: flex;
-            flex-wrap: wrap;
-            left: 25%;
-            justify-content: space-around;
+            display: inline-block;
             width: 75%;
-            top: 0;
-            position: absolute;
             
             .product-card {
                 display: inline-block;
                 width: 30%;
-                margin: 0;
-            }
-
-            .product-card:nth-child(-n+3) {
-                .card {
-                    margin-top: 0;
-                }
+                margin: 0 0 0 10px;
             }
         }
 
