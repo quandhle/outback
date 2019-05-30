@@ -31,15 +31,14 @@
 
         .ws-modal-actions {
             margin-top: 10px;
-            display: flex;
-            justify-content: space-around;
-        }
-    }
-}
 
-@media (min-width: 481px) {
-    .ws-modal-actions {
-        display: block;
-        margin: 0 20px 0;
+            button:nth-child(1) {
+                margin-right: 10px;
+            }
+
+            button:nth-child(2) {
+                margin-left: 10px;
+            }
+        }
     }
 }
