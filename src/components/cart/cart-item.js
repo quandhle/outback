@@ -32,16 +32,22 @@ class CartItem extends Component {
             });
 
             this.props.cartCount();
+
+            this.props.getCartData();
         }
     }
 
     async incrementQty () {
         const resp = await axios.get(`/api/addcartitem.php?product_id=${this.props.value.id}&quantity=1`);
 
+        this.props.getCartData();
+
         this.props.cartCount();
     }
 
     render () {
+        console.log('render called');
+
         const {image, name, price, itemTotalPrice, company, quantity} = this.props.value;
 
         return (
