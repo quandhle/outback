@@ -12,12 +12,9 @@ class Sidenav extends Component {
     }
 
     render () {
-        const {user} = this.props;
-
         return (
             <Fragment>
                 <ul ref={(e) => { this.sidenav = e }} id="sidenav" className="sidenav">
-                    {/* Hello, {user}! */}
                     {this.props.links}
                 </ul>
             </Fragment>

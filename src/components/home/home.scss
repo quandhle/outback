@@ -39,3 +39,22 @@
         cursor: pointer;
     }
 }
+
+.next, .prev {
+    position: absolute;
+    top: 50%;
+    color: white;
+}
+
+.next {
+    transform: translate(-100%, -50%);
+    left: 100%;
+}
+
+.prev {
+    transform: translateY(-50%);
+}
+
+.next:hover, .prev:hover {
+    cursor: pointer;
+}

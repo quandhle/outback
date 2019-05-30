@@ -1,4 +1,4 @@
-import React, {Component} from 'react'; 
+import React, {Component, Fragment} from 'react'; 
 
 class HomeCarousel extends Component {
     constructor (props) {
@@ -25,6 +25,10 @@ class HomeCarousel extends Component {
         M.Carousel.init(this.carousel, config);
     }
 
+    nextSlide() {
+        // element.next();
+    }
+
     render () {
         const items = this.state.images.map((image, index) => {
             return (
@@ -35,9 +39,13 @@ class HomeCarousel extends Component {
         });
 
         return (
-            <div ref={(element) => {this.carousel = element}} className="carousel carousel-slider col s12 m4">
-                {items}
-            </div>
+            <Fragment>
+                <div ref={(element) => {this.carousel = element}} className="carousel carousel-slider col s12 m4">
+                    {items}
+                </div>
+                <i onClick={this.prevSlide} className="large material-icons prev">chevron_left</i>
+                <i onClick={this.nextSlide} className="large material-icons next">chevron_right</i>
+            </Fragment>
         )
     }
 }

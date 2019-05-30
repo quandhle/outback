@@ -41,9 +41,7 @@ class CartItem extends Component {
                 })
             });
             
-            const {id, quantity, price} = this.state;
-
-            this.props.getCartData({id, quantity, price });
+            this.props.getCartData();
         }
     }
 
@@ -53,7 +51,7 @@ class CartItem extends Component {
         });
 
         axios.get(`/api/addcartitem.php?product_id=${this.state.id}&quantity=1`).then(resp => {
-            const {cartCount, cartTotal} = resp.data; 
+            this.props.getCartData();
         });
     }
 
