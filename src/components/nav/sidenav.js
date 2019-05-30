@@ -7,7 +7,7 @@ class Sidenav extends Component {
         super(props);
     }
 
-    componentDidMount(){
+    componentDidMount () {
         M.Sidenav.init(this.sidenav);
     }
 

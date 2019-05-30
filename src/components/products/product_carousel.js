@@ -14,7 +14,7 @@ class ProductCarousel extends Component {
         const items = this.props.images.map((image, index) => {
             return (
                 <a href="#" key={index} className="carousel-item">
-                    <img src={image} alt="Product Image"/>
+                    <img src={image} className="center" alt="Product Image"/>
                 </a>
             )
         });

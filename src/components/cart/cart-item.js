@@ -34,8 +34,6 @@ class CartItem extends Component {
                 quantity: this.state.quantity,
                 price: this.state.price
             }).then((resp) => {
-                console.log(resp.data);
-
                 this.setState({
                     quantity: this.state.quantity - 1
                 })
@@ -56,21 +54,21 @@ class CartItem extends Component {
     }
 
     render () {
-        const {image, name, price, quantity, itemTotalPrice, id} = this.props.value;
+        const {image, name, price, itemTotalPrice, company, id} = this.props.value;
 
         return (
             <Fragment>
                 <td>
                     <img src={image} alt={`${name} product image`}/>
                 </td>
-                <td>{name}</td>
-                <td>${formatMoney(price)}</td>
+                <td>{company} {name}</td>
+                <td className="mobile">${formatMoney(price)}</td>
                 <td>
                     <button onClick={this.decrementQty}>-</button>
                     {this.state.quantity}
                     <button onClick={this.incrementQty}>+</button>
                 </td>
-                <td>${itemTotalPrice}</td>
+                <td className="mobile">${itemTotalPrice}</td>
             </Fragment>
         )
     }
