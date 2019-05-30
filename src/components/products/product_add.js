@@ -26,11 +26,8 @@ class ProductAdd extends Component {
     }
 
     addToCart () {
-        const {cartCount} = this.props;
         const {productID, updateCart} = this.props;
         const {qty} = this.state;
-
-        cartCount();
 
         axios.get(`/api/addcartitem.php?product_id=${productID}&quantity=${qty}`).then(resp => {
             const {cartCount, cartTotal} = resp.data; 
@@ -41,6 +38,8 @@ class ProductAdd extends Component {
                 totalPrice: cartTotal
             });
         });
+
+        this.props.cartCount();
 
         updateCart();
     }

@@ -1,13 +1,29 @@
 import React, {Component} from 'react'; 
 
 class ProductCarousel extends Component {
+    constructor (props) {
+        super(props);
+
+        this.nextSlide = this.nextSlide.bind(this);
+    }
+
     componentDidMount () {
         const config = {
             indicators: true,
             fullWidth: true,
         }
 
-        M.Carousel.init(this.carousel, config);
+        const instances = M.Carousel.init(this.carousel, config);
+
+        setInterval(this.nextSlide, 3000);
+
+        this.setState({
+            element: instances
+        })
+    }
+
+    nextSlide () {
+        this.state.element.next();
     }
 
     render () {

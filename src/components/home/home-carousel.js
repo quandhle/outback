@@ -27,7 +27,7 @@ class HomeCarousel extends Component {
 
         let instances = M.Carousel.init(this.carousel, config);
 
-        setInterval(this.nextSlide, 2000);
+        setInterval(this.nextSlide, 3000);
 
         this.setState({
             element: instances

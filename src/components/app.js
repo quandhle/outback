@@ -62,7 +62,7 @@ class App extends Component {
                     <Route path="/products" render={(routingProps) => {
                         return <ProductRoutes {...routingProps} updateCart={this.updateCart}/>
                     }}/>
-                    <Route path="/cart" component={(items) => <Cart items={this.state.items} updateCart={this.updateCart}/>}/>
+                    <Route path="/cart" component={(items) => <Cart items={this.state.items} updateCart={this.updateCart} cartCount={this.props.cartCount}/>}/>
                     <Route path="/account" component={AccountRoutes}/>
                     <Route component={NotFound}/>
                 </Switch>

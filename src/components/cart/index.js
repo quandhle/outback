@@ -56,7 +56,7 @@ class Cart extends Component {
 
             return (
                 <tr key={value.id}>
-                    <CartItem key={value.id} value={{totalItems, itemTotalPrice, ...value}} getCartData={this.getCartData}/>
+                    <CartItem cartCount={this.props.cartCount} key={value.id} value={{totalItems, itemTotalPrice, ...value}} getCartData={this.getCartData}/>
                     <td><i className="material-icons" onClick={() => {this.handleDelete({totalItems, itemTotalPrice, ...value})}}>delete</i></td>
                 </tr>
             )

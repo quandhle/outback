@@ -6,55 +6,43 @@ class CartItem extends Component {
     constructor (props) {
         super(props);
 
-        const {id, quantity, price} = props.value;
-
-        this.state = {
-            id: id,
-            quantity: quantity,
-            price: price
-        }
-
         this.handleDelete = this.handleDelete.bind(this);
         this.decrementQty = this.decrementQty.bind(this);
         this.incrementQty = this.incrementQty.bind(this);
     }
 
-    async handleDelete () {        
+    async handleDelete () {
+        const {id, quantity, price} = this.props.value;
+
         const resp = await axios.put('/api/deletecartitems.php', {
-            product_id: this.state.id,
-            quantity: this.state.quantity,
-            total_price: this.state.price
+            product_id: id,
+            quantity: quantity,
+            total_price: price
         });
     }
 
-    decrementQty () {        
-        if (this.state.quantity > 1) {
-            axios.put('/api/updatecartitem.php', {
-                product_id: this.state.id,
-                quantity: this.state.quantity,
-                price: this.state.price
-            }).then((resp) => {
-                this.setState({
-                    quantity: this.state.quantity - 1
-                })
+    async decrementQty () {
+        const {id, quantity, price} = this.props.value;
+
+        if (this.props.value.quantity > 1) {
+            const resp = await axios.put('/api/updatecartitem.php', {
+                product_id: id,
+                quantity: quantity,
+                price: price
             });
-            
-            this.props.getCartData();
+
+            this.props.cartCount();
         }
     }
 
-    incrementQty () {
-        this.setState({
-            quantity: this.state.quantity + 1
-        });
+    async incrementQty () {
+        const resp = await axios.get(`/api/addcartitem.php?product_id=${this.props.value.id}&quantity=1`);
 
-        axios.get(`/api/addcartitem.php?product_id=${this.state.id}&quantity=1`).then(resp => {
-            this.props.getCartData();
-        });
+        this.props.cartCount();
     }
 
     render () {
-        const {image, name, price, itemTotalPrice, company, id} = this.props.value;
+        const {image, name, price, itemTotalPrice, company, quantity} = this.props.value;
 
         return (
             <Fragment>
@@ -65,7 +53,7 @@ class CartItem extends Component {
                 <td className="mobile">${formatMoney(price)}</td>
                 <td>
                     <button onClick={this.decrementQty}>-</button>
-                    {this.state.quantity}
+                    {quantity}
                     <button onClick={this.incrementQty}>+</button>
                 </td>
                 <td className="mobile">${itemTotalPrice}</td>
