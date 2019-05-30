@@ -1,4 +1,6 @@
 .products {
+    margin-bottom: 20px;
+
     .product-details {
         .product-price {
             font-size: 3.5em;
@@ -13,6 +15,18 @@
 
                 .active {
                     background-color: black;
+                }
+            }
+
+            a {
+                display: flex;
+                justify-content: center;
+
+                img {
+                    margin: auto;
+                    width: auto;
+                    max-height: 400px;
+                    max-width: 100%;
                 }
             }
         }
@@ -141,7 +155,7 @@
 
 @media (min-width: 1025px) {
     .products {
-        margin: auto;
+        margin: auto auto 20px auto;
         width: 100vw;
         position: relative;
 

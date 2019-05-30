@@ -12,6 +12,9 @@ class HomeCarousel extends Component {
                 './dist/images/vietnam2.jpg'
             ]
         }
+
+        this.nextSlide = this.nextSlide.bind(this);
+        this.prevSlide = this.prevSlide.bind(this);
     }
 
     componentDidMount () {
@@ -22,11 +25,21 @@ class HomeCarousel extends Component {
             noWrap: false
         }
 
-        M.Carousel.init(this.carousel, config);
+        let instances = M.Carousel.init(this.carousel, config);
+
+        setInterval(this.nextSlide, 2000);
+
+        this.setState({
+            element: instances
+        })
     }
 
-    nextSlide() {
-        // element.next();
+    nextSlide () {
+        this.state.element.next();
+    }
+
+    prevSlide () {
+        this.state.element.prev();
     }
 
     render () {

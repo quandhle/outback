@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './modal.scss';
 
 class Modal extends Component {
-    render(){
+    render () {
         const { 
             children,
             defaultAction,
@@ -12,7 +12,7 @@ class Modal extends Component {
             secondaryActionText = 'Cancel' 
         } = this.props;
 
-        if(isOpen){
+        if (isOpen) {
             return (
                 <div className="ws-modal">
                     <div className="ws-modal-content">

@@ -74,9 +74,9 @@ class Cart extends Component {
                         <tr>
                             <th>Image</th>
                             <th>Product Name</th>
-                            <th>Price</th>
+                            <th className="mobile">Price</th>
                             <th>Quantity</th>
-                            <th>Item Total</th>
+                            <th className="mobile">Item Total</th>
                             <th>Delete</th>
                         </tr>
                     </thead>

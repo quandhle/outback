@@ -14,5 +14,25 @@
         width: 80%;
         margin: auto;
         padding: 20px;
+
+        h1 {
+            font-size: 3.5rem;
+            margin: 0 0 10px;
+        }
+
+        .row {
+            font-size: 1.5rem;
+            margin-bottom: 0;
+            
+            div {
+                padding: 0 .5rem;
+            }
+        }
+
+        .ws-modal-actions {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-around;
+        }
     }
 }

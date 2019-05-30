@@ -40,8 +40,6 @@ class ProductAdd extends Component {
                 cartQty: cartCount,
                 totalPrice: cartTotal
             });
-
-            console.log(resp);
         });
 
         updateCart();
@@ -91,11 +89,11 @@ class ProductAdd extends Component {
                     <i className="material-icons">add_shopping_cart</i>
                 </button>
                 <Modal 
-                    defaultAction={this.closeModal}
-                    defaultActionText="Continue Shopping"
-                    isOpen={modalOpen}
-                    secondaryAction={this.goToCart}
-                    secondaryActionText="View Cart"
+                    defaultAction = {this.goToCart}
+                    defaultActionText = "View Cart"
+                    isOpen = {modalOpen}
+                    secondaryAction = {this.closeModal}
+                    secondaryActionText = "Close"
                 >
                     <h1 className="center">{qty} item{qty > 1 && 's' && 'B'} added to cart</h1>
 
@@ -105,7 +103,7 @@ class ProductAdd extends Component {
                     </div>
                     <div className="row">
                         <div className="col s6">Cart Total:</div>
-                        <div className="col s6 left-align">{formatMoney(totalPrice)}</div>
+                        <div className="col s6 left-align">${formatMoney(totalPrice)}</div>
                     </div>
                 </Modal>
             </div>
