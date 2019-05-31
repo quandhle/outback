@@ -15,8 +15,6 @@ class ProductCarousel extends Component {
 
         const instances = M.Carousel.init(this.carousel, config);
 
-        setInterval(this.nextSlide, 3000);
-
         this.setState({
             element: instances
         })

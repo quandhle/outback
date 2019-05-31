@@ -68,10 +68,14 @@
                 ul {
                     li {
                         text-transform: capitalize;
+                        display: table;
+                        margin: 5px 0;
                     }
 
                     li:hover {
                         cursor: pointer;
+                        color: lightgray;
+                        transition: all .3s;
                     }
                 }
             }

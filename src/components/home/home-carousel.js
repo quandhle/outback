@@ -6,10 +6,10 @@ class HomeCarousel extends Component {
 
         this.state = {
             images: [
-                './dist/images/thailand.jpg',
-                './dist/images/norway.jpg',
-                './dist/images/vietnam.jpg',
-                './dist/images/vietnam2.jpg'
+                './dist/images/arcteryx.jpg',
+                './dist/images/gear.jpg',
+                './dist/images/northface.jpg',
+                './dist/images/organic.jpg'
             ]
         }
 
@@ -21,13 +21,13 @@ class HomeCarousel extends Component {
         const config = {
             indicators: true,
             fullWidth: true,
-            duration: 200,
+            duration: 400,
             noWrap: false
         }
 
         let instances = M.Carousel.init(this.carousel, config);
 
-        setInterval(this.nextSlide, 3000);
+        setInterval(this.nextSlide, 7000);
 
         this.setState({
             element: instances
