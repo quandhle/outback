@@ -46,8 +46,6 @@ class CartItem extends Component {
     }
 
     render () {
-        console.log('render called');
-
         const {image, name, price, itemTotalPrice, company, quantity} = this.props.value;
 
         return (
