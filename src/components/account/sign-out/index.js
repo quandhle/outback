@@ -4,18 +4,27 @@ import {signOut} from '../../../js/actions';
 import axios from 'axios';
 
 class SignOut extends Component {
-    async componentDidMount () {
-        const resp = await axios.post('/api/logout.php');
+    constructor (props) {
+        super(props);
 
-        this.props.signOut();
+        this.componentDidMount = this.componentDidMount.bind(this);
+        this.redirectToHome = this.redirectToHome.bind(this);
+    }
+
+    componentDidMount () {
+        axios.post('/api/logout.php').then((resp) => {
+            this.props.signOut();
+            
+            this.redirectToHome();
+        });
+    }
+    
+    redirectToHome = () => {
+        this.props.history.push('/')
     }
 
     render () {
-        return (
-            <div className="sign-out">
-                Good-bye!
-            </div>
-        )
+        return null
     }
 }
 
