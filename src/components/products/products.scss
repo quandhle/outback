@@ -10,12 +10,16 @@
         .carousel {
             .indicators {
                 .indicator-item {
-                    background-color: lightgray;
+                    background-color: whitesmoke;
                 }
 
                 .active {
                     background-color: black;
                 }
+            }
+
+            i {
+                color: black;
             }
 
             a {

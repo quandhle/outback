@@ -5,6 +5,7 @@ class ProductCarousel extends Component {
         super(props);
 
         this.nextSlide = this.nextSlide.bind(this);
+        this.prevSlide = this.prevSlide.bind(this);
     }
 
     componentDidMount () {
@@ -24,6 +25,10 @@ class ProductCarousel extends Component {
         this.state.element.next();
     }
 
+    prevSlide () {
+        this.state.element.prev();
+    }
+
     render () {
         const items = this.props.images.map((image, index) => {
             return (
@@ -36,6 +41,8 @@ class ProductCarousel extends Component {
         return (
             <div ref={(element) => {this.carousel = element}} className="carousel carousel-slider col s12 m4">
                 {items}
+                <i onClick={this.prevSlide} className="large material-icons prev">chevron_left</i>
+                <i onClick={this.nextSlide} className="large material-icons next">chevron_right</i>
             </div>
         )
     }

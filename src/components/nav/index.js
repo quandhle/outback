@@ -8,6 +8,8 @@ import './nav.scss';
 class Nav extends Component {
     constructor (props) {
         super(props);
+        
+        console.log(props);
     }
 
     renderLinks () {
@@ -69,7 +71,6 @@ class Nav extends Component {
                         </ul>
                     </div>
                 </nav>
-
                 <Sidenav links={links}/>
             </Fragment>
         );
