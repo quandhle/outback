@@ -36,7 +36,7 @@ if (empty($_SESSION['cart_id'])) {
     $row = mysqli_fetch_assoc($count_result);
     
     $output['success'] = true;
-    $output['item_count'] = (int)$row['item_count'];
+    $output['itemCount'] = (int)$row['item_count'];
 };
 
 print(json_encode($output));

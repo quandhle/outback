@@ -19,7 +19,7 @@ export function signIn (user) {
     }
 }
 
-export function signOut (user) {
+export function signOut () {
     localStorage.removeItem('login');
     localStorage.removeItem('last_name');
     localStorage.removeItem('first_name');
@@ -40,7 +40,7 @@ export function cartCount () {
         axios.get('/api/getcartitemcount.php').then((resp) => {
             dispatch({
                 type: CartCount.type,
-                cartCount: resp.data.item_count
+                cartCount: resp.data.itemCount
             });
         })
     }
@@ -48,8 +48,6 @@ export function cartCount () {
 
 export function addToCart () {
     return function (dispatch) {
-        // console.log('info inside dispatch: ', dispatch);
-
         // axios.get(`/api/addcartitem.php?product_id=${productID}&quantity=${qty}`).then(resp => {
         //     const {cartCount, cartTotal} = resp.data; 
 
