@@ -37,7 +37,7 @@ export function signOut (user) {
 
 export function cartCount () {
     return function (dispatch) {
-        let resp = axios.get('/api/getcartitemcount.php').then((resp) => {
+        axios.get('/api/getcartitemcount.php').then((resp) => {
             dispatch({
                 type: CartCount.type,
                 cartCount: resp.data.item_count
@@ -48,7 +48,7 @@ export function cartCount () {
 
 export function addToCart () {
     return function (dispatch) {
-        console.log('info inside dispatch: ', dispatch);
+        // console.log('info inside dispatch: ', dispatch);
 
         // axios.get(`/api/addcartitem.php?product_id=${productID}&quantity=${qty}`).then(resp => {
         //     const {cartCount, cartTotal} = resp.data; 

@@ -10,7 +10,18 @@ $output = [
 ];
 
 if(empty($_SESSION['cart_id'])){
-    throw new Exception('No cart id.');
+    $output = [
+        'success' => true,
+        'cartItems' => [],
+    ];
+
+    $output['cartData']['created'] = "";
+    $output['cartData']['total'] = 0;
+    $output['cartData']['cart_id'] = null;
+
+    print(json_encode($output));
+
+    exit();
 };
 
 $cart_id = $_SESSION['cart_id'];
@@ -34,7 +45,6 @@ if (!$cart_data) {
 };
 
 if (mysqli_num_rows($cart_data) === 0) {
-
     $row = mysqli_fetch_assoc($cart_data);
 
     $output = [

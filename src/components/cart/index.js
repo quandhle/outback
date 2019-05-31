@@ -23,7 +23,7 @@ class Cart extends Component {
     }
 
     getCartData () {
-        axios.get('/api/getcartitems.php').then((resp) => {
+        axios.get('/api/getcartitems.php').then((resp) => {            
             if (resp.data.success) {
                 this.setState({
                     items: resp.data.cartItems,
