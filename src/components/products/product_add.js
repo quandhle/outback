@@ -30,12 +30,10 @@ class ProductAdd extends Component {
         const {qty} = this.state;
 
         axios.get(`/api/addcartitem.php?product_id=${productID}&quantity=${qty}`).then(resp => {
-            const {cartCount, cartTotal} = resp.data; 
-
             this.setState({
                 modalOpen: true,
-                cartQty: cartCount,
-                totalPrice: cartTotal
+                cartQty: resp.data.cartCount,
+                totalPrice: resp.data.cartTotal
             });
         });
 

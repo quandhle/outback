@@ -43,6 +43,7 @@ class Cart extends Component {
         });
 
         this.getCartData();
+        this.props.cartCount();
     }
 
     render () {
