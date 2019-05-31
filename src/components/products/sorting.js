@@ -100,15 +100,15 @@ class Sort extends Component {
             <Fragment>
                 <ul className="collapsible" ref={(element) => {this.Collapsible = element}} data-collapsibe="expandable">
                     <li>
-                        <div className="collapsible-header" onClick={() => {this.setType('category')}}><i className="material-icons">filter_drama</i>Category</div>
+                        <div className="collapsible-header" onClick={() => {this.setType('category')}}><i className="material-icons">chevron_right</i><span>Category</span></div>
                         <div className="collapsible-body"><ul>{category}</ul></div>
                     </li>
                     <li>
-                        <div className="collapsible-header" onClick={() => {this.setType('activity')}}><i className="material-icons">place</i>Activity</div>
+                        <div className="collapsible-header" onClick={() => {this.setType('activity')}}><i className="material-icons">chevron_right</i><span>Activity</span></div>
                         <div className="collapsible-body"><ul>{activity}</ul></div>
                     </li>
                     <li>
-                        <div className="collapsible-header" onClick={() => {this.setType('company')}}><i className="material-icons">whatshot</i>Brand</div>
+                        <div className="collapsible-header" onClick={() => {this.setType('company')}}><i className="material-icons">chevron_right</i><span>Brand</span></div>
                         <div className="collapsible-body"><ul>{brand}</ul></div>
                     </li>
                 </ul>

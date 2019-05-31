@@ -44,6 +44,8 @@ class App extends Component {
         } else {
             console.error('Cart data failed to load');
         }
+
+        console.log('resp is:', resp.data);
     }
 
     componentDidMount () {
