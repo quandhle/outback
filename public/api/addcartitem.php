@@ -82,7 +82,27 @@ if (empty($_SESSION['cart_id'])) {
     };
     
 	if (mysqli_affected_rows($conn) === 0) {
-		throw new Exception('Cart data was not updated');
+        $cart_create_query = "INSERT INTO `cart`
+            SET
+                `item_count` = $quantity,
+                `total_price` = $total,
+                `created` = NOW(),
+                `user_id` = $user_id,
+                `changed` = NOW()
+        ";
+
+        $cart_result = mysqli_query($conn, $cart_create_query);
+
+        if (!$cart_result) {
+            throw new Exception(mysqli_error($conn));
+        }
+        
+        if (mysqli_affected_rows($conn) === 0) {
+            throw new Exception('Unable to add product.');
+        }
+        
+        $cart_id = mysqli_insert_id($conn);
+        $_SESSION['cart_id'] = $cart_id;
     };
 }
 

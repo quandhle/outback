@@ -9,3 +9,7 @@ export const SignOut = {
 export const CartCount = {
     type: "CartCount"
 }
+
+export const AddToCart = {
+    type: "AddToCart"
+}

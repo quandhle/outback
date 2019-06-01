@@ -30,7 +30,14 @@ if (empty($_SESSION['cart_id'])) {
     };
 
     if (mysqli_num_rows($count_result) === 0) {
-        throw new Exception('Invalid cart id.');
+        $output = [
+            'success' => true,
+            'itemCount' => 0
+        ];
+
+        print(json_encode($output));
+        
+        exit();
     };
 
     $row = mysqli_fetch_assoc($count_result);
