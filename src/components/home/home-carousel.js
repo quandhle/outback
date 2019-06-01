@@ -55,9 +55,9 @@ class HomeCarousel extends Component {
             <Fragment>
                 <div ref={(element) => {this.carousel = element}} className="carousel carousel-slider col s12 m4">
                     {items}
+                    <i onClick={this.prevSlide} className="large material-icons prev">chevron_left</i>
+                    <i onClick={this.nextSlide} className="large material-icons next">chevron_right</i>
                 </div>
-                <i onClick={this.prevSlide} className="large material-icons prev">chevron_left</i>
-                <i onClick={this.nextSlide} className="large material-icons next">chevron_right</i>
             </Fragment>
         )
     }
