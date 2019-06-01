@@ -38,11 +38,17 @@ class ProductCarousel extends Component {
             )
         });
 
+        let display = "";
+
+        if (this.props.images.length === 1) {
+            display = " hide";
+        }
+
         return (
             <div ref={(element) => {this.carousel = element}} className="carousel carousel-slider col s12 m4">
                 {items}
-                <i onClick={this.prevSlide} className="large material-icons prev">chevron_left</i>
-                <i onClick={this.nextSlide} className="large material-icons next">chevron_right</i>
+                <i onClick={this.prevSlide} className={'large material-icons prev' + display}>chevron_left</i>
+                <i onClick={this.nextSlide} className={'large material-icons next' + display}>chevron_right</i>
             </div>
         )
     }
