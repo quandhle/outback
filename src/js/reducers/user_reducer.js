@@ -1,6 +1,3 @@
-// import SignIn from '../constants/action-types';
-// import SignOut from '../constants/action-types';
-
 const DEFAULT_STATE = {
     signed_in: false,
     cart_id: null,

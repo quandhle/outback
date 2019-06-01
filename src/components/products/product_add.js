@@ -5,7 +5,6 @@ import Modal from '../modal';
 import {connect} from 'react-redux';
 import {cartCount} from '../../js/actions';
 import {formatMoney} from '../../helpers';
-import {addToCart} from '../../js/actions';
 
 class ProductAdd extends Component {
     constructor (props) {

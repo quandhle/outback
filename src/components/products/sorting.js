@@ -54,8 +54,6 @@ class Sort extends Component {
     }
 
     clearFilters () {
-        // debugger;
-
         this.setState({
             filter: []
         });
