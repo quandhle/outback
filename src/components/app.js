@@ -1,8 +1,7 @@
 import 'materialize-css/dist/css/materialize.min.css';
 import 'materialize-css/dist/js/materialize.min';
-import '../assets/css/app.scss';
 import React, {Component, Fragment} from 'react';
-import { Route, Switch } from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import Home from './home/';
 import Nav from './nav';
 import Cart from './cart';
@@ -11,7 +10,6 @@ import ProductRoutes from './products';
 import axios from 'axios';
 import {cartCount} from '../js/actions';
 import {connect} from 'react-redux';
-import Footer from './footer';
 import AccountRoutes from './account';
 
 class App extends Component {
@@ -66,7 +64,6 @@ class App extends Component {
                     <Route path="/account" component={AccountRoutes}/>
                     <Route component={NotFound}/>
                 </Switch>
-                {/* <Footer/> */}
             </Fragment>
         )
     }
