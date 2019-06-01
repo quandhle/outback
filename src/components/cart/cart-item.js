@@ -6,19 +6,8 @@ class CartItem extends Component {
     constructor (props) {
         super(props);
 
-        this.handleDelete = this.handleDelete.bind(this);
         this.decrementQty = this.decrementQty.bind(this);
         this.incrementQty = this.incrementQty.bind(this);
-    }
-
-    async handleDelete () {
-        const {id, quantity, price} = this.props.value;
-
-        const resp = await axios.put('/api/deletecartitems.php', {
-            product_id: id,
-            quantity: quantity,
-            total_price: price
-        });
     }
 
     async decrementQty () {
@@ -29,20 +18,18 @@ class CartItem extends Component {
                 product_id: id,
                 quantity: quantity,
                 price: price
+            }).then(() => {
+                this.props.cartCount();
+                this.props.getCartData();
             });
-
-            this.props.cartCount();
-
-            this.props.getCartData();
         }
     }
 
     async incrementQty () {
-        const resp = await axios.get(`/api/addcartitem.php?product_id=${this.props.value.id}&quantity=1`);
-
-        this.props.getCartData();
-
-        this.props.cartCount();
+        const resp = await axios.get(`/api/addcartitem.php?product_id=${this.props.value.id}&quantity=1`).then(() => {
+            this.props.getCartData();
+            this.props.cartCount();
+        });
     }
 
     render () {
