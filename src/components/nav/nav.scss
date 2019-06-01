@@ -20,6 +20,10 @@ nav {
         ul {
             height: 100%;
 
+            li:hover {
+                background-color: #262626;
+            }
+
             li:last-child {
                 height: 10vh;
 
