@@ -1,8 +1,4 @@
 # Outback Store
-<img src="https://myster-travel-images.s3-us-west-1.amazonaws.com/mystertravel1.png" width="33%" height="auto"> <img src="https://myster-travel-images.s3-us-west-1.amazonaws.com/mystertravel2.png" width="33%" height="auto"> <img src="https://myster-travel-images.s3-us-west-1.amazonaws.com/mystertravel3.png" width="33%" height="auto">
-<a href="https://mystertravel.com/" target="_blank">mystertravel.com</a>
-<br>Mobile/desktop responsive app designed for travelers to keep an organized record of his/her travel memories
-
 <img src="https://myster-travel-images.s3-us-west-1.amazonaws.com/outback1.png" width="33%" height="auto"> <img src="https://myster-travel-images.s3-us-west-1.amazonaws.com/outback2.png" width="33%" height="auto"> <img src="https://myster-travel-images.s3-us-west-1.amazonaws.com/outback3.png" width="33%" height="auto">
 
 <a href="https://outback.quandhle.com/" target="_blank">outback.quandhle.com</a>
