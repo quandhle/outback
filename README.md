@@ -38,8 +38,13 @@ This repo is built with React.js with Redux and PHP. Follow the below setup inst
      - navigate to the application folder `cd c219_travelagenda`
   4. Install dependencies
      - `npm install`
-     - navigate to the api folder `cd public/api`
-     - follow composer installation instructions <a href="https://getcomposer.org/download/" target="_blank">here</a> to install composer locally into the folder
+  5. Use MAMP, XAMPP, or a similar program to start your local Apache and MySQL servers
+     - Point root directory to the /public
+     - Set Apache port to the defined port in the proxy > target property found in the package.json file
+     - Import the sql database into phpMyAdmin, or similar found in the public/api/data folder
+  6. In the terminal, start your server:
+     - npm start
+  7. Open a browser and navigate to `localhost:[your port number]`
 
 ## Author
 **Quan Le** (https://github.com/quandhle)
