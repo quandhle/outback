@@ -34,15 +34,15 @@ This repo is built with React.js with Redux and PHP. Follow the below setup inst
   1. Fork this repo
   2. Clone your forked copy of this repo
      - `git clone https://github.com/[your_username]/mystertravel.git`
-  3. Change directory into the newly cloned repo
-     - navigate to the application folder `cd c219_travelagenda`
+  3. In the terminal, change directory into the newly cloned repo
+     - navigate to the application folder `cd outback`
   4. Install dependencies
      - `npm install`
   5. Use MAMP, XAMPP, or a similar program to start your local Apache and MySQL servers
      - Point root directory to the /public
      - Set Apache port to the defined port in the proxy > target property found in the package.json file
      - Import the sql database into phpMyAdmin, or similar found in the public/api/data folder
-  6. In the terminal, start your server:
+  6. Back in the terminal, start your server:
      - npm start
   7. Open a browser and navigate to `localhost:[your port number]`
 
