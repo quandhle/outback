@@ -19,11 +19,11 @@ class Modal extends Component {
                         {children}
 
                         <div className="ws-modal-actions center">
-                            <button className="btn btn-large purple darken-2" onClick={defaultAction}>{defaultActionText}</button>
+                            <button className="btn btn-large blue darken-2" onClick={defaultAction}>{defaultActionText}</button>
 
                             {
                                 secondaryAction
-                                    ? <button onClick={secondaryAction} className="btn btn-large purple lighten-1">{secondaryActionText}</button>
+                                    ? <button onClick={secondaryAction} className="btn btn-large blue lighten-1">{secondaryActionText}</button>
                                     : null
                             }
                         </div>
