@@ -4,7 +4,7 @@
 <a href="https://outback.quandhle.com/" target="_blank">outback.quandhle.com</a>
 <br>Mobile/desktop responsive app store designed for climbing enthusiasts to find all their necessary gear to send and succeed
 
-### App Features
+## App Features
 - Record trip details while traveling
   - View world map and add pins to places user has visted
   - Keep track of budget expenses
@@ -14,7 +14,7 @@
 - Share trip details with family and friends through Facebook, Twitter, and Email
 - Persistent user login
 
-### Accomplishments
+## Accomplishments
 - Created a full scale application with front-end and back-end integration
 - Technologies used:
    - React.js
@@ -23,13 +23,13 @@
    - Sass
    - Materialize
 
-### Project Planning and Progression Management
+## Project Planning and Progression Management
 - Click on the links below to view the project planning and progression tracking tools
    - <a href="https://www.meistertask.com/projects/d5wdruhifd/join/" target="_blank">Task management</a>
    - <a href="https://www.figma.com/file/Xmh37OwoBnlSgdptWpvYidkO/Myster-Travel?node-id=0%3A1" target="_blank">Wireframe planning</a>
    - <a href="https://dbdesigner.page.link/aRYkTggDqqMi98sE8" target="_blank">Database schema</a>
 
-### Setup Instructions
+## Setup Instructions
 This repo is built with React.js with Redux and PHP. Follow the below setup instructions to get started.
   1. Fork this repo
   2. Clone your forked copy of this repo
@@ -41,5 +41,5 @@ This repo is built with React.js with Redux and PHP. Follow the below setup inst
      - navigate to the api folder `cd public/api`
      - follow composer installation instructions <a href="https://getcomposer.org/download/" target="_blank">here</a> to install composer locally into the folder
 
-### Author
+## Author
 **Quan Le** (https://github.com/quandhle)
