@@ -35,12 +35,12 @@ class Cart extends Component {
         })
     }
 
-    async handleDelete (props) {        
+    async handleDelete (props) {
         const resp = await axios.put('/api/deletecartitems.php', {
             product_id: props.id,
             quantity: props.quantity,
-            total_price: props.price
-        }).then(() => {
+            total_price: props.price * props.quantity
+        }).then((resp) => {
             this.getCartData();
             this.props.cartCount();
         });
