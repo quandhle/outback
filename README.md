@@ -42,4 +42,4 @@ This repo is built with React.js with Redux and PHP. Follow the below setup inst
      - follow composer installation instructions <a href="https://getcomposer.org/download/" target="_blank">here</a> to install composer locally into the folder
 
 ### Author
-> - **Quan Le** (https://github.com/quandhle)
+**Quan Le** (https://github.com/quandhle)
