@@ -9,6 +9,7 @@
    - React.js
    - Redux
    - PHP
+   - MySQL
    - Sass
    - Materialize
    
