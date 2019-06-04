@@ -18,7 +18,7 @@
 - PHP
 - MySQL
 - Node.js
-- Windows: XXAMP, Mac: MAMP
+- Windows: XAMPP, Mac: MAMP
 
 ## Setup Instructions
 This repo is built with React.js with Redux and PHP. Follow the below setup instructions to get started.
