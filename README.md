@@ -1,4 +1,4 @@
-# Outback Store
+# Outback
 <img src="https://readme-screenshots.s3-us-west-1.amazonaws.com/outback1.png" width="33%" height="auto"> <img src="https://readme-screenshots.s3-us-west-1.amazonaws.com/outback2.png" width="33%" height="auto"> <img src="https://readme-screenshots.s3-us-west-1.amazonaws.com/outback3.png" width="33%" height="auto">
 <a href="https://outback.quandhle.com/">outback.quandhle.com</a>
 <br>E-commerce site built with ReactJS, PHP, and MySQL
