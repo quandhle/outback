@@ -67,11 +67,12 @@ class ProductAdd extends Component {
     }
 
     render () {     
-        const { modalOpen, totalPrice, cartQty, qty } = this.state;
+        const {modalOpen, totalPrice, cartQty, qty} = this.state;
 
         return (
             <div className="right-align add-to-cart">
-                <span className="qty-container">
+                Hello
+                {/* <span className="qty-container">
                     <button onClick={this.decrementQty} className="btn btn-small btn-floating blue lighten-1">
                         <i className="material-icons">remove</i>
                     </button>
@@ -101,7 +102,7 @@ class ProductAdd extends Component {
                         <div className="col s6">Cart Total:</div>
                         <div className="col s6 left-align">${formatMoney(totalPrice)}</div>
                     </div>
-                </Modal>
+                </Modal> */}
             </div>
         );
     }
