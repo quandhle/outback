@@ -33,7 +33,7 @@ This project is built with ReactJS with Redux and PHP. Follow the below setup in
      - `npm install`
   5. In the terminal, start your server:
      - `npm start`
-  6. Open a browser and navigate to `localhost:[your port number]`
+  6. Open a browser and navigate to `localhost:[your_port_number]`
 
 ## Author
 **Quan Le** (https://github.com/quandhle)
