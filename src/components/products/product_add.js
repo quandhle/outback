@@ -71,8 +71,7 @@ class ProductAdd extends Component {
 
         return (
             <div className="right-align add-to-cart">
-                Hello
-                {/* <span className="qty-container">
+                <span className="qty-container">
                     <button onClick={this.decrementQty} className="btn btn-small btn-floating blue lighten-1">
                         <i className="material-icons">remove</i>
                     </button>
@@ -102,7 +101,7 @@ class ProductAdd extends Component {
                         <div className="col s6">Cart Total:</div>
                         <div className="col s6 left-align">${formatMoney(totalPrice)}</div>
                     </div>
-                </Modal> */}
+                </Modal>
             </div>
         );
     }
