@@ -53,6 +53,10 @@ class Nav extends Component {
         }
     }
 
+    sidenavToggle () {
+        console.log('sidenav toggle called');
+    }
+
     render () {
         const links = this.renderLinks();
 
