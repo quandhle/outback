@@ -1,18 +1,9 @@
 # Outback Store
 <img src="https://readme-screenshots.s3-us-west-1.amazonaws.com/outback1.png" width="33%" height="auto"> <img src="https://readme-screenshots.s3-us-west-1.amazonaws.com/outback2.png" width="33%" height="auto"> <img src="https://readme-screenshots.s3-us-west-1.amazonaws.com/outback3.png" width="33%" height="auto">
 
-<a href="https://outback.quandhle.com/" target="_blank">outback.quandhle.com</a>
-<br>Mobile/desktop responsive app store designed for climbing enthusiasts to find all their necessary gear to send and succeed
+# Outback
 
-## App Features
-- Record trip details while traveling
-  - View world map and add pins to places user has visted
-  - Keep track of budget expenses
-  - Log notes and upload photos
-  - View trip summary and timeline
-- View previous trips
-- Share trip details with family and friends through Facebook, Twitter, and Email
-- Persistent user login
+> E-commerce site built with ReactJS, PHP, and MySQL
 
 ## Accomplishments
 - Created a full scale application with front-end and back-end integration

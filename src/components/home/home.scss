@@ -1,0 +1,59 @@
+.home {
+    height: 90vh;
+    width: 100vw;
+    
+    .carousel {
+        cursor: auto;
+        height: 100%;
+
+        a {
+            img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+
+        .indicators {
+            li.active {
+                background-color: black;
+            }
+
+            li {
+                background-color: whitesmoke;
+            }
+        }
+
+        .next, .prev {
+            position: absolute;
+            top: 50%;
+            color: white;
+        }
+        
+        .next {
+            transform: translate(-100%, -50%);
+            left: 100%;
+        }
+        
+        .prev {
+            transform: translateY(-50%);
+        }
+        
+        .next:hover, .prev:hover {
+            cursor: pointer;
+        }
+    }
+
+    .view-products {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        top: 85%;
+        color: black;
+        background-color: white;
+    }
+
+    .view-products:hover {
+        cursor: pointer;
+    }
+}
