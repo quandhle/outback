@@ -35,5 +35,3 @@ class Modal extends Component {
         return null;
     }
 }
-
-export default Modal;

@@ -11,6 +11,7 @@ $product_id = intval($input['product_id']);
 $quantity = intval($input['quantity']);
 $total_price = intval($input['total_price']);
 
+
 $delete_query = "DELETE FROM `cart_item` WHERE `cart_id` = $cart_id AND `product_id` = $product_id";
 
 $result = mysqli_query($conn, $delete_query);
