@@ -5,6 +5,7 @@
 
 ## Accomplishments
 - Created a full scale application with front-end and back-end integration
+- Store has persistent user login and shopping cart data
 - Technologies used:
    - React.js
    - Redux
