@@ -222,7 +222,6 @@
                 width: 33.33%;
                 padding: 0 0 0 15px;
                 height: 30vh;
-                min-height: min-content;
 
                 .card {
                     margin: 15px 0 0 0;
@@ -236,7 +235,7 @@
                     }
 
                     .card-content {
-                        height: max-content;
+                        width: max-content;
 
                         .card-title {
                             font-size: 20px;
