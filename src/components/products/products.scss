@@ -129,6 +129,7 @@
 
                 .card-content {
                     padding: 0 15px 10px;
+                    font-size: 14px;
 
                     p {
                         line-height: 1;
@@ -221,6 +222,7 @@
                 width: 33.33%;
                 padding: 0 0 0 15px;
                 height: 30vh;
+                min-height: min-content;
 
                 .card {
                     margin: 15px 0 0 0;
@@ -234,16 +236,11 @@
                     }
 
                     .card-content {
-                        display: flex;
-                        flex-direction: column;
+                        height: max-content;
 
                         .card-title {
                             font-size: 20px;
                             line-height: 1.2;
-                        }
-
-                        div {
-                            width: max-content;
                         }
                     }
                 }
