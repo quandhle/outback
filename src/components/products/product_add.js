@@ -91,7 +91,7 @@ class ProductAdd extends Component {
                     secondaryAction = {this.closeModal}
                     secondaryActionText = "Close"
                 >
-                    <h1 className="center">{qty} item{qty > 1 && 's' && 'B'} added to cart</h1>
+                    <h1 className="center">{qty} item{qty > 1 && 's'} added to cart</h1>
 
                     <div className="row">
                         <div className="col s6 cart-total-items">Total Items:</div>
