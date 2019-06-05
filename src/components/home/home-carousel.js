@@ -6,10 +6,10 @@ class HomeCarousel extends Component {
 
         this.state = {
             images: [
-                './dist/images/arcteryx.jpg',
-                './dist/images/gear.jpg',
-                './dist/images/northface.jpg',
-                './dist/images/organic.jpg'
+                './dist/images/arcteryx.png',
+                './dist/images/gear.png',
+                './dist/images/northface.png',
+                './dist/images/organic.png'
             ]
         }
 

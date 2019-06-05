@@ -121,7 +121,7 @@
                     align-items: center;
                     
                     img {
-                        max-height: 20vh;
+                        max-height: 90%;
                         width: auto;
                         max-width: 90%;
                     }
@@ -130,8 +130,9 @@
                 .card-content {
                     padding: 0 20px 10px;
 
-                    .card-title {
-                        margin: 0;
+                    p {
+                        line-height: 1;
+                        margin: 0 0 5px 0;
                     }
                 }
             }
@@ -183,7 +184,6 @@
 @media (min-width: 1025px) {
     .products {
         margin: auto auto 20px auto;
-        width: 100vw;
         position: relative;
 
         .filters {
@@ -218,12 +218,46 @@
                 display: inline-block;
                 width: 33.33%;
                 padding: 0 0 0 15px;
+                height: 30vh;
+
+                .card {
+                    margin: 15px 0 0 0;
+                    height: 100%;
+
+                    .card-image {
+                        height: 70%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+
+                    .card-content {
+                        overflow: scroll;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: flex-start;
+
+                        .card-title {
+                            font-size: 20px;
+                            margin-bottom: 0;
+                            line-height: 1.2;
+                        }
+
+                        div {
+                            width: max-content;
+                        }
+                    }
+                }
             }
 
             .product-card:nth-child(-n+3) {
                 .card {
                     margin-top: 0;
                 }
+            }
+
+            .product-card:nth-child(n+4) {
+                margin-bottom: 15px;
             }
         }
 

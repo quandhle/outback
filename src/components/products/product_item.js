@@ -9,9 +9,9 @@ const ProductItem = ({company, category, url, name, price, id, goToDetails}) => 
                     <img src={url}/>
                 </div>
                 <div className="card-content">
-                    <span className="card-title"><strong>{company}</strong></span>
-                    <p>{name}</p>
-                    <p>${formatMoney(price)}</p>
+                    <div className="card-title"><strong>{company}</strong></div>
+                    <div>{name}</div>
+                    <div>${formatMoney(price)}</div>
                 </div>
             </div>
         </div>
