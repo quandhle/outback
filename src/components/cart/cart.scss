@@ -1,4 +1,6 @@
 .cart {
+    width: 80%;
+
     table {
         thead {
             th {
@@ -68,6 +70,27 @@
 }
 
 @media (max-width: 480px) {
+    .cart {
+        h1:nth-child(1) {
+            font-size: 3rem;
+        }
+
+        .total-items {
+            font-weight: normal;
+        }
+
+        table {
+            tbody {
+                tr:last-child {
+                    td {
+                        font-size: 2em;
+                        font-weight: normal;
+                    }
+                }
+            }
+        }
+    }
+
     .mobile {
         display: none;
     }

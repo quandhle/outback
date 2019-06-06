@@ -48,6 +48,7 @@
                 img {
                     object-fit: contain;
                     height: 90%;
+                    margin-top: 0;
                 }
             }
         }
@@ -128,7 +129,7 @@
                 }
 
                 .card-content {
-                    padding: 0 15px 10px;
+                    padding: 0 25px 10px;
                     font-size: 14px;
 
                     p {
@@ -235,6 +236,7 @@
                     }
 
                     .card-content {
+                        padding: 0 15px 10px;
                         width: max-content;
 
                         .card-title {
@@ -259,7 +261,7 @@
         .product-details {
             width: 100%;
 
-            h1 {
+            .right-align {
                 margin: 25px 0 0;
             }
 
@@ -280,6 +282,10 @@
                 width: 60%;
                 display: inline-block;
                 vertical-align: top;
+
+                .product-price, .add-to-cart {
+                    margin-top: 0;
+                }
             }
         }
     }
