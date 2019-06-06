@@ -4,6 +4,7 @@ import axios from 'axios';
 import Modal from '../modal';
 import {connect} from 'react-redux';
 import {cartCount} from '../../js/actions';
+import {add} from '../../js/actions';
 import {formatMoney} from '../../helpers';
 
 class ProductAdd extends Component {
@@ -28,13 +29,21 @@ class ProductAdd extends Component {
         const {productID, updateCart} = this.props;
         const {qty} = this.state;
 
-        axios.get(`/api/addcartitem.php?product_id=${productID}&quantity=${qty}`).then(resp => {
-            this.setState({
-                modalOpen: true,
-                cartQty: resp.data.cartCount,
-                totalPrice: resp.data.cartTotal
-            });
-        });
+        debugger;
+
+        add({productID, qty});
+
+        debugger;
+
+        // const resp = this.props.add({productID, qty});
+
+        // axios.get(`/api/addcartitem.php?product_id=${productID}&quantity=${qty}`).then(resp => {
+        //     this.setState({
+        //         modalOpen: true,
+        //         cartQty: resp.data.cartCount,
+        //         totalPrice: resp.data.cartTotal
+        //     });
+        // });
 
         this.props.cartCount();
 
@@ -108,9 +117,12 @@ class ProductAdd extends Component {
 }
 
 function mapStateToProps (state) {
+    console.log(state);
+
     return {
-        cartCount: state.cart.cartCount
+        cartCount: state.cart.cartCount,
+        resp: state.cart.resp
     }
 }
 
-export default connect(mapStateToProps, {cartCount})(withRouter(ProductAdd));
+export default connect(mapStateToProps, {cartCount, add})(withRouter(ProductAdd));

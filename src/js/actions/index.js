@@ -46,18 +46,14 @@ export function cartCount () {
     }
 }
 
-export function addToCart (info) {
-    return function ({dispatch}) {
-        console.log(dispatch);
-        console.log('Info:', info);
-        // axios.get(`/api/addcartitem.php?product_id=${productID}&quantity=${qty}`).then(resp => {
-        //     const {cartCount, cartTotal} = resp.data; 
-
-        //     this.setState({
-        //         modalOpen: false,
-        //         cartQty: cartCount,
-        //         totalPrice: cartTotal
-        //     });
-        // });
+export function add (info) {
+    return function (dispatch) {
+        debugger;
+        axios.get(`/api/addcartitem.php?product_id=${info.productID}&quantity=${info.qty}`).then((resp) => {
+            dispatch({
+                type: "Add",
+                resp: resp
+            })
+        })
     }
 }
