@@ -9,7 +9,7 @@ class SignUp extends Component {
         super(props);
 
         this.state = {
-            message: ''
+            message: ""
         };
 
         this.handleSignUp = this.handleSignUp.bind(this);
@@ -19,21 +19,23 @@ class SignUp extends Component {
         const {last_name, first_name, email, password, confirmPassword} = values;
 
         if (password !== confirmPassword) {
-            console.log('Error: passwords do not match.');
-        }
-
-        const resp = await axios.post('/api/signup.php', {...values});
-
-        if (resp.data.success) {
-            this.props.signIn(resp.data.data);
-
-            signIn(resp.data.data);
-
-            this.props.history.push('/');
-        } else {
             this.setState({
-                message: resp.data.error
+                message: this.state.message.concat(' Passwords do not match.')
             })
+        } else {
+            const resp = await axios.post('/api/signup.php', {...values});
+
+            if (resp.data.success) {
+                this.props.signIn(resp.data.data);
+    
+                signIn(resp.data.data);
+    
+                this.props.history.push('/');
+            } else {
+                this.setState({
+                    message: resp.data.error
+                })
+            }
         }
     }
 
@@ -41,7 +43,7 @@ class SignUp extends Component {
         return (
             <div className="center">
                 <h1 className="center container">Sign Up</h1>
-                <SignUpForm signUp={this.handleSignUp}/>
+                <SignUpForm signUp={this.handleSignUp} message={this.state.message}/>
             </div>
         )
     }

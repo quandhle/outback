@@ -6,7 +6,7 @@ const ProductItem = ({company, category, url, name, price, id, goToDetails}) => 
         <div className="product-card" onClick={() => { goToDetails(id)}}>
             <div className="card">
                 <div className="card-image">
-                    <img src={url}/>
+                    <img src={url} alt={name}/>
                 </div>
                 <div className="card-content">
                     <div className="card-title"><strong>{company}</strong></div>

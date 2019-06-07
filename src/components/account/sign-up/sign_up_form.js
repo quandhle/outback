@@ -3,7 +3,7 @@ import {reduxForm, Field} from 'redux-form';
 import Input from '../../general/input';
 
 const SignUpForm = props => {
-    const {handleSubmit, signUp} = props;
+    const {handleSubmit, signUp, message} = props;
 
     return (
         <form onSubmit={handleSubmit(signUp)} className="container">
@@ -14,7 +14,7 @@ const SignUpForm = props => {
                 <Field name="first_name" component={Input} type="text" id="first_name" label="first name" col="s12"/>
             </div>
             <div className="row">
-                <Field name="email" component={Input} type="text" id="email" label="email" col="s12"/>
+                <Field name="email" component={Input} type="email" id="email" label="email" col="s12"/>
             </div>
             <div className="row">
                 <Field name="password" component={Input} type="password" id="password" label="password" col="s12"/>
@@ -27,6 +27,7 @@ const SignUpForm = props => {
                     <button onSubmit={handleSubmit(signUp)} className="btn blue dark-2">Sign Up</button>
                 </div>
             </div>
+            <div className="message">{message? message: <span>&nbsp;</span>}</div>
         </form>
     )
 }
