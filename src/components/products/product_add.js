@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom';
 import axios from 'axios';
-import Modal from '../modal';
+import Modal from '../modal/modal';
 import {connect} from 'react-redux';
 import {cartCount} from '../../js/actions';
 import {formatMoney} from '../../helpers';

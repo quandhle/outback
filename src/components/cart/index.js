@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import {formatMoney} from '../../helpers';
 import CartItem from './cart-item';
+import Modal from '../modal';
 import './cart.scss';
 
 class Cart extends Component {
@@ -11,11 +12,14 @@ class Cart extends Component {
         
         this.state = {
             items: this.props.items,
-            data: {}
+            data: {},
+            modalOpen: false
         }
 
         this.handleDelete = this.handleDelete.bind(this);
         this.getCartData = this.getCartData.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+        this.handleModalOpen = this.handleModalOpen.bind(this);
     }
 
     componentDidMount () {
@@ -36,18 +40,33 @@ class Cart extends Component {
     }
 
     async handleDelete (props) {
-        const resp = await axios.put('/api/deletecartitems.php', {
-            product_id: props.id,
-            quantity: props.quantity,
-            total_price: props.price * props.quantity
-        }).then((resp) => {
-            this.getCartData();
-            this.props.cartCount();
-        });
+        debugger;
+        console.log(props);
+
+        // const resp = await axios.put('/api/deletecartitems.php', {
+        //     product_id: props.id,
+        //     quantity: props.quantity,
+        //     total_price: props.price * props.quantity
+        // }).then((resp) => {
+        //     this.getCartData();
+        //     this.props.cartCount();
+        // });
+    }
+
+    handleModalOpen () {
+        this.setState({
+            modalOpen: true
+        })
+    }
+
+    closeModal () {
+        this.setState({
+            modalOpen: false
+        })
     }
 
     render () {
-        const {items, data} = this.state;
+        const {items, data, modalOpen} = this.state;
         let totalItems = 0;
 
         let cartItems = null;
@@ -63,7 +82,7 @@ class Cart extends Component {
                 return (
                     <tr key={value.id}>
                         <CartItem cartCount={this.props.cartCount} key={value.id} value={{totalItems, itemTotalPrice, ...value}} getCartData={this.getCartData}/>
-                        <td><i className="material-icons" onClick={() => {this.handleDelete({totalItems, itemTotalPrice, ...value})}}>delete</i></td>
+                        <td><i className="material-icons" onClick={() => {this.handleModalOpen({totalItems, itemTotalPrice, ...value})}}>delete</i></td>
                     </tr>
                 )
             });
@@ -96,6 +115,17 @@ class Cart extends Component {
                         </tr>
                     </tbody>
                 </table>
+                <Modal
+                    defaultAction = {this.handleDelete}
+                    defaultActionText = "Delete"
+                    isOpen = {modalOpen}
+                    secondaryAction = {this.closeModal}
+                    secondaryActionText = "Cancel"
+                >
+                    <div className="center"><i className="material-icons warning-btn">close</i></div>
+                    <h4 className="center">Are you sure?</h4>
+                    <p className="center">Do you really want to delete this product from your cart?</p>
+                </Modal>
             </div>
         );
     }

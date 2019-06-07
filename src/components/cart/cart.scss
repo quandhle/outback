@@ -50,6 +50,28 @@
         font-weight: bold;
         font-size: 2em;
     }
+
+    .ws-modal {
+        .ws-modal-content {
+            div.center {
+                i.warning-btn {
+                    font-size: 8rem;
+                    margin: auto;
+                    color: #f15d5e;
+                    border: 3px solid #f15d5e;
+                    border-radius: 50%;
+                }
+            }
+
+            h4 {
+                margin-bottom: 15px;
+            }
+
+            p {
+                margin-bottom: 25px;
+            }
+        }
+    }
 }
 
 @media (min-width: 481px) {
