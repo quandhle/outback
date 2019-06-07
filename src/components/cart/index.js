@@ -39,23 +39,29 @@ class Cart extends Component {
         })
     }
 
-    async handleDelete (props) {
-        debugger;
-        console.log(props);
+    async handleDelete () {
+        const {id, quantity, total_price} = this.state.deleteInfo;
 
-        // const resp = await axios.put('/api/deletecartitems.php', {
-        //     product_id: props.id,
-        //     quantity: props.quantity,
-        //     total_price: props.price * props.quantity
-        // }).then((resp) => {
-        //     this.getCartData();
-        //     this.props.cartCount();
-        // });
+        const resp = await axios.put('/api/deletecartitems.php', {
+            product_id: id,
+            quantity: quantity,
+            total_price: total_price
+        }).then((resp) => {
+            this.getCartData();
+            this.props.cartCount();
+        });
+
+        this.closeModal();
     }
 
-    handleModalOpen () {
+    handleModalOpen (info) {
         this.setState({
-            modalOpen: true
+            modalOpen: true,
+            deleteInfo: {
+                id: info.id,
+                quantity: info.quantity,
+                total_price: info.price * info.quantity
+            }
         })
     }
 
@@ -116,7 +122,7 @@ class Cart extends Component {
                     </tbody>
                 </table>
                 <Modal
-                    defaultAction = {this.handleDelete}
+                    defaultAction = {(info) => {this.handleDelete(info)}}
                     defaultActionText = "Delete"
                     isOpen = {modalOpen}
                     secondaryAction = {this.closeModal}
