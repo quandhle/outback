@@ -30,6 +30,12 @@
                 button:nth-child(2) {
                     margin-left: 6px;
                 }
+
+                .material-icons:hover {
+                    color: darkgray;
+                    transition: all .2s;
+                    cursor: pointer;
+                }
             }
         }
 

@@ -50,18 +50,24 @@ class Cart extends Component {
         const {items, data} = this.state;
         let totalItems = 0;
 
-        const cartItems = items.map((value = {name, price, image, quantity, id}, index) => {
-            totalItems += value.quantity;
+        let cartItems = null;
 
-            const itemTotalPrice = formatMoney(value.quantity * value.price);
-
-            return (
-                <tr key={value.id}>
-                    <CartItem cartCount={this.props.cartCount} key={value.id} value={{totalItems, itemTotalPrice, ...value}} getCartData={this.getCartData}/>
-                    <td><i className="material-icons" onClick={() => {this.handleDelete({totalItems, itemTotalPrice, ...value})}}>delete</i></td>
-                </tr>
-            )
-        });
+        if (items.length === 0) {
+            cartItems = <tr><td>No cart items.</td></tr>;
+        } else {
+            cartItems = items.map((value = {name, price, image, quantity, id}, index) => {
+                totalItems += value.quantity;
+    
+                const itemTotalPrice = formatMoney(value.quantity * value.price);
+    
+                return (
+                    <tr key={value.id}>
+                        <CartItem cartCount={this.props.cartCount} key={value.id} value={{totalItems, itemTotalPrice, ...value}} getCartData={this.getCartData}/>
+                        <td><i className="material-icons" onClick={() => {this.handleDelete({totalItems, itemTotalPrice, ...value})}}>delete</i></td>
+                    </tr>
+                )
+            });
+        }
 
         return (
             <div className="cart container">

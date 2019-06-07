@@ -60,6 +60,8 @@ class ProductAdd extends Component {
             modalOpen: false,
             qty: 1
         });
+
+        this.props.history.push('/products');
     }
 
     goToCart () {
