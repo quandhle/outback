@@ -32,8 +32,10 @@
             }
 
             .next:hover, .prev:hover {
-                color: #404040;
+                opacity: .6;
+                color: lightgray;
                 transition: all .3s;
+                cursor: pointer;
             }
 
             .prev {
