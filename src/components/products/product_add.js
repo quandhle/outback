@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom';
 import axios from 'axios';
-import Modal from '../modal';
+import Modal from '../modal/modal';
 import {connect} from 'react-redux';
 import {cartCount} from '../../js/actions';
 import {formatMoney} from '../../helpers';
@@ -60,6 +60,8 @@ class ProductAdd extends Component {
             modalOpen: false,
             qty: 1
         });
+
+        this.props.history.push('/products');
     }
 
     goToCart () {
@@ -91,7 +93,7 @@ class ProductAdd extends Component {
                     secondaryAction = {this.closeModal}
                     secondaryActionText = "Close"
                 >
-                    <h1 className="center">{qty} item{qty > 1 && 's' && 'B'} added to cart</h1>
+                    <h1 className="center">{qty} item{qty > 1 && 's'} added to cart</h1>
 
                     <div className="row">
                         <div className="col s6 cart-total-items">Total Items:</div>

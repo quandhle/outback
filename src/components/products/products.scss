@@ -31,6 +31,13 @@
                 top: 50%;
             }
 
+            .next:hover, .prev:hover {
+                opacity: .6;
+                color: lightgray;
+                transition: all .3s;
+                cursor: pointer;
+            }
+
             .prev {
                 transform: translateY(-50%);
                 left: 0;
@@ -48,6 +55,7 @@
                 img {
                     object-fit: contain;
                     height: 90%;
+                    margin-top: 0;
                 }
             }
         }
@@ -56,7 +64,7 @@
             font-size: 2em;
 
             .qty-container {
-                margin: 0 30px;
+                margin: 0 15px;
 
                 button {
                     margin: 0 12px;
@@ -128,11 +136,16 @@
                 }
 
                 .card-content {
-                    padding: 0 20px 10px;
+                    padding: 0 25px 10px;
+                    font-size: 14px;
 
                     p {
                         line-height: 1;
                         margin: 0 0 5px 0;
+                    }
+
+                    .card-title {
+                        margin-bottom: 0;
                     }
                 }
             }
@@ -203,9 +216,7 @@
         }
     
         .collapsible {
-            display: block;
             width: 25%;
-            margin: 15px 0 0 0;
         }
     
         .product-list {
@@ -232,19 +243,12 @@
                     }
 
                     .card-content {
-                        overflow: scroll;
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: flex-start;
+                        padding: 0 15px 10px;
+                        width: max-content;
 
                         .card-title {
                             font-size: 20px;
-                            margin-bottom: 0;
                             line-height: 1.2;
-                        }
-
-                        div {
-                            width: max-content;
                         }
                     }
                 }
@@ -264,7 +268,7 @@
         .product-details {
             width: 100%;
 
-            h1 {
+            .right-align {
                 margin: 25px 0 0;
             }
 
@@ -285,6 +289,10 @@
                 width: 60%;
                 display: inline-block;
                 vertical-align: top;
+
+                .product-price, .add-to-cart {
+                    margin-top: 0;
+                }
             }
         }
     }

@@ -1,4 +1,6 @@
 .cart {
+    width: 80%;
+
     table {
         thead {
             th {
@@ -28,6 +30,12 @@
                 button:nth-child(2) {
                     margin-left: 6px;
                 }
+
+                .material-icons:hover {
+                    color: darkgray;
+                    transition: all .2s;
+                    cursor: pointer;
+                }
             }
         }
 
@@ -41,6 +49,28 @@
     .total-items {
         font-weight: bold;
         font-size: 2em;
+    }
+
+    .ws-modal {
+        .ws-modal-content {
+            div.center {
+                i.warning-btn {
+                    font-size: 8rem;
+                    margin: auto;
+                    color: #f15d5e;
+                    border: 3px solid #f15d5e;
+                    border-radius: 50%;
+                }
+            }
+
+            h4 {
+                margin-bottom: 15px;
+            }
+
+            p {
+                margin-bottom: 25px;
+            }
+        }
     }
 }
 
@@ -68,6 +98,27 @@
 }
 
 @media (max-width: 480px) {
+    .cart {
+        h1:nth-child(1) {
+            font-size: 3rem;
+        }
+
+        .total-items {
+            font-weight: normal;
+        }
+
+        table {
+            tbody {
+                tr:last-child {
+                    td {
+                        font-size: 2em;
+                        font-weight: normal;
+                    }
+                }
+            }
+        }
+    }
+
     .mobile {
         display: none;
     }

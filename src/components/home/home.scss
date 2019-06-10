@@ -24,10 +24,17 @@
             }
         }
 
+        .next:hover, .prev:hover {
+            color: #b5b5b5;
+            transition: all .3s;
+            opacity: .8;
+        }
+
         .next, .prev {
             position: absolute;
             top: 50%;
             color: white;
+            opacity: .8;
         }
         
         .next {

@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import {formatMoney} from '../../helpers';
 import CartItem from './cart-item';
+import Modal from '../modal';
 import './cart.scss';
 
 class Cart extends Component {
@@ -11,11 +12,14 @@ class Cart extends Component {
         
         this.state = {
             items: this.props.items,
-            data: {}
+            data: {},
+            modalOpen: false
         }
 
         this.handleDelete = this.handleDelete.bind(this);
         this.getCartData = this.getCartData.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+        this.handleModalOpen = this.handleModalOpen.bind(this);
     }
 
     componentDidMount () {
@@ -35,33 +39,60 @@ class Cart extends Component {
         })
     }
 
-    async handleDelete (props) {
+    async handleDelete () {
+        const {id, quantity, total_price} = this.state.deleteInfo;
+
         const resp = await axios.put('/api/deletecartitems.php', {
-            product_id: props.id,
-            quantity: props.quantity,
-            total_price: props.price * props.quantity
+            product_id: id,
+            quantity: quantity,
+            total_price: total_price
         }).then((resp) => {
             this.getCartData();
             this.props.cartCount();
         });
+
+        this.closeModal();
+    }
+
+    handleModalOpen (info) {
+        this.setState({
+            modalOpen: true,
+            deleteInfo: {
+                id: info.id,
+                quantity: info.quantity,
+                total_price: info.price * info.quantity
+            }
+        })
+    }
+
+    closeModal () {
+        this.setState({
+            modalOpen: false
+        })
     }
 
     render () {
-        const {items, data} = this.state;
+        const {items, data, modalOpen} = this.state;
         let totalItems = 0;
 
-        const cartItems = items.map((value = {name, price, image, quantity, id}, index) => {
-            totalItems += value.quantity;
+        let cartItems = null;
 
-            const itemTotalPrice = formatMoney(value.quantity * value.price);
-
-            return (
-                <tr key={value.id}>
-                    <CartItem cartCount={this.props.cartCount} key={value.id} value={{totalItems, itemTotalPrice, ...value}} getCartData={this.getCartData}/>
-                    <td><i className="material-icons" onClick={() => {this.handleDelete({totalItems, itemTotalPrice, ...value})}}>delete</i></td>
-                </tr>
-            )
-        });
+        if (items.length === 0) {
+            cartItems = <tr><td>No cart items.</td></tr>;
+        } else {
+            cartItems = items.map((value = {name, price, image, quantity, id}, index) => {
+                totalItems += value.quantity;
+    
+                const itemTotalPrice = formatMoney(value.quantity * value.price);
+    
+                return (
+                    <tr key={value.id}>
+                        <CartItem cartCount={this.props.cartCount} key={value.id} value={{totalItems, itemTotalPrice, ...value}} getCartData={this.getCartData}/>
+                        <td><i className="material-icons" onClick={() => {this.handleModalOpen({totalItems, itemTotalPrice, ...value})}}>delete</i></td>
+                    </tr>
+                )
+            });
+        }
 
         return (
             <div className="cart container">
@@ -90,6 +121,17 @@ class Cart extends Component {
                         </tr>
                     </tbody>
                 </table>
+                <Modal
+                    defaultAction = {(info) => {this.handleDelete(info)}}
+                    defaultActionText = "Delete"
+                    isOpen = {modalOpen}
+                    secondaryAction = {this.closeModal}
+                    secondaryActionText = "Cancel"
+                >
+                    <div className="center"><i className="material-icons warning-btn">close</i></div>
+                    <h4 className="center">Are you sure?</h4>
+                    <p className="center">Do you really want to delete this product from your cart?</p>
+                </Modal>
             </div>
         );
     }

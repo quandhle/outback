@@ -9,6 +9,10 @@ class SignIn extends Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            message: ''
+        }
+
         this.handleSignIn = this.handleSignIn.bind(this);
     }
 
@@ -22,6 +26,10 @@ class SignIn extends Component {
             signIn({...values});
 
             history.push('/');
+        } else {
+            this.setState({
+                message: resp.data.error
+            })
         }
     }
     
@@ -29,7 +37,7 @@ class SignIn extends Component {
         return (
             <div className="center container">
                 <h1 className="center container">Sign In</h1>
-                <SignInForm signIn={this.handleSignIn}/>
+                <SignInForm signIn={this.handleSignIn} message={this.state.message}/>
             </div>
         )
     }
