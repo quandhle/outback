@@ -17,7 +17,7 @@ if (empty($_SESSION['cart_id'])) {
     $user_id = $_SESSION['user_id'];
 
     $count_query = "SELECT
-            `item_count`
+            `item_count`, `total_price`
         FROM `cart`
         WHERE `id` = $cartId
         AND `user_id` = $user_id
@@ -43,6 +43,7 @@ if (empty($_SESSION['cart_id'])) {
     $row = mysqli_fetch_assoc($count_result);
     
     $output['success'] = true;
+    $output['totalPrice'] = (int)$row['total_price'];
     $output['itemCount'] = (int)$row['item_count'];
 };
 

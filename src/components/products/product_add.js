@@ -4,6 +4,7 @@ import axios from 'axios';
 import Modal from '../modal/modal';
 import {connect} from 'react-redux';
 import {cartCount} from '../../js/actions';
+import {add} from '../../js/actions';
 import {formatMoney} from '../../helpers';
 
 class ProductAdd extends Component {
@@ -25,20 +26,18 @@ class ProductAdd extends Component {
     }
 
     addToCart () {
-        const {productID, updateCart} = this.props;
+        const {productID, updateCart, add, cartCount} = this.props;
         const {qty} = this.state;
 
-        axios.get(`/api/addcartitem.php?product_id=${productID}&quantity=${qty}`).then(resp => {
-            this.setState({
-                modalOpen: true,
-                cartQty: resp.data.cartCount,
-                totalPrice: resp.data.cartTotal
-            });
-        });
+        add({productID, qty});
 
-        this.props.cartCount();
+        cartCount();
 
         updateCart();
+
+        this.setState({
+            modalOpen: true,
+        })
     }
 
     decrementQty () {
@@ -69,7 +68,7 @@ class ProductAdd extends Component {
     }
 
     render () {     
-        const {modalOpen, totalPrice, cartQty, qty} = this.state;
+        const {modalOpen, totalPrice, qty} = this.state;
 
         return (
             <div className="right-align add-to-cart">
@@ -97,11 +96,11 @@ class ProductAdd extends Component {
 
                     <div className="row">
                         <div className="col s6 cart-total-items">Total Items:</div>
-                        <div className="col s6 left-align cart-quantity">{cartQty}</div>
+                        <div className="col s6 left-align cart-quantity">{this.props.cartTotalCount}</div>
                     </div>
                     <div className="row">
                         <div className="col s6">Cart Total:</div>
-                        <div className="col s6 left-align">${formatMoney(totalPrice)}</div>
+                        <div className="col s6 left-align">${formatMoney(this.props.totalPrice)}</div>
                     </div>
                 </Modal>
             </div>
@@ -110,9 +109,12 @@ class ProductAdd extends Component {
 }
 
 function mapStateToProps (state) {
+    console.log(state);
+
     return {
-        cartCount: state.cart.cartCount
+        cartTotalCount: state.cart.cartCount,
+        totalPrice: state.cart.totalPrice
     }
 }
 
-export default connect(mapStateToProps, {cartCount})(withRouter(ProductAdd));
+export default connect(mapStateToProps, {cartCount, add})(withRouter(ProductAdd));

@@ -1,6 +1,7 @@
 import {SignIn} from '../constants/action-types';
 import {SignOut} from '../constants/action-types';
 import {CartCount} from '../constants/action-types';
+import {AddToCart} from '../constants/action-types';
 import axios from 'axios';
 
 export function signIn (user) {
@@ -40,24 +41,20 @@ export function cartCount () {
         axios.get('/api/getcartitemcount.php').then((resp) => {
             dispatch({
                 type: CartCount.type,
-                cartCount: resp.data.itemCount
+                cartCount: resp.data.itemCount,
+                totalPrice: resp.data.totalPrice
             });
         })
     }
 }
 
-export function addToCart (info) {
-    return function ({dispatch}) {
-        console.log(dispatch);
-        console.log('Info:', info);
-        // axios.get(`/api/addcartitem.php?product_id=${productID}&quantity=${qty}`).then(resp => {
-        //     const {cartCount, cartTotal} = resp.data; 
-
-        //     this.setState({
-        //         modalOpen: false,
-        //         cartQty: cartCount,
-        //         totalPrice: cartTotal
-        //     });
-        // });
+export function add (info) {
+    return function (dispatch) {
+        axios.get(`/api/addcartitem.php?product_id=${info.productID}&quantity=${info.qty}`).then((resp) => {
+            dispatch({
+                type: AddToCart.type,
+                resp: resp
+            })
+        })
     }
 }
