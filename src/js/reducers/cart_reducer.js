@@ -4,15 +4,15 @@ const DEFAULT_STATE = {
 }
 
 const cartReducer = function (state = DEFAULT_STATE, action) {
-    debugger;
     switch (action.type) {
         case "CartCount":
             return {
                 cartCount: action.cartCount,
+                totalPrice: action.totalPrice
             };
-        case "Add":
+        case "AddToCart":
             return {
-                resp: action.resp
+                cartCount: action.cartCount,
             }
         default:
             return state;

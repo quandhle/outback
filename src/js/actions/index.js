@@ -1,6 +1,7 @@
 import {SignIn} from '../constants/action-types';
 import {SignOut} from '../constants/action-types';
 import {CartCount} from '../constants/action-types';
+import {AddToCart} from '../constants/action-types';
 import axios from 'axios';
 
 export function signIn (user) {
@@ -40,7 +41,8 @@ export function cartCount () {
         axios.get('/api/getcartitemcount.php').then((resp) => {
             dispatch({
                 type: CartCount.type,
-                cartCount: resp.data.itemCount
+                cartCount: resp.data.itemCount,
+                totalPrice: resp.data.totalPrice
             });
         })
     }
@@ -48,10 +50,9 @@ export function cartCount () {
 
 export function add (info) {
     return function (dispatch) {
-        debugger;
         axios.get(`/api/addcartitem.php?product_id=${info.productID}&quantity=${info.qty}`).then((resp) => {
             dispatch({
-                type: "Add",
+                type: AddToCart.type,
                 resp: resp
             })
         })
